@@ -42,6 +42,33 @@
             }
 
         }
+        .banner-wrapper{
+            height: 40.6rem;
+        }
+        .banner-wrapper .swiper{
+            width: 100%;
+            height: 100%;
+        }
+        .banner-wrapper .swiper-slide {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100%;
+            position: relative;
+        }
+        .banner-wrapper .swiper .slide-caption{
+            height: 100%;
+            position: relative;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .banner-wrapper .swiper .slide-caption p{
+            max-width: 37.5rem;
+            margin: 0 auto;
+            color: white;
+        }
 
         .activities_wrapper .activitie-items {
             position: relative;
@@ -154,20 +181,39 @@
     <!-- Swiper images-->
 
 
-    <div class="container-fluid px-lg-4 mt-4">
+    <div class="container-fluid banner-wrapper px-lg-4 mt-4">
         <div class="swiper swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="https://img.freepik.com/premium-photo/abstract-blur-luxury-hotel-lobby-background_1339-98452.jpg" class="w-100 d-block" />
+                <div class="swiper-slide" style="background-image:url(https://img.freepik.com/premium-photo/abstract-blur-luxury-hotel-lobby-background_1339-98452.jpg);" >
+
+                    <div class="slide-caption text-center">
+                        <div>
+                        <h1 class="fw-bold">Welcome to Our Hotel</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, amet.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="swiper-slide">
-                    <img src="https://png.pngtree.com/thumb_back/fh260/background/20210909/pngtree-wedding-daytime-wedding-hall-hall-hotel-interior-empty-mirror-photography-map-image_837460.jpg" class="w-100 d-block" />
+                <div class="swiper-slide" style="background-image:url(https://png.pngtree.com/thumb_back/fh260/background/20210909/pngtree-wedding-daytime-wedding-hall-hall-hotel-interior-empty-mirror-photography-map-image_837460.jpg);" >
+
+                    <div class="slide-caption text-center">
+                        <div>
+                        <h1>Welcome to Our Hotel</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, amet.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="swiper-slide">
-                    <img src="https://png.pngtree.com/thumb_back/fh260/background/20220311/pngtree-bedroom-guest-room-five-star-hotel-image_990205.jpg" class="w-100 d-block" />
+                <div class="swiper-slide" style="background-image:url(https://png.pngtree.com/thumb_back/fh260/background/20220311/pngtree-bedroom-guest-room-five-star-hotel-image_990205.jpg);" >
+
+                    <div class="slide-caption text-center">
+                        <div>
+                        <h1>Welcome to Our Hotel</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, amet.</p>
+                        </div>
+                    </div>
                 </div>
+                
                 <!-- <div class="swiper-slide">
-          <img src="images/sectionImage/4.png" class="w-100 d-block" />
+          <img src="images/slider/4.png" class="w-100 d-block" />
         </div>
          -->
 
@@ -472,6 +518,41 @@
         </div>
     </div>
     <hr>
+    <!-- Footer Section -->
+    <div class="container-fluid bg-white mt-5">
+        <div class="row">
+            <div class="col-lg-4 p-4">
+                <h3 class="h-font fw-bold fs-3 mb-2">TOGETHER HOTEL</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat.</p>
+            </div>
+            <div class="col-lg-4 p-4 text-center">
+                <h5 class="mb-3">Quick Links</h5>
+                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Home</a><br>
+                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Rooms</a><br>
+                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Activities</a><br>
+                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Facilities</a><br>
+                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Contact Us</a><br>
+                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">About</a>
+            </div>
+            <div class="col-lg-4 p-4 text-center">
+                <h5 class="mb-3">Follow us</h5>
+                <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
+                    <i class="bi bi-twitter me-1"></i>Twitter
+                </a><br>
+                <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
+                    <i class="bi bi-facebook me-1"></i>facebook
+                </a><br>
+                <a href="#" class="d-inline-block text-dark text-decoration-none">
+                    <i class="bi bi-instagram me-1"></i>Instagram
+                </a><br>
+            </div>
+        </div>
+    </div>
+
+    <h6 class="text-center bg-dark text-white p-3 m-0">Design and Developped by YC</h6>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
