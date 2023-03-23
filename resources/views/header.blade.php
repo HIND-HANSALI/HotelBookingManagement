@@ -22,7 +22,7 @@
                         <a class="nav-link me-2" href="{{ route('about') }}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-2" href="contact.php">Contact Us</a>
+                        <a class="nav-link me-2" href="{{ route('contact') }}">Contact Us</a>
                     </li>
 
 
