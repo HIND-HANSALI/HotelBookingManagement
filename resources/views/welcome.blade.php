@@ -19,10 +19,20 @@
 
     <!-- Styles -->
     <style>
+        :root {
+            --teal: #F7D1C9;
+            --teal_hover: #E9967A;
+        }
+
         * {
             /* font-family: 'Poppins', sans-serif; */
             font-family: 'Roboto', sans-serif;
 
+        }
+
+        .custom-bg {
+            background-color: var(--teal_hover);
+            border: 1px solid var(--teal_hover);
         }
 
         .h-font {
@@ -42,13 +52,16 @@
             }
 
         }
-        .banner-wrapper{
+
+        .banner-wrapper {
             height: 40.6rem;
         }
-        .banner-wrapper .swiper{
+
+        .banner-wrapper .swiper {
             width: 100%;
             height: 100%;
         }
+
         .banner-wrapper .swiper-slide {
             background-size: cover;
             background-position: center;
@@ -56,7 +69,8 @@
             height: 100%;
             position: relative;
         }
-        .banner-wrapper .swiper .slide-caption{
+
+        .banner-wrapper .swiper .slide-caption {
             height: 100%;
             position: relative;
             z-index: 99;
@@ -64,7 +78,8 @@
             align-items: center;
             justify-content: center;
         }
-        .banner-wrapper .swiper .slide-caption p{
+
+        .banner-wrapper .swiper .slide-caption p {
             max-width: 37.5rem;
             margin: 0 auto;
             color: white;
@@ -141,77 +156,40 @@
                     @endauth
                 </div>
             @endif -->
-    <nav class="navbar navbar-expand-lg bg-light px-lg-3 py-lg-2 shadow-sm sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand me-5 fw-bold fs-3 h-font" href="welcome.php">Together Hotel</a>
-            <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="welcome.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-2" href="rooms.php">Rooms</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-2" href="facilities.php">Facilities</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-2" href="activities.php">Activities</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-2" href="about.php">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-2" href="contact.php">Contact Us</a>
-                    </li>
-
-
-                </ul>
-                <div class="d-flex">
-                    <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-                    <button type="button" class="btn btn-outline-dark shadow-none" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
+    <!-- navbar section -->
+    @include('header')
     <!-- Swiper images-->
-
-
     <div class="container-fluid banner-wrapper px-lg-4 mt-4">
         <div class="swiper swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image:url(https://img.freepik.com/premium-photo/abstract-blur-luxury-hotel-lobby-background_1339-98452.jpg);" >
+                <div class="swiper-slide" style="background-image:url(https://img.freepik.com/premium-photo/abstract-blur-luxury-hotel-lobby-background_1339-98452.jpg);">
 
                     <div class="slide-caption text-center">
                         <div>
-                        <h1 class="fw-bold">Welcome to Our Hotel</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, amet.</p>
+                            <h1 class="fw-bold">Welcome to Our Hotel</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, amet.</p>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide" style="background-image:url(https://png.pngtree.com/thumb_back/fh260/background/20210909/pngtree-wedding-daytime-wedding-hall-hall-hotel-interior-empty-mirror-photography-map-image_837460.jpg);" >
+                <div class="swiper-slide" style="background-image:url(https://png.pngtree.com/thumb_back/fh260/background/20210909/pngtree-wedding-daytime-wedding-hall-hall-hotel-interior-empty-mirror-photography-map-image_837460.jpg);">
 
                     <div class="slide-caption text-center">
                         <div>
-                        <h1>Welcome to Our Hotel</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, amet.</p>
+                            <h1>Welcome to Our Hotel</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, amet.</p>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide" style="background-image:url(https://png.pngtree.com/thumb_back/fh260/background/20220311/pngtree-bedroom-guest-room-five-star-hotel-image_990205.jpg);" >
+                <div class="swiper-slide" style="background-image:url(https://png.pngtree.com/thumb_back/fh260/background/20220311/pngtree-bedroom-guest-room-five-star-hotel-image_990205.jpg);">
 
                     <div class="slide-caption text-center">
                         <div>
-                        <h1>Welcome to Our Hotel</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, amet.</p>
+                            <h1>Welcome to Our Hotel</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, amet.</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- <div class="swiper-slide">
           <img src="images/slider/4.png" class="w-100 d-block" />
         </div>
@@ -256,7 +234,7 @@
                             </select>
                         </div> -->
                         <div class="col-lg-1 mb-lg-3 mt-2">
-                            <button type="submit" class="btn text-white shadow-none btn-primary">Submit</button>
+                            <button type="submit" class="btn text-white shadow-none custom-bg">Submit</button>
                         </div>
 
                     </div>
@@ -519,41 +497,7 @@
     </div>
     <hr>
     <!-- Footer Section -->
-    <div class="container-fluid bg-white mt-5">
-        <div class="row">
-            <div class="col-lg-4 p-4">
-                <h3 class="h-font fw-bold fs-3 mb-2">TOGETHER HOTEL</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.</p>
-            </div>
-            <div class="col-lg-4 p-4 text-center">
-                <h5 class="mb-3">Quick Links</h5>
-                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Home</a><br>
-                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Rooms</a><br>
-                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Activities</a><br>
-                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Facilities</a><br>
-                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Contact Us</a><br>
-                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">About</a>
-            </div>
-            <div class="col-lg-4 p-4 text-center">
-                <h5 class="mb-3">Follow us</h5>
-                <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-                    <i class="bi bi-twitter me-1"></i>Twitter
-                </a><br>
-                <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-                    <i class="bi bi-facebook me-1"></i>facebook
-                </a><br>
-                <a href="#" class="d-inline-block text-dark text-decoration-none">
-                    <i class="bi bi-instagram me-1"></i>Instagram
-                </a><br>
-            </div>
-        </div>
-    </div>
-
-    <h6 class="text-center bg-dark text-white p-3 m-0">Design and Developped by YC</h6>
-
+    @include('footer')
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
