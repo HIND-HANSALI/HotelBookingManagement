@@ -19,3 +19,7 @@ Route::get('/', function () {
 Route::get('/facilities', function () {
     return view('facilities');
 })->name('facilities');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
