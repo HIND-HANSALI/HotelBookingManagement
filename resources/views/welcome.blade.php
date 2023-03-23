@@ -6,54 +6,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,200&family=Poppins:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,200&family=Poppins:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Nunito:ital,wght@1,200&family=Poppins:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
     <!-- Styles -->
     <style>
-    
-*{
-		font-family: 'Poppins', sans-serif;
-	}
-	.h-font{
-		font-family: 'Merienda' cursive;
-	}
-    .availability-form{
-		margin-top: -50px;
-		z-index: 2;
-		position: relative;
-	}
-    @media screen and (max-width: 575px) {
-	.availability-form{
-		margin-top: 25px;
-		padding: 0 35px;
-	}
+        * {
+            /* font-family: 'Poppins', sans-serif; */
+            font-family: 'Roboto', sans-serif;
 
-	}
+        }
 
-	/* input::-webkit-outer-spin-button,
-	input::-webkit-inner-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-	}
+        .h-font {
+            font-family: 'Merienda' cursive;
+        }
 
-	input[type=number] {
-		-moz-appearance: textarea;
-	} */
-	
+        .availability-form {
+            margin-top: -50px;
+            z-index: 2;
+            position: relative;
+        }
 
-	/* .h-line{
-		width: 150px;
-		margin: 0 auto;
-		height: 1.7px;
-	} */
+        @media screen and (max-width: 575px) {
+            .availability-form {
+                margin-top: 25px;
+                padding: 0 35px;
+            }
 
+        }
+
+        .activities_wrapper .activitie-items {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activities_wrapper .activitie-items img {
+            width: 100%;
+            -webkit-transition: all 400ms ease-in 0s;
+            transition: all 400ms ease-in 0s;
+        }
+
+        .activities_wrapper .activitie-items:hover img {
+            -webkit-transform: scale3d(1.05, 1.05, 1.05);
+            transform: scale3d(1.05, 1.05, 1.05);
+        }
+
+        .activities_wrapper .activitie-item-wrap {
+            position: absolute;
+            left: 1.875rem;
+            right: 1.875rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .activities_wrapper .activitie-items .activitie-content {
+            border: .125rem solid var(--bg-white);
+            padding: 5rem 1.875rem;
+            -webkit-transform: scale3d(1.2, 1.2, 1.2);
+            transform: scale3d(1.2, 1.2, 1.2);
+            transition: all 500ms ease-in 0s;
+            opacity: 0;
+        }
+
+        .activities_wrapper .activitie-items:hover .activitie-content {
+            border: .125rem solid white;
+
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+
+            opacity: 1;
+        }
+
+        .activitie-items .activitie-content {
+            padding: 2rem 1.875rem;
+        }
+
+        .activitie-items .activitie-content h5 {
+            font-size: 1.2rem;
+        }
+
+        .activitie-items .activitie-content p {
+            font-size: 0.75rem;
+        }
     </style>
 </head>
 
@@ -177,84 +220,84 @@
     </div>
 
     <!-- Our Rooms -->
- <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Our Rooms</h2>
- <div class="container">
- 	<div class="row">
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Our Rooms</h2>
+    <div class="container">
+        <div class="row">
 
- 		<div class="col-lg-4 col-md-6 my-3">
- 			<div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
-             
-			  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-2WXoZxYxKA2lL4WKjC3dxD3Ybb_Y67yb5g&usqp=CAU" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title">Room Name</h5>
-			    <h6 class="mb-4">50 MAD Per Night </h6>
-			    
-			    <div class="Facilities mb-4">
-			    	<h6 class="mb-1">Facilities</h6>
-			    	<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		Wifi
-    				</span>
-    				<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		Television
-    				</span>
-    				<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		AC
-    				</span>
-    				<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		Room Heater
-    				</span>
-    			</div>
+            <div class="col-lg-4 col-md-6 my-3">
+                <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
 
-    			<div class="guests mb-2">
-			    	<h6 class="mb-1">Guests</h6>
-			    	<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		5 
-    				</span>
-    				
-    			</div>	
-    				
-    				<div class="d-flex justify-content-end mb-2">
-    					<a href="#" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
-                        <a href="#" class="btn btn-sm text-white btn-primary shadow-none ms-2">Book Now</a>
-    				</div>
-			  </div>
-			</div>
- 		</div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-2WXoZxYxKA2lL4WKjC3dxD3Ybb_Y67yb5g&usqp=CAU" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Room Name</h5>
+                        <h6 class="mb-4">50 MAD Per Night </h6>
 
- 		<div class="col-lg-4 col-md-6 my-3">
- 			<div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
-             <!-- <img src="images/rooms/1.jpg" class="card-img-top" alt="..."> -->
-			  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-2WXoZxYxKA2lL4WKjC3dxD3Ybb_Y67yb5g&usqp=CAU" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title">Room Name</h5>
-			    <h6 class="mb-4">50 MAD Per Night </h6>
-			    
-			    <div class="Facilities mb-4">
-			    	<h6 class="mb-1">Facilities</h6>
-			    	<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		Wifi
-    				</span>
-    				<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		Television
-    				</span>
-    				<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		AC
-    				</span>
-    				<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		Room Heater
-    				</span>
-    			</div>
+                        <div class="Facilities mb-4">
+                            <h6 class="mb-1">Facilities</h6>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                Wifi
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                Television
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                AC
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                Room Heater
+                            </span>
+                        </div>
 
-    			<div class="guests mb-2">
-			    	<h6 class="mb-1">Guests</h6>
-			    	<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		5 
-    				</span>
-    				<!-- <span class="badge rounded-pill bg-light text-dark text-wrap">
+                        <div class="guests mb-2">
+                            <h6 class="mb-1">Guests</h6>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                5
+                            </span>
+
+                        </div>
+
+                        <div class="d-flex justify-content-end mb-2">
+                            <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
+                            <a href="#" class="btn btn-sm text-white btn-primary shadow-none ms-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 my-3">
+                <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
+                    <!-- <img src="images/rooms/1.jpg" class="card-img-top" alt="..."> -->
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-2WXoZxYxKA2lL4WKjC3dxD3Ybb_Y67yb5g&usqp=CAU" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Room Name</h5>
+                        <h6 class="mb-4">50 MAD Per Night </h6>
+
+                        <div class="Facilities mb-4">
+                            <h6 class="mb-1">Facilities</h6>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                Wifi
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                Television
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                AC
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                Room Heater
+                            </span>
+                        </div>
+
+                        <div class="guests mb-2">
+                            <h6 class="mb-1">Guests</h6>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                5
+                            </span>
+                            <!-- <span class="badge rounded-pill bg-light text-dark text-wrap">
 			    		4 Children
     				</span> -->
-    			</div>	
-    				<!-- <div class="rating mb-4">
+                        </div>
+                        <!-- <div class="rating mb-4">
 
     					<h6 class="mb-1">Rating</h6>
     					<span class="badge rounded-pill bg-light">
@@ -264,49 +307,49 @@
     						<i class="bi bi-star-fill text-warning"></i>
     					</span>
     				</div> -->
-                    
-    				<div class="d-flex justify-content-end mb-2">
-                    <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
-                        <a href="#" class="btn btn-sm text-white btn-primary shadow-none ms-2">Book Now</a>
-    				</div>
-			  </div>
-			</div>
- 		</div>
 
- 		<div class="col-lg-4 col-md-6 my-3">
- 			<div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
-             <!-- <img src="images/rooms/1.jpg" class="card-img-top" alt="..."> -->
-			  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-2WXoZxYxKA2lL4WKjC3dxD3Ybb_Y67yb5g&usqp=CAU" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title">Room Name</h5>
-			    <h6 class="mb-4">50 MAD Per Night </h6>
-			    
-			    <div class="Facilities mb-4">
-			    	<h6 class="mb-1">Facilities</h6>
-			    	<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		Wifi
-    				</span>
-    				<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		Television
-    				</span>
-    				<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		AC
-    				</span>
-    				<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		Room Heater
-    				</span>
-    			</div>
+                        <div class="d-flex justify-content-end mb-2">
+                            <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
+                            <a href="#" class="btn btn-sm text-white btn-primary shadow-none ms-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    			<div class="guests mb-2">
-			    	<h6 class="mb-1">Guests</h6>
-			    	<span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		5 
-    				</span>
-    				<!-- <span class="badge rounded-pill bg-light text-dark text-wrap">
+            <div class="col-lg-4 col-md-6 my-3">
+                <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
+                    <!-- <img src="images/rooms/1.jpg" class="card-img-top" alt="..."> -->
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-2WXoZxYxKA2lL4WKjC3dxD3Ybb_Y67yb5g&usqp=CAU" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Room Name</h5>
+                        <h6 class="mb-4">50 MAD Per Night </h6>
+
+                        <div class="Facilities mb-4">
+                            <h6 class="mb-1">Facilities</h6>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                Wifi
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                Television
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                AC
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                Room Heater
+                            </span>
+                        </div>
+
+                        <div class="guests mb-2">
+                            <h6 class="mb-1">Guests</h6>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                5
+                            </span>
+                            <!-- <span class="badge rounded-pill bg-light text-dark text-wrap">
 			    		4 Children
     				</span> -->
-    			</div>	
-    				<!-- <div class="rating mb-4">
+                        </div>
+                        <!-- <div class="rating mb-4">
 
     					<h6 class="mb-1">Rating</h6>
     					<span class="badge rounded-pill bg-light">
@@ -316,21 +359,79 @@
     						<i class="bi bi-star-fill text-warning"></i>
     					</span>
     				</div> -->
-    				<div class="d-flex justify-content-end  mb-2">
-                    <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
-                    <a href="#" class="btn btn-sm text-white btn-primary shadow-none ms-2">Book Now<a>
-    				</div>
-			  </div>
-			</div>
- 		</div>
+                        <div class="d-flex justify-content-end  mb-2">
+                            <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
+                            <a href="#" class="btn btn-sm text-white btn-primary shadow-none ms-2">Book Now<a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
- 		<div class="col-lg-12 text-center mt-5">
- 			<a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms</a>
- 		</div>
- 	</div>	
- </div>
+            <div class="col-lg-12 text-center mt-5">
+                <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms</a>
+            </div>
+        </div>
+    </div>
+    <!-- Our Activities -->
+    <section id="activities" class="activities_wrapper mt-5 ">
+        <div class="container_fluid">
+            <div class="row">
+                <div class="col-sm-12 section-title text-center mb-5">
+                    <h6>All you need</h6>
+                    <h3>Our Awesome Activites</h3>
+                </div>
+            </div>
 
+            <div class="row m-0">
+                <div class="col-md-4 mb-4 mb-lg-0">
+                    <div class="activitie-items">
+                        <img src="https://media.sport-decouverte.com/images/disciplinecard/t1080x600/167/0/randonnee-quad-buggy.jpg?v=a3b0c" class="img-fluid">
+                        <div class="activitie-item-wrap">
+                            <div class="activitie-content">
+                                <h5 class="text-white mb-lg-5 text-decoration-underline ">Acivity Name</h5>
+                                <p class="text-white ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sed harum deleniti cum quaerat deserunt perferendis ullam mollitia quas voluptates?</p>
+                                <a class="main-btn border-white text-white mt-lg-5" href=""></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-lg-0">
+                    <div class="activitie-items">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStZK49-CTTHLhMjranm1fZi2hnYN8gfc7qjJ7ZMUxuoJhXoXa1HsXvgUi3xr73vh0mRKo&usqp=CAU" class="img-fluid">
+                        <div class="activitie-item-wrap">
+                            <div class="activitie-content">
+                                <h5 class="text-dark mb-lg-5 text-decoration-underline ">Acivity Name</h5>
+                                <p class="text-dark ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sed harum deleniti cum quaerat deserunt perferendis ullam mollitia quas voluptates?</p>
+                                <a class="main-btn border-white text-white mt-lg-5" href=""></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-lg-0">
+                    <div class="activitie-items">
+                        <img src="" class="img-fluid">
+                        <div class="activitie-item-wrap">
+                            <div class="activitie-content">
+                                <h5 class="text-dark mb-lg-5 text-decoration-underline ">Acivity Name</h5>
+                                <p class="text-dark ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sed harum deleniti cum quaerat deserunt perferendis ullam mollitia quas voluptates?</p>
+                                <a class="main-btn border-white text-white mt-lg-5" href=""></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-12 text-center mt-5">
+                    <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Activities</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+   
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
@@ -347,7 +448,7 @@
         });
     </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 
 </html>
