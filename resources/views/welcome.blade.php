@@ -15,6 +15,42 @@
 
     <!-- Styles -->
     <style>
+    
+*{
+		font-family: 'Poppins', sans-serif;
+	}
+	.h-font{
+		font-family: 'Merienda' cursive;
+	}
+    .availability-form{
+		margin-top: -50px;
+		z-index: 2;
+		position: relative;
+	}
+    @media screen and (max-width: 575px) {
+	.availability-form{
+		margin-top: 25px;
+		padding: 0 35px;
+	}
+
+	}
+
+	/* input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type=number] {
+		-moz-appearance: textarea;
+	} */
+	
+
+	/* .h-line{
+		width: 150px;
+		margin: 0 auto;
+		height: 1.7px;
+	} */
 
     </style>
 </head>
@@ -95,6 +131,49 @@
         </div>
     </div>
 
+    <!-- check avilability form-->
+    <div class="container availability-form">
+        <div class="row">
+            <div class="col-lg-12 bg-white shadow p-4 rounded">
+                <h5 class="col-lg-3">Check Availability</h5>
+                <form>
+                    <div class="row align-items-end">
+                        <div class="col-lg-4 mb-3">
+                            <label class="form-label" style="font-weight: 500;">Check-in</label>
+                            <input type="date" class="form-control shadow-none">
+                        </div>
+                        <div class="col-lg-4 mb-3">
+                            <label class="form-label" style="font-weight: 500;">Check-in</label>
+                            <input type="date" class="form-control shadow-none">
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            <label class="form-label" style="font-weight: 500;">Members</label>
+                            <select class="form-select shadow-none">
+
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <!-- <div class="col-lg-2 mb-3">
+                            <label class="form-label" style="font-weight: 500;">Children</label>
+                            <select class="form-select shadow-none">
+
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div> -->
+                        <div class="col-lg-1 mb-lg-3 mt-2">
+                            <button type="submit" class="btn text-white shadow-none btn-primary">Submit</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
@@ -110,6 +189,8 @@
             }
         });
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 
 </html>
