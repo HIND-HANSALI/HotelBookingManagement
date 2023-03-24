@@ -1,4 +1,4 @@
-<div class="container-fluid bg-white mt-5">
+<div class="container-fluid bg-white mt-5 border-top">
         <div class="row">
             <div class="col-lg-4 p-4">
                 <h3 class="h-font fw-bold fs-3 mb-2">TOGETHER HOTEL</h3>
