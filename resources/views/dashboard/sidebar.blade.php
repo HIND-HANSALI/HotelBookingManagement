@@ -5,10 +5,16 @@
                 <li class="active"> <a href="index.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
                 <li class="list-divider"></li>
                 <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span class="menu-arrow"></span></a>
+                    @php
+                    $id = 2;
+                    $booking = DB::table('reservations')->where('id', $id)->first();
+                    @endphp
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href="all-booking.html"> All Booking </a></li>
-                        <li><a href="edit-booking.html"> Edit Booking </a></li>
-                        <li><a href="add-booking.html"> Add Booking </a></li>
+                        <li><a href="{{ route('bookings') }}"> All Booking </a></li>
+                        <li><a href="{{ route('bookingedit', ['id' => $booking->id]) }}"> Edit Booking </a></li>
+                      
+                        <li><a href="{{ route('bookingadd') }}"> Add Booking </a></li>
+
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
@@ -20,9 +26,9 @@
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-hand-holding"></i> <span> Facilities </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href="{{ route('facilities') }}"> All Facilities  </a></li>
-                        <li><a href="{{ route('editfacilitie') }}"> Edit Facilities  </a></li>
-                        <li><a href="{{ route('addfacilitie') }}"> Add Facilities  </a></li>
+                        <li><a href="{{ route('facilities') }}"> All Facilities </a></li>
+                        <li><a href="{{ route('editfacilitie') }}"> Edit Facilities </a></li>
+                        <li><a href="{{ route('addfacilitie') }}"> Add Facilities </a></li>
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Rooms </span> <span class="menu-arrow"></span></a>
