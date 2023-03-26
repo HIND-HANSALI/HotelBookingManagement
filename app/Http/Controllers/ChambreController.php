@@ -13,7 +13,7 @@ class ChambreController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.all-rooms',['rooms'=>Chambre::paginate(10)]);
     }
 
     /**
@@ -21,7 +21,7 @@ class ChambreController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.add-room');
     }
 
     /**
@@ -29,7 +29,13 @@ class ChambreController extends Controller
      */
     public function store(StoreChambreRequest $request)
     {
-        //
+        $photo = $request->file('pictureR');
+        $file_name=rand() . '.' .$photo->getClientOriginalName();
+        $photo->move(public_path('/assets/upload/rooms'),$file_name);
+        $data=$request->only(['nameR','descriptionR','categorie_id','statutR','numberBed','priceR']);
+        $data['pictureR'] = $file_name;
+        Chambre::create($data);
+        return redirect()->route('roomss.index')->with('success','Room created successfully!');
     }
 
     /**
@@ -45,7 +51,7 @@ class ChambreController extends Controller
      */
     public function edit(Chambre $chambre)
     {
-        //
+        return view('dashboard.edit-room');
     }
 
     /**
