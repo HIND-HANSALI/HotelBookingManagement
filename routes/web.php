@@ -55,4 +55,7 @@ Route::get('/rooms', function () {
     Route::get('/roomadd', [ChambreController::class,'create'])->name('roomadd');
     Route::get('/roomedit', [ChambreController::class,'edit'])->name('roomedit');
 
-  
+    Route::get('/booking', [ReservationController::class,'index'])->name('bookings');
+    Route::resource('bookings', ReservationController::class)->only(['index','show','create','store','edit','update','destroy']);
+    Route::get('/bookingadd', [ReservationController::class,'create'])->name('bookingadd');
+    Route::get('/bookingedit/{id}', [ReservationController::class,'edit'])->name('bookingedit');
