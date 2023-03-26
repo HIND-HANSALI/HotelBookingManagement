@@ -14,6 +14,17 @@ return new class extends Migration
         Schema::create('chambres', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nameR');
+            $table->text('descriptionR');
+            $table->integer('categorie_id');
+            $table->string('statutR');
+            $table->string('pictureR');
+            $table->integer('numberBed');
+            $table->float('priceR');
+
+
+
+
         });
     }
 
