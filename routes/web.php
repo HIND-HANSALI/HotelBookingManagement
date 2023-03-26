@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacilitieController;
+use App\Http\Controllers\ChambreController;
+use App\Http\Controllers\ReservationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,3 +50,9 @@ Route::get('/rooms', function () {
     Route::resource('facilitiess', FacilitieController::class)->only(['index','show','create','store','edit','update','destroy']);
     // Route::get('facilitiess/{facilitiess}',[FacilitieController::class,'edit']);
     // Route::post('facilitiess', [FacilitieController::class, 'store'])->name('facilities.store');
+    Route::get('/rooms', [ChambreController::class,'index'])->name('rooms');
+    Route::resource('roomss', ChambreController::class)->only(['index','show','create','store','edit','update','destroy']);
+    Route::get('/roomadd', [ChambreController::class,'create'])->name('roomadd');
+    Route::get('/roomedit', [ChambreController::class,'edit'])->name('roomedit');
+
+  
