@@ -18,9 +18,9 @@ use App\Http\Controllers\ReservationController;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/facilities', function () {
-//     return view('facilities');
-// })->name('facilities');
+Route::get('/facilitiesFront', function () {
+    return view('facilities');
+})->name('facilitiesFront');
 
 Route::get('/about', function () {
     return view('about');
@@ -30,9 +30,9 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/rooms', function () {
+Route::get('/roomsFront', function () {
     return view('rooms');
-})->name('rooms');
+})->name('roomsFront');
 
     Route::view('/dashboard','dashboard.index');
     // Route::view('/all-facilities','dashboard.all-facilities');
@@ -54,6 +54,8 @@ Route::get('/rooms', function () {
     Route::resource('roomss', ChambreController::class)->only(['index','show','create','store','edit','update','destroy']);
     Route::get('/roomadd', [ChambreController::class,'create'])->name('roomadd');
     Route::get('/roomedit', [ChambreController::class,'edit'])->name('roomedit');
+    Route::get('/roomaddimage', [ChambreController::class,'createImage'])->name('roomImage');
+    Route::get('/roomdetails', [ChambreController::class,'show'])->name('roomdetails');
 
     Route::get('/booking', [ReservationController::class,'index'])->name('bookings');
     Route::resource('bookings', ReservationController::class)->only(['index','show','create','store','edit','update','destroy']);

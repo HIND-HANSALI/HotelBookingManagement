@@ -188,13 +188,32 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-4">
+								<div class="col-md-12">
 									<div class="form-group">
 										<label>Room description</label>
 										<textarea class="form-control" rows="5" id="description" name="descriptionR" >{{ old('descriptionR') }}</textarea>
 
 									</div>
 								</div>
+
+								<!-- add relation with facilitie?? -->
+								<div class="col-md-12">
+								<label class="form-label">Facilities </label>
+								<div class="row">
+								
+									<div class="col-md-3 mb-1">
+										<label for="">
+										<input class="form-check-input shadow-none" name="facilities" type="checkbox" value="" id="flexCheckDefault">
+										tv
+										</label>
+									</div>
+									
+								
+								</div>
+
+								</div>
+
+
 
 							</div>
 

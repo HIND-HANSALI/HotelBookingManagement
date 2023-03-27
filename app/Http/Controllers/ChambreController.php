@@ -23,6 +23,10 @@ class ChambreController extends Controller
     {
         return view('dashboard.add-room');
     }
+    public function createImage()
+    {
+        return view('dashboard.add-room-images');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -41,9 +45,9 @@ class ChambreController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Chambre $chambre)
+    public function show()
     {
-        //
+        return view('room-details');
     }
 
     /**

@@ -10,10 +10,10 @@
                         <a class="nav-link active" aria-current="page" href="welcome.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-2" href="{{ route('rooms')}}">Rooms</a>
+                        <a class="nav-link me-2" href="{{ route('roomsFront')}}">Rooms</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-2" href="{{ route('facilities') }}">Facilities</a>
+                        <a class="nav-link me-2" href="{{ route('facilitiesFront') }}">Facilities</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link me-2" href="activities.php">Activities</a>

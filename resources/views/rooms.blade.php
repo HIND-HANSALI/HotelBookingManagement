@@ -129,7 +129,7 @@
                         <div class="col-md-2 mt-lg-0 mt-md-0 mt-4 text-center">
                             <h6 class="mb-4">50 MAD per night </h6>
                             <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                            <a href="#" class="btn btn-sm w-100 btn-outline-dark shadow-none">More details</a>
+                            <a href="{{ route('roomdetails') }}" class="btn btn-sm w-100 btn-outline-dark shadow-none">More details</a>
                         </div>
                     </div>
                 </div>
@@ -181,6 +181,7 @@
 
                             <div class="Facilities mb-3">
                                 <h6 class="mb-1">Facilities</h6>
+                                <!-- foreach here -->
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
                                     Wifi
                                 </span>
