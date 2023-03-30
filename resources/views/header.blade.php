@@ -16,7 +16,7 @@
                         <a class="nav-link me-2" href="{{ route('facilitiesFront') }}">Facilities</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-2" href="activities.php">Activities</a>
+                        <a class="nav-link me-2" href="{{ route('activitiesFront') }}">Activities</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link me-2" href="{{ route('about') }}">About</a>

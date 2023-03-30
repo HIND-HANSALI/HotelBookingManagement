@@ -34,6 +34,10 @@ Route::get('/roomsFront', function () {
     return view('rooms');
 })->name('roomsFront');
 
+Route::get('/activitiesFront', function () {
+    return view('activities');
+})->name('activitiesFront');
+
     Route::view('/dashboard','dashboard.index');
     // Route::view('/all-facilities','dashboard.all-facilities');
 // Route::get('/facilities', function () {

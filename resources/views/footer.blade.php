@@ -31,4 +31,4 @@
         </div>
     </div>
 
-    <h6 class="text-center bg-dark text-white p-3 m-0">Design and Developped by YC</h6>
+    <!-- <h6 class="text-center bg-dark text-white p-3 m-0">Design and Developped by YC</h6> -->
