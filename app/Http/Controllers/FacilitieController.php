@@ -29,9 +29,14 @@ class FacilitieController extends Controller
      */
     public function store(StoreFacilitieRequest $request)
     {
-        
+       
+        $icon = $request->file('iconF');
+       
+        $file_name=rand() . '.' . $icon->getClientOriginalName();
+        $icon->move(public_path('/assets/upload/facilities'),$file_name);
+
         $data=$request->only(['name','description']);
-        
+        $data['iconF'] = $file_name;
         Facilitie::create($data);
         return redirect()->route('facilitiess.index')->with('success','Facilitie created successfully!');
     }
@@ -60,13 +65,23 @@ class FacilitieController extends Controller
     public function update(UpdateFacilitieRequest $request, $id)
     {
        
-        $validatedData = $request->validated();
+        $data = $request->only(['name', 'description']);
        
         $facilitie=Facilitie::findorfail($id);
-            $facilitie->update($validatedData);
-
-       
         
+        if($request->file('iconF')!=null){
+           
+            $icon = $request->file('iconF');
+            $file_name = rand() . '.' . $icon->getClientOriginalName();
+            $icon->move(public_path('/assets/upload/facilities'), $file_name);
+            $data['iconF'] = $file_name;
+            $facilitie->update( $data );
+        }else{
+            
+            $facilitie->update( $data );
+
+        }
+      // $facilitie->update($request->all());
         return redirect()->route('facilitiess.index')->with('success','Facilitie updated successfully!');
 
     }
@@ -78,7 +93,7 @@ class FacilitieController extends Controller
     {
         
         $facilitie=Facilitie::findorfail($id);
-        dd('$facilitie');
+        // dd('$facilitie');
         $facilitie->DELETE();
 
          return redirect()->back()->with('success','Facilitie deleted successfully!');

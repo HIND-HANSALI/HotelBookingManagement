@@ -69,22 +69,26 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Facility Name</label>
-										<input class="form-control" type="text"  name="name" value="{{old ('name')}}"> </div>
+										<input class="form-control @error('name') is-invalid  @enderror" type="text"  name="name" value="{{old ('name')}}"> </div>
 								</div>
                                 <div class="col-md-4">
 									<div class="form-group">
 										<label>Facility description</label>
-										<textarea class="form-control" rows="5" id="description" name="description">{{ old('description') }}</textarea>
+										<textarea class="form-control @error('description') is-invalid  @enderror" rows="5" id="description" name="description">{{ old('description') }}</textarea>
 
 									</div>
 								</div>
-								
-                               
-								
-								
-								
-								
-								
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Facility Icon</label>
+										<div class="custom-file mb-3">
+											<input type="file" class="custom-file-input @error('iconF') is-invalid  @enderror" id="customFile" name="iconF" value="{{old ('iconF')}}">
+											<label class="custom-file-label" for="customFile">Choose icon</label>
+										</div>
+									</div>
+								</div>
+                        	
+		
 							</div>
 						
 					</div>

@@ -132,10 +132,10 @@
 								
                                 <div class="col-md-4">
 									<div class="form-group">
-										<label>File Upload</label>
+										<label>Facility Icon</label>
 										<div class="custom-file mb-3">
-											<input type="file" class="custom-file-input" id="customFile" name="picture" value="">
-											<label class="custom-file-label" for="customFile">Choose file</label>
+											<input type="file" class="custom-file-input" id="customFile" name="iconF" value="">
+											<label class="custom-file-label" for="customFile">Choose icon</label>
 										</div>
 									</div>
 								</div>

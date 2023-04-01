@@ -134,7 +134,7 @@
 											<tr>
 												
 												<td>
-                                                    <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-03.jpg" alt="User Image"></a> 
+                                                    <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/upload/facilities/'.$facilitie-> iconF)}}" alt="User Image"></a> 
                                                 </td>
 												<td>{{$facilitie->name}}</td>
 												<td>{{$facilitie->description}}</td>
