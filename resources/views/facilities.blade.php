@@ -48,19 +48,21 @@
 
     <div class="container">
         <div class="row">
+        @foreach ($facilities as $facilitie)
             <div class="col-lg-4 col-md-6 mb-5 px-4">
                 <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
                     <div class="d-flex align-items-center mb-2">
-                        <img src="https://cdn-icons-png.flaticon.com/512/4305/4305650.png" width="40px">
-                        <h5 class="m-0 ms-3">Wifi</h5>
+                        <img src="{{asset('assets/upload/facilities/'.$facilitie-> iconF)}}" width="40px">
+                        <h5 class="m-0 ms-3">{{$facilitie->name}}</h5>
                     </div>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    {{$facilitie->description}}Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-5 px-4">
+        @endforeach
+            <!-- <div class="col-lg-4 col-md-6 mb-5 px-4">
                 <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
                     <div class="d-flex align-items-center mb-2">
                         <img src="https://t4.ftcdn.net/jpg/03/51/59/77/360_F_351597767_fvCd54fUTCpqbNI6chT5AHS2BZBsf6GB.jpg" width="40px">
@@ -71,8 +73,8 @@
                         tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5 px-4">
+            </div> -->
+            <!-- <div class="col-lg-4 col-md-6 mb-5 px-4">
                 <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
                     <div class="d-flex align-items-center mb-2">
                         <img src="https://cdn-icons-png.flaticon.com/512/114/114735.png" width="40px">
@@ -83,8 +85,8 @@
                         tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5 px-4">
+            </div> -->
+            <!-- <div class="col-lg-4 col-md-6 mb-5 px-4">
                 <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
                     <div class="d-flex align-items-center mb-2">
                         <img src="images/facilities/Wifi.svg" width="40px">
@@ -95,8 +97,8 @@
                         tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5 px-4">
+            </div> -->
+            <!-- <div class="col-lg-4 col-md-6 mb-5 px-4">
                 <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
                     <div class="d-flex align-items-center mb-2">
                         <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png" width="40px">
@@ -107,8 +109,8 @@
                         tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5 px-4">
+            </div> -->
+            <!-- <div class="col-lg-4 col-md-6 mb-5 px-4">
                 <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
                     <div class="d-flex align-items-center mb-2">
                         <img src="images/facilities/Wifi.svg" width="40px">
@@ -119,7 +121,7 @@
                         tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

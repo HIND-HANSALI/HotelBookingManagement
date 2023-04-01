@@ -15,7 +15,9 @@ class FacilitieController extends Controller
     {
         return view('dashboard.all-facilities',['facilities'=>Facilitie::paginate(10)]);
     }
-
+    public function displayFacilities(){
+        return view('facilities',['facilities'=>Facilitie::paginate(6)]);
+    }
     /**
      * Show the form for creating a new resource.
      */

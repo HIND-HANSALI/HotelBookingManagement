@@ -11,6 +11,7 @@ class Facilitie extends Model
     protected $fillable = [
         'name',
         'description',
+        'iconF'
         
         
     ];
