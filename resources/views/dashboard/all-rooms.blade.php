@@ -130,6 +130,7 @@
 												<th>Room Description</th>
 												<th>Price Room</th>
 												<th>Status</th>
+												<th>Facilities</th>
 												<th class="text-right">Actions</th>
 											</tr>
 										</thead>
@@ -152,42 +153,40 @@
 												<td>
 													<div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">{{$room->statutR}}</a> </div>
 												</td>
+												<td>
+													@foreach ($room->facilities as $facility)
+														{{$facility->name}}
+													@endforeach
+												</td>
 												<td class="text-right">
 													<div class="dropdown dropdown-action"> <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
 														<div class="dropdown-menu dropdown-menu-right"> 
-														<a class="dropdown-item" href="edit-room.html"><i class="fas fa-pencil-alt m-r-5"></i> Edit</a> 
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fas fa-trash-alt m-r-5"></i> Delete</a> 
+														<a class="dropdown-item" href="{{ route('roomss.edit', $room->id) }}"><i class="fas fa-pencil-alt m-r-5"></i> Edit</a> 
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset_{{ $room->id }}"><i class="fas fa-trash-alt m-r-5"></i> Delete</a> 
 														<a class="dropdown-item" href="{{ route('roomImage') }}"><i class="fas fa-image m-r-5"></i>Add Image</a>
 													</div>
 													</div>
 												</td>
 											</tr>
 											
-											<!-- <tr>
-												<td>BKG-0005</td>
-												<td>
-													<h2 class="table-avatar">
-                                                    <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-07.jpg" alt="User Image"></a>
-                                                    <a href="profile.html">Carolyn Lane <span>#0005</span></a>
-                                                    </h2>
-                                                </td>
-												<td>Double</td>
-												<td>12</td>
-												<td>21-03-2020</td>
-												<td>06.00 AM</td>
-												<td>22-03-2020</td>
-												<td>23-03-2020</td>
-												<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="452624372a293c2b29242b2005203d24283529206b262a28">[email&#160;protected]</a></td>
-												<td>570-458-0070</td>
-												<td>
-													<div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">Active</a> </div>
-												</td>
-												<td class="text-right">
-													<div class="dropdown dropdown-action"> <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
-														<div class="dropdown-menu dropdown-menu-right"> <a class="dropdown-item" href="edit-room.html"><i class="fas fa-pencil-alt m-r-5"></i> Edit</a> <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fas fa-trash-alt m-r-5"></i> Delete</a> </div>
+											
+											<div id="delete_asset_{{ $room->id }}" class="modal fade delete-modal" role="dialog">
+												<div class="modal-dialog modal-dialog-centered">
+													<div class="modal-content">
+														<div class="modal-body text-center"> <img src="assets/img/sent.png" alt="" width="50" height="46">
+															<h3 class="delete_class">Are you sure want to delete this Asset?</h3>
+															<div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+															<form style="display:inline" method="POST" action="{{route('roomss.destroy',$room->id)}}">
+															@csrf
+															@method('DELETE')
+															<input type="hidden" name="id" value="{{ $room->id }}">
+																<button type="submit" class="btn btn-danger">Delete</button>
+																</form>
+															</div>
+														</div>
 													</div>
-												</td>
-											</tr> -->
+												</div>
+											</div>
 											@endforeach	
 										</tbody>
 									</table>

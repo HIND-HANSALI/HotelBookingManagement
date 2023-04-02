@@ -68,9 +68,10 @@ class ChambreController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Chambre $chambre)
+    public function edit($id)
     {
-        return view('dashboard.edit-room');
+        $chambre=Chambre::findorfail($id);
+        return view('dashboard.edit-room',['room'=>$chambre,'facilities' => Facilitie::All()]);
     }
 
     /**
@@ -78,14 +79,38 @@ class ChambreController extends Controller
      */
     public function update(UpdateChambreRequest $request, Chambre $chambre)
     {
-        //
+        // dd($request->All());
+        $photo = $request->file('pictureR');
+        $file_name = rand() . '.' . $photo->getClientOriginalName();
+        $photo->move(public_path('/assets/upload/rooms'), $file_name);
+        $data = $request->only(['nameR', 'descriptionR', 'categorie_id', 'statutR', 'numberBed', 'priceR']);
+        $data['pictureR'] = $file_name;
+        $chambre ->update($data);
+        // $chambre->facilities()->detach();
+        
+        // Store the selected facilities for the chambre
+        
+        $facilities = $request->input('facilities');
+        if ($facilities) {
+            foreach ($facilities as $facility_id) {
+                $chambre->facilities()->sync([$facility_id => ['chambre_id' => $chambre->id]]);
+                // $chambre->facilities()->attach($facility_id, ['chambre_id' => $chambre->id]);
+            }
+        }
+       
+
+        return redirect()->route('roomss.index')->with('success', 'Room created successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Chambre $chambre)
+    public function destroy($id)
     {
-        //
+        $chambre=Chambre::findorfail($id);
+        
+        $chambre->DELETE();
+
+         return redirect()->back()->with('success','Room deleted successfully!');
     }
 }
