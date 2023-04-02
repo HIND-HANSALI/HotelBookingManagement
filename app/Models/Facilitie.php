@@ -15,4 +15,7 @@ class Facilitie extends Model
         
         
     ];
+    public function chambres(){
+        return $this->belongsToMany(Chambre::class,'chambre_facilities', 'facility_id', 'chambre_id');
+    }
 }

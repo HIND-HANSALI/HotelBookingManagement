@@ -22,6 +22,10 @@ return new class extends Migration
             $table->integer('numberBed');
             $table->float('priceR');
 
+            // $table->unsignedBigInteger('facility_id');
+            // $table->foreign('facility_id')->references('id')->on('facilities')->onDelete('cascade');
+
+
 
 
 

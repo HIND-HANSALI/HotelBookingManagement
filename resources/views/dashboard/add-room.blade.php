@@ -138,11 +138,11 @@
 									<div class="form-group">
 										<label>Room Categorie</label>
 										<select class="form-control @error('categorie_id') is-invalid  @enderror" id="sel1" name="categorie_id">
-										<option disabled selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-											
+											<option disabled selected>Open this select menu</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+
 										</select>
 									</div>
 								</div>
@@ -150,7 +150,7 @@
 									<div class="form-group">
 										<label>Statut Room</label>
 										<select class="form-control" id="sel2" name="statutR">
-										<option disabled selected>Open this select menu</option>
+											<option disabled selected>Open this select menu</option>
 											<option>AC</option>
 											<option>NON-AC</option>
 										</select>
@@ -161,7 +161,7 @@
 									<div class="form-group">
 										<label>Number Of Beds </label>
 										<select class="form-control" id="sel" name="numberBed">
-										<option disabled selected>Open this select menu</option>
+											<option disabled selected>Open this select menu</option>
 											<option>1</option>
 											<option>2</option>
 											<option>3</option>
@@ -191,56 +191,56 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label>Room description</label>
-										<textarea class="form-control" rows="5" id="description" name="descriptionR" >{{ old('descriptionR') }}</textarea>
+										<textarea class="form-control" rows="5" id="description" name="descriptionR">{{ old('descriptionR') }}</textarea>
 
 									</div>
 								</div>
 
 								<!-- add relation with facilitie?? -->
 								<div class="col-md-12">
-								<label class="form-label">Facilities </label>
-								<div class="row">
-								
-									<div class="col-md-3 mb-1">
-										<label for="">
-										<input class="form-check-input shadow-none" name="facilities" type="checkbox" value="" id="flexCheckDefault">
-										tv
-										</label>
+									<label class="form-label">Facilities </label>
+									<div class="row">
+										@foreach($facilities as $facilitie)
+										<div class="col-md-3 mb-1">
+											<label for="">
+												<input class="form-check-input shadow-none" name="facilities[]" type="checkbox" value="{{$facilitie->id}}" id="flexCheckDefault">
+												{{$facilitie->name}}
+											</label>
+										</div>
+										@endforeach
 									</div>
+
 									
-								
-								</div>
+
+
 
 								</div>
-
-
 
 							</div>
-
 					</div>
 				</div>
-				<button type="submit" name="saveRoom" class="btn btn-primary buttonedit ml-2">Save</button>
-				<button type="button" class="btn btn-primary buttonedit">Cancel</button>
+					<button type="submit" name="saveRoom" class="btn btn-primary buttonedit ml-2">Save</button>
+					<button type="button" class="btn btn-primary buttonedit">Cancel</button>
+				
+				</form>
 			</div>
-			</form>
 		</div>
-	</div>
-	<script src="assets/js/jquery-3.5.1.min.js"></script>
-	<script src="assets/js/popper.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/moment.min.js"></script>
-	<script src="assets/js/select2.min.js"></script>
-	<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="assets/plugins/raphael/raphael.min.js"></script>
-	<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="assets/js/script.js"></script>
-	<script>
-		$(function() {
-			$('#datetimepicker3').datetimepicker({
-				format: 'LT'
+		<script src="assets/js/jquery-3.5.1.min.js"></script>
+		<script src="assets/js/popper.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/moment.min.js"></script>
+		<script src="assets/js/select2.min.js"></script>
+		<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="assets/plugins/raphael/raphael.min.js"></script>
+		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+		<script src="assets/js/script.js"></script>
+		<script>
+			$(function() {
+				$('#datetimepicker3').datetimepicker({
+					format: 'LT'
+				});
 			});
-		});
-	</script>
+		</script>
 </body>
 
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chambre;
+use App\Models\Facilitie;
 use App\Http\Requests\StoreChambreRequest;
 use App\Http\Requests\UpdateChambreRequest;
 
@@ -13,15 +14,19 @@ class ChambreController extends Controller
      */
     public function index()
     {
-        return view('dashboard.all-rooms',['rooms'=>Chambre::paginate(10)]);
+        return view('dashboard.all-rooms', ['rooms' => Chambre::paginate(10)]);
     }
+
+    // public function facilities(){
+    //     return view('dashboard.add-room',['facilities'=>Facilitie::All()]);
+    // }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('dashboard.add-room');
+        return view('dashboard.add-room', ['facilities' => Facilitie::All()]);
     }
     public function createImage()
     {
@@ -34,12 +39,22 @@ class ChambreController extends Controller
     public function store(StoreChambreRequest $request)
     {
         $photo = $request->file('pictureR');
-        $file_name=rand() . '.' .$photo->getClientOriginalName();
-        $photo->move(public_path('/assets/upload/rooms'),$file_name);
-        $data=$request->only(['nameR','descriptionR','categorie_id','statutR','numberBed','priceR']);
+        $file_name = rand() . '.' . $photo->getClientOriginalName();
+        $photo->move(public_path('/assets/upload/rooms'), $file_name);
+        $data = $request->only(['nameR', 'descriptionR', 'categorie_id', 'statutR', 'numberBed', 'priceR']);
         $data['pictureR'] = $file_name;
-        Chambre::create($data);
-        return redirect()->route('roomss.index')->with('success','Room created successfully!');
+        $chambre = Chambre::create($data);
+        // Store the selected facilities for the chambre
+        
+        $facilities = $request->input('facilities');
+        if ($facilities) {
+            foreach ($facilities as $facility_id) {
+                $chambre->facilities()->attach($facility_id);
+            }
+        }
+       
+
+        return redirect()->route('roomss.index')->with('success', 'Room created successfully!');
     }
 
     /**
