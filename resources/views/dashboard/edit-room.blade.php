@@ -172,57 +172,45 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-12">
-						<form>
+						<form method="POST" action="{{route('roomss.update',$room->id)}}" enctype="multipart/form-data">
+							@csrf
+							@method('PUT')
 							<div class="row formtype">
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Room Number</label>
-										<input class="form-control" type="text" value="BKG-0001">
+										<label>Room Name</label>
+										<input class="form-control @error('nameR') is-invalid  @enderror" type="text" name="nameR"  value="{{old ('nameR',$room->nameR)}}">
 									</div>
 								</div>
+
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Room Type</label>
-										<select class="form-control" id="sel1" name="sellist1">
-											<option>Select</option>
-											<option>Single</option>
-											<option>Double</option>
-											<option>Quad</option>
-											<option>King</option>
-											<option>Suite</option>
-											<option>Villa</option>
+										<label>Room Categorie</label>
+										<select class="form-control @error('categorie_id') is-invalid  @enderror" id="sel1" name="categorie_id">
+											<option disabled selected>Open this select menu</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+
 										</select>
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>AC/NON-AC</label>
-										<select class="form-control" id="sel2" name="sellist1">
-											<option>Select</option>
+										<label>Statut Room</label>
+										<select class="form-control" id="sel2" name="statutR">
+											<option disabled selected>Open this select menu</option>
 											<option>AC</option>
 											<option>NON-AC</option>
 										</select>
 									</div>
 								</div>
+
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Food</label>
-										<select class="form-control" id="sel3" name="sellist1">
-											<option>Select</option>
-											<option>Free Breakfast</option>
-											<option>Free Lunch</option>
-											<option>Free Dinner</option>
-											<option>Free Breakfast & Dinner</option>
-											<option>Free Welcome Drink</option>
-											<option>No Free Food</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group">
-										<label>Bed Count</label>
-										<select class="form-control" id="sel4" name="sellist1">
-											<option>Select</option>
+										<label>Number Of Beds </label>
+										<select class="form-control" id="sel" name="numberBed">
+											<option disabled selected>Open this select menu</option>
 											<option>1</option>
 											<option>2</option>
 											<option>3</option>
@@ -232,52 +220,54 @@
 										</select>
 									</div>
 								</div>
+
+
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Charges For cancellation</label>
-										<select class="form-control" id="sel5" name="sellist1">
-											<option>Select</option>
-											<option>Free</option>
-											<option>5% Before 24Hours</option>
-											<option>No Cancellation Allow</option>
-										</select>
+										<label>Price Room</label>
+										<input type="number" class="form-control" id="priceR" name="priceR"  value="{{old ('priceR',$room->priceR)}}">
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Rent</label>
-										<input type="text" class="form-control" id="usr">
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group">
-										<label>Phone Number</label>
-										<input type="text" class="form-control" id="usr1">
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group">
-										<label>File Upload</label>
+										<label>Picture Room</label>
 										<div class="custom-file mb-3">
-											<input type="file" class="custom-file-input" id="customFile"
-												name="filename">
+											<input type="file" class="custom-file-input" id="customFile" name="pictureR">
 											<label class="custom-file-label" for="customFile">Choose file</label>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-4">
+								<div class="col-md-12">
 									<div class="form-group">
-										<label>Message</label>
-										<textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+										<label>Room description</label>
+										<textarea class="form-control" rows="5" id="description" name="descriptionR">{{ old('descriptionR',$room->descriptionR) }}</textarea>
+
 									</div>
 								</div>
+
+								<!-- add relation with facilitie?? -->
+								<div class="col-md-12">
+									<label class="form-label">Facilities </label>
+									<div class="row">
+										@foreach($facilities as $facilitie)
+										<div class="col-md-3 mb-1">
+											<label for="">
+												<input class="form-check-input shadow-none" name="facilities[]" type="checkbox" value="{{$facilitie->id}}" id="flexCheckDefault">
+												{{$facilitie->name}}
+											</label>
+										</div>
+										@endforeach
+									</div>
+
+								</div>
+
 							</div>
-						</form>
 					</div>
 				</div>
-				<button type="button" class="btn btn-primary buttonedit ml-2">Save</button>
+				<button type="submit" class="btn btn-primary buttonedit ml-2">Save</button>
 				<button type="button" class="btn btn-primary buttonedit">Cancel</button>
 			</div>
+			</form>
 		</div>
 
 	</div>

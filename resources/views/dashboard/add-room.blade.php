@@ -210,10 +210,6 @@
 										@endforeach
 									</div>
 
-									
-
-
-
 								</div>
 
 							</div>

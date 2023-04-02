@@ -77,8 +77,9 @@ class ChambreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateChambreRequest $request, Chambre $chambre)
+    public function update(UpdateChambreRequest $request, int $id)
     {
+        $chambre=Chambre::findorfail($id);
         // dd($request->All());
         $photo = $request->file('pictureR');
         $file_name = rand() . '.' . $photo->getClientOriginalName();

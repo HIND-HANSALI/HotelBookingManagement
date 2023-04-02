@@ -11,7 +11,7 @@ class UpdateChambreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class UpdateChambreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nameR'=>'required|min:4|max:100',
+            'descriptionR'=>'required',
+            'categorie_id'=>'required',
+            'statutR'=>'required',
+            'numberBed'=>'required',
+            'priceR'=>'required',
+            'pictureR'=>'required|file',
         ];
     }
 }
