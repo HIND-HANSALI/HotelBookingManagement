@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacilitieController;
 use App\Http\Controllers\ChambreController;
+use App\Http\Controllers\ChambreimageController;
 use App\Http\Controllers\ReservationController;
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,7 @@ use App\Http\Controllers\ReservationController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/facilitiesFront', function () {
-    return view('facilities');
-})->name('facilitiesFront');
+
 
 Route::get('/about', function () {
     return view('about');
@@ -38,11 +37,23 @@ Route::get('/activitiesFront', function () {
     return view('activities');
 })->name('activitiesFront');
 
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->name('dashboard');
+
+// Route::get('/facilitiesFront', function () {
+//     return view('facilities');
+// })->name('facilitiesFront');
+
+Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])->name('facilitiesFront');
+
     Route::view('/dashboard','dashboard.index');
     // Route::view('/all-facilities','dashboard.all-facilities');
 // Route::get('/facilities', function () {
 //         return view('dashboard.all-facilities');
 //     })->name('facilities');
+
+
     Route::get('/addfacilitie', function () {
         return view('dashboard.add-facilitie');
     })->name('addfacilitie');
@@ -58,8 +69,15 @@ Route::get('/activitiesFront', function () {
     Route::resource('roomss', ChambreController::class)->only(['index','show','create','store','edit','update','destroy']);
     Route::get('/roomadd', [ChambreController::class,'create'])->name('roomadd');
     Route::get('/roomedit', [ChambreController::class,'edit'])->name('roomedit');
-    Route::get('/roomaddimage', [ChambreController::class,'createImage'])->name('roomImage');
+    // Route::get('/roomaddimage', [ChambreController::class,'createImage'])->name('roomImage');
     Route::get('/roomdetails', [ChambreController::class,'show'])->name('roomdetails');
+
+
+    // Route::get('/roomFacilities', [ChambreController::class,'facilities'])->name('roomfacilities');
+
+    Route::resource('images', ChambreimageController::class)->only(['index','show','create','store','edit','update','destroy']);
+    Route::get('/roomaddimage/{id}', [ChambreimageController::class,'createImage'])->name('roomImage');
+    Route::get('/roomgetimage/{id}', [ChambreimageController::class,'getallImage'])->name('getImage');
 
     Route::get('/booking', [ReservationController::class,'index'])->name('bookings');
     Route::resource('bookings', ReservationController::class)->only(['index','show','create','store','edit','update','destroy']);

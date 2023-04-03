@@ -90,9 +90,9 @@
         </div>
     </div>
 
-    <h3 class="my-5 fw-bold h-font text-center">MANAGEMENT TEAM</h3>
+    <!-- <h3 class="my-5 fw-bold h-font text-center">MANAGEMENT TEAM</h3> -->
 
-    <div class="container px-4">
+    <!-- <div class="container px-4">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper mb-5">
                 <div class="swiper-slide bg-white text-center overflow-hidden rounded">
@@ -121,7 +121,7 @@
             </div>
             <div class="swiper-pagination"></div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Footer Section -->
     @include('footer')

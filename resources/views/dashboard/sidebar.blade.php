@@ -2,7 +2,7 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                <li class="active"> <a href="index.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
+                <li class="active"> <a href="{{ route('bookings') }}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
                 <li class="list-divider"></li>
                 <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span class="menu-arrow"></span></a>
                     @php
@@ -11,7 +11,7 @@
                     @endphp
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="{{ route('bookings') }}"> All Booking </a></li>
-                        <li><a href="{{ route('bookingedit', ['id' => $booking->id]) }}"> Edit Booking </a></li>
+                       
                       
                         <li><a href="{{ route('bookingadd') }}"> Add Booking </a></li>
 
