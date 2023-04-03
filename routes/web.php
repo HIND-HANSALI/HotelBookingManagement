@@ -20,6 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard.index');
+    })->name('dashboard');
+});
 
 Route::get('/about', function () {
     return view('about');
@@ -37,9 +46,9 @@ Route::get('/activitiesFront', function () {
     return view('activities');
 })->name('activitiesFront');
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard.index');
+// })->name('dashboard');
 
 // Route::get('/facilitiesFront', function () {
 //     return view('facilities');
@@ -47,7 +56,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])->name('facilitiesFront');
 
-    Route::view('/dashboard','dashboard.index');
+    // Route::view('/dashboard','dashboard.index');
     // Route::view('/all-facilities','dashboard.all-facilities');
 // Route::get('/facilities', function () {
 //         return view('dashboard.all-facilities');
