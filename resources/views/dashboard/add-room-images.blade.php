@@ -124,14 +124,15 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <form method="POST" action="" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('images.store')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="row formtype">
+                                <input type="hidden" name="chambre_id" value ={{$id}}>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Picture Room</label>
                                         <div class="custom-file mb-3">
-                                            <input type="file" class="custom-file-input" id="customFile" name="pictureR">
+                                            <input type="file" class="custom-file-input" id="customFile" name="picture">
                                             <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
@@ -154,30 +155,49 @@
                         <thead>
                             <tr>
 
-                                <th scope="col" width="50%">Picture </th>
-                                
+                                <th scope="col" width="">Picture </th>
+                                <th scope="col" width="">Thumb </th>
                                 <th scope="col" class="">Delete</th>
                             </tr>
                         </thead>
+                        
+                        @php
+                        $images=DB::table('chambreimages')->where ('chambre_id',$id)->get();
+                        
+                        $image_list = [];
+                        foreach ($images as $image) {
+                            $image_list = array_merge($image_list, explode('|', $image->picture));
+                        }
+                        @endphp
                         <tbody>
-
+                       
+                        @foreach ($images as $key => $image)
                             <tr class="align-middle">
+                            @if($image->thumb == 1)
+                            <?php $thumb_btn = '<button type="submit" class="btn text-success "><i class="fas fa-check m-r-5"></i></button>'; ?>
+                        @else
+                            <?php $thumb_btn = '<button type="submit" class="btn text-secondary"><i class="fas fa-check m-r-5"></i></button>'; ?>
+                        @endif
 
                                 <td>
-                                    <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/upload/rooms/')}}" alt="Room Image"></a>
+                                    <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/upload/rooms/'.$image_list[$key])}}" alt="Room Image"></a>
 
                                 </td>
-        
+                                <td>{!! $thumb_btn !!}</td>
 
                                 <td >
-                                    <button type="button" class="btn btn-primary ">
+                                    <form  method="POST" action="{{route('images.destroy',['image'=>$image->id])}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-primary ">
                                         <i class="fas fa-trash-alt m-r-5"></i>Delete
                                     </button>
+                                    </form>
                                 </td>
                             </tr>
 
 
-
+                        @endforeach	
                         </tbody>
                     </table>
                 </div>

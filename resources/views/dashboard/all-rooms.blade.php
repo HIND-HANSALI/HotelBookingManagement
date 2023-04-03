@@ -163,7 +163,8 @@
 														<div class="dropdown-menu dropdown-menu-right"> 
 														<a class="dropdown-item" href="{{ route('roomss.edit', $room->id) }}"><i class="fas fa-pencil-alt m-r-5"></i> Edit</a> 
 														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset_{{ $room->id }}"><i class="fas fa-trash-alt m-r-5"></i> Delete</a> 
-														<a class="dropdown-item" href="{{ route('roomImage') }}"><i class="fas fa-image m-r-5"></i>Add Image</a>
+														<a class="dropdown-item" href="{{ route('roomImage', $room->id) }}"><i class="fas fa-image m-r-5"></i>Add Image</a>
+														<!-- <a class="dropdown-item" href="{{ route('images.index') }}"><i class="fas fa-image m-r-5"></i>View All Image</a> -->
 													</div>
 													</div>
 												</td>
