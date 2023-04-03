@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('descriptionR');
             $table->integer('categorie_id');
             $table->string('statutR');
-            $table->string('pictureR');
+            // $table->string('pictureR');
             $table->integer('numberBed');
             $table->float('priceR');
 

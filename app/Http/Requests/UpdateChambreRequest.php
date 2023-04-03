@@ -28,7 +28,7 @@ class UpdateChambreRequest extends FormRequest
             'statutR'=>'required',
             'numberBed'=>'required',
             'priceR'=>'required',
-            'pictureR'=>'required|file',
+            // 'pictureR'=>'required|file',
         ];
     }
 }

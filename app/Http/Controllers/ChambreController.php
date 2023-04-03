@@ -28,21 +28,21 @@ class ChambreController extends Controller
     {
         return view('dashboard.add-room', ['facilities' => Facilitie::All()]);
     }
-    public function createImage()
-    {
-        return view('dashboard.add-room-images');
-    }
+    // public function createImage()
+    // {
+    //     return view('dashboard.add-room-images');
+    // }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreChambreRequest $request)
     {
-        $photo = $request->file('pictureR');
-        $file_name = rand() . '.' . $photo->getClientOriginalName();
-        $photo->move(public_path('/assets/upload/rooms'), $file_name);
+        // $photo = $request->file('pictureR');
+        // $file_name = rand() . '.' . $photo->getClientOriginalName();
+        // $photo->move(public_path('/assets/upload/rooms'), $file_name);
         $data = $request->only(['nameR', 'descriptionR', 'categorie_id', 'statutR', 'numberBed', 'priceR']);
-        $data['pictureR'] = $file_name;
+        // $data['pictureR'] = $file_name;
         $chambre = Chambre::create($data);
         // Store the selected facilities for the chambre
         
