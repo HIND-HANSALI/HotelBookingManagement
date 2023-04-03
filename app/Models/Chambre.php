@@ -13,16 +13,21 @@ class Chambre extends Model
         'descriptionR',
         'categorie_id',
         'statutR',
-        'pictureR',
+       
         'numberBed',
         'priceR',
 
-
+        // 'pictureR',
         // 'facility_id',
     
     ];
     public function facilities(){
         return $this->belongsToMany(Facilitie::class,'chambre_facilities', 'chambre_id', 'facility_id');
+    }
+
+    public function chambreimages()
+    {
+        return $this->hasMany(Chambreimage::class);
     }
 
 }
