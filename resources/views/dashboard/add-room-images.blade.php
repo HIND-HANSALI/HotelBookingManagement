@@ -145,7 +145,7 @@
                 </div>
 
                 <button type="submit" name="saveRoomImage" class="btn btn-primary buttonedit ml-2">Save Image</button>
-
+                </form>
  
 
                 <div class=" mt-5">
@@ -204,7 +204,7 @@
                 </div>
 
             </div>
-            </form>
+            
         </div>
     </div>
     <script src="assets/js/jquery-3.5.1.min.js"></script>
