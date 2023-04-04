@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FacilitieController;
 use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\ChambreimageController;
@@ -25,10 +26,12 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard.index');
+    // })->name('dashboard');
+Route::get('/redirect',[HomeController::class,'redirect']);
 });
+// Route::get('/redirect',[HomeController::class,'redirect']);
 
 Route::get('/about', function () {
     return view('about');
@@ -38,9 +41,9 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/roomsFront', function () {
-    return view('rooms');
-})->name('roomsFront');
+// Route::get('/roomsFront', function () {
+//     return view('rooms');
+// })->name('roomsFront');
 
 Route::get('/activitiesFront', function () {
     return view('activities');
@@ -80,6 +83,8 @@ Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])
     Route::get('/roomedit', [ChambreController::class,'edit'])->name('roomedit');
     // Route::get('/roomaddimage', [ChambreController::class,'createImage'])->name('roomImage');
     Route::get('/roomdetails', [ChambreController::class,'show'])->name('roomdetails');
+    
+    Route::get('/roomsFront', [ChambreController::class,'diplayRooms'])->name('roomsFront');
 
 
     // Route::get('/roomFacilities', [ChambreController::class,'facilities'])->name('roomfacilities');

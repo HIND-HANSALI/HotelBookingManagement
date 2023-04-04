@@ -20,6 +20,20 @@ class ChambreController extends Controller
     // public function facilities(){
     //     return view('dashboard.add-room',['facilities'=>Facilitie::All()]);
     // }
+    //diplay Rooms in Room page
+    public function diplayRooms()
+    {
+        // Chambre::paginate(10)
+        $rooms = Chambre::with(['facilities', 'chambreimages'])->paginate(10);
+        return view('rooms', ['rooms' =>$rooms ]);
+    }
+
+    //diplay Rooms in Welcome page
+    public function diplayRoomswelcome()
+    {
+        return view('rooms', ['rooms' => Chambre::paginate(10)]);
+    }
+   
 
     /**
      * Show the form for creating a new resource.

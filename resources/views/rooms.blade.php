@@ -93,61 +93,21 @@
             </div>
 
             <div class="col-lg-9 col-md-12 px-4">
-                <div class="card mb-4 border-0 shadow">
-                    <div class="row g-0 p-3 align-items-center">
-                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
-                            <img src="https://nomadsworld.com/wp-content/uploads/2018/11/nomads-brisbane-hostel-dorm.jpg" class="img-fluid rounded">
-                        </div>
-                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                            <h5 class="mb-3">Room Name</h5>
 
-                            <div class="Facilities mb-3">
-                                <h6 class="mb-1">Facilities</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Wifi
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Television
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    AC
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Room Heater
-                                </span>
-                            </div>
-                            <div class="guests">
-                                <h6 class="mb-1">Guests</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    5 Members
-                                </span>
-                                <!-- <span class="badge rounded-pill bg-light text-dark text-wrap">
-              4 Children
-            </span> -->
-                            </div>
-                        </div>
-                        <div class="col-md-2 mt-lg-0 mt-md-0 mt-4 text-center">
-                            <h6 class="mb-4">50 MAD per night </h6>
-                            <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                            <a href="{{ route('roomdetails') }}" class="btn btn-sm w-100 btn-outline-dark shadow-none">Check details</a>
-                        </div>
-                    </div>
-                </div>
+                @foreach ($rooms as $room)
                 <div class="card mb-4 border-0 shadow">
                     <div class="row g-0 p-3 align-items-center">
                         <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
                             <!-- <img src="https://nomadsworld.com/wp-content/uploads/2018/11/nomads-brisbane-hostel-dorm.jpg" class="img-fluid rounded"> -->
                             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
+                           
+                                    <div class="carousel-inner">
+                                    @foreach($room->chambreimages as $image)
                                     <div class="carousel-item active">
-                                        <img src="https://nomadsworld.com/wp-content/uploads/2018/11/nomads-brisbane-hostel-dorm.jpg" class="d-block w-100" alt="...">
+                                        <img src="{{asset('assets/upload/rooms/'. $image->picture) }}" class="d-block w-100" alt="...">
                                     </div>
-                                    <div class="carousel-item">
-                                        <img src="https://media.istockphoto.com/id/182498079/fr/photo/auberge-de-jeunesse-dortoir.jpg?s=612x612&w=0&k=20&c=HBSKWPnqg7ihEz-kRpFl60B4VW4odBq0j5Wl_RBs3LY=" class="d-block w-100" alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="https://media.istockphoto.com/id/182498079/fr/photo/auberge-de-jeunesse-dortoir.jpg?s=612x612&w=0&k=20&c=HBSKWPnqg7ihEz-kRpFl60B4VW4odBq0j5Wl_RBs3LY=" class="d-block w-100" alt="...">
-                                    </div>
+                                    @endforeach
+                                  
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -162,7 +122,7 @@
                         <div class="col-md-5 px-lg-3 px-md-3 px-0">
 
                             <div class="d-flex align-items-center mb-2">
-                                <h5 class="mb-1 me-2">Room Paradise</h5>
+                                <h5 class="mb-1 me-2">{{$room->nameR}}</h5>
                                 <div>
                                     <i class="bi bi-star-fill text-warning"></i>
                                     <i class="bi bi-star-fill text-warning"></i>
@@ -174,10 +134,12 @@
 
                             <div class="Facilities mb-3">
                                 <h6 class="mb-1">Facilities</h6>
+                                @foreach ($room->facilities as $facility)
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Wifi
+                                {{ $facility->name }}
                                 </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                @endforeach
+                                <!-- <span class="badge rounded-pill bg-light text-dark text-wrap">
                                     Television
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
@@ -185,12 +147,12 @@
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
                                     Room Heater
-                                </span>
+                                </span> -->
                             </div>
                             <div class="guests">
                                 <h6 class="mb-1">Guests</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    5 Adults
+                                    {{$room->numberBed}} Adults
                                 </span>
 
                             </div>
@@ -200,16 +162,18 @@
                                 <i class="bi bi-heart"></i>
                             </a>
 
-                            <h6 class="mb-4 text-center">50 MAD per night </h6>
+                            <h6 class="mb-4 text-center">{{$room->priceR}}  MAD per night </h6>
                             <div class="d-flex justify-content-lg-between">
                                 <h6 class="text-striked text-muted mr-2">100 MAD</h6>
                                 <h6 class="text-success">32% off</h6>
                             </div>
                             <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                            <a href="#" class="btn btn-sm w-100 btn-outline-dark shadow-none">Check details</a>
+                            <a href="{{ route('roomdetails') }}" class="btn btn-sm w-100 btn-outline-dark shadow-none">Check details</a>
                         </div>
                     </div>
                 </div>
+                @endforeach
+
                 <div class="card mb-4 border-0 shadow">
                     <div class="row g-0 p-3 align-items-center">
                         <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
