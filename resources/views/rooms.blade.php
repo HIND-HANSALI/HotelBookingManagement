@@ -168,7 +168,7 @@
                                 <h6 class="text-success">32% off</h6>
                             </div>
                             <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                            <a href="{{ route('roomdetails') }}" class="btn btn-sm w-100 btn-outline-dark shadow-none">Check details</a>
+                            <a href="{{ route('roomss.show',$room->id ) }}" class="btn btn-sm w-100 btn-outline-dark shadow-none">Check details</a>
                         </div>
                     </div>
                 </div>

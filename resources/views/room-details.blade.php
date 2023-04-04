@@ -52,17 +52,13 @@
                 <div id="roomCarousel" class="carousel slide carousel-fade">
                     <div class="carousel-inner">
                         <!-- get images foreach-->
-
+                        @foreach($room->chambreimages as $image)
                         <div class="carousel-item active">
-                            <img src="https://nomadsworld.com/wp-content/uploads/2018/11/nomads-brisbane-hostel-dorm.jpg" class="d-block w-100 rounded" alt="...">
+                            <img src="{{asset('assets/upload/rooms/'. $image->picture) }}" class="d-block w-90 rounded" alt="...">
                         </div>
+                        @endforeach
                         <!-- end foreach -->
-                        <div class="carousel-item">
-                            <img src="..." class="d-block w-100 " alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="..." class="d-block w-100" alt="...">
-                        </div>
+                        
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#roomCarousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -78,28 +74,28 @@
             <div class="col-lg-5 col-md-12 px-4 ">
                 <div class="card mb-4 border-0 shadow-sm rounded-3">
                     <div class="card-body">
-                        <h6 class="mb-4">50 MAD per night </h6>
+                        <h6 class="mb-4">{{$room->priceR}} MAD per night </h6>
                         <div class="Facilities mb-3">
                             <h6 class="mb-1">Facilities</h6>
+                            @foreach ($room->facilities as $facility)
                             <span class="badge rounded-pill bg-light text-dark text-wrap me-1 mb-1">
-                                Wifi
+                            {{ $facility->name }}
                             </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                Television
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                AC
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                Room Heater
-                            </span>
+                            @endforeach
+                           
                         </div>
-                        <div class="guests">
+                        <div class="guests mb-3">
                             <h6 class="mb-1">Guests</h6>
                             <span class="badge rounded-pill bg-light text-dark text-wrap mb-2">
-                                5 Members
+                            {{$room->numberBed}} Members
                             </span>
 
+                        </div>
+                        <div class="card mb-4 border-0 ">
+                    
+                        <h5 class="mb-2">Description</h5>
+                        <p>{{$room->descriptionR}}</p>
+                    
                         </div>
                         <a href="#" class="btn  w-100 text-white custom-bg shadow-none my-4 mb-1">Book Now</a>
 
@@ -112,7 +108,7 @@
                 <div class="card mb-4 border-0 ">
                     
                     <h5 class="mb-2">Description</h5>
-                    <p>hiiiiiiiiiiiiiii</p>
+                    <p>{{$room->descriptionR}}</p>
                 
                 </div>
             </div>

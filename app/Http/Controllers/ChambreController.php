@@ -76,7 +76,8 @@ class ChambreController extends Controller
      */
     public function show($id)
     {
-        return view('room-details',['room'=>Chambre::find($id)]); 
+        $room = Chambre::with(['facilities', 'chambreimages'])->find($id);
+        return view('room-details',['room'=>$room]); 
         // return view('room-details');
     }
 
