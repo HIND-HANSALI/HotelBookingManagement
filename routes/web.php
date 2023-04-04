@@ -82,8 +82,9 @@ Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])
     Route::get('/roomadd', [ChambreController::class,'create'])->name('roomadd');
     Route::get('/roomedit', [ChambreController::class,'edit'])->name('roomedit');
     // Route::get('/roomaddimage', [ChambreController::class,'createImage'])->name('roomImage');
-    Route::get('/roomdetails', [ChambreController::class,'show'])->name('roomdetails');
     
+    // Route::get('/roomdetails', [ChambreController::class,'show'])->name('roomdetails');
+
     Route::get('/roomsFront', [ChambreController::class,'diplayRooms'])->name('roomsFront');
 
 

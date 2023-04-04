@@ -39,7 +39,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 my-5 px-4 mb-4">
-                <h2 class="fw-bold h-font ">ROOM NAME</h2>
+                <h2 class="fw-bold h-font ">{{$room->nameR}}</h2>
                 <div style="font-size:14px;">
                     <a href="index.php" class="text-secondary text-decoration-none">HOME</a>
                     <span class="text-secondary"> > </span>
