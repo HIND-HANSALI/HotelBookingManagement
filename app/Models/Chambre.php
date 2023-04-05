@@ -29,5 +29,10 @@ class Chambre extends Model
     {
         return $this->hasMany(Chambreimage::class);
     }
+    
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 
 }

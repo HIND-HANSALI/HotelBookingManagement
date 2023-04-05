@@ -15,9 +15,14 @@ class Reservation extends Model
         'typeBooking',
         'totalPrice',
         'numberPerson',
-        'room_id',
+        'chambre_id',
         'user_id',
         
         
     ];
+
+    public function chambre()
+    {
+        return $this->belongsTo(Chambre::class, 'chambre_id');
+    }
 }
