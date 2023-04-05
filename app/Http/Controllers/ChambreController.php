@@ -31,7 +31,7 @@ class ChambreController extends Controller
     //diplay Rooms in Welcome page
     public function diplayRoomswelcome()
     {
-        return view('rooms', ['rooms' => Chambre::paginate(10)]);
+        return view('welcome', ['rooms' => Chambre::paginate(3)]);
     }
    
 
