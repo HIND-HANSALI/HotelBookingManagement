@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('typeBooking');
             $table->float('totalPrice');
             $table->integer('numberPerson');
-            $table->integer('room_id');
+            $table->unsignedBigInteger('chambre_id');
+            $table->foreign('chambre_id')->references('id')->on('chambres')->onDelete('cascade');
             $table->integer('user_id');
         });
     }
