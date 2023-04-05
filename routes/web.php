@@ -17,18 +17,18 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard.index');
-    // })->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('dashboard.index');
+    })->name('dashboard');
 Route::get('/redirect',[HomeController::class,'redirect']);
 });
 // Route::get('/redirect',[HomeController::class,'redirect']);
@@ -81,11 +81,14 @@ Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])
     Route::resource('roomss', ChambreController::class)->only(['index','show','create','store','edit','update','destroy']);
     Route::get('/roomadd', [ChambreController::class,'create'])->name('roomadd');
     Route::get('/roomedit', [ChambreController::class,'edit'])->name('roomedit');
-    // Route::get('/roomaddimage', [ChambreController::class,'createImage'])->name('roomImage');
     
+    Route::post('/searchRoom',[ReservationController::class,'searchRoom'])->name('searchRoom');
+    // Route::get('/roomaddimage', [ChambreController::class,'createImage'])->name('roomImage');
+
     // Route::get('/roomdetails', [ChambreController::class,'show'])->name('roomdetails');
 
     Route::get('/roomsFront', [ChambreController::class,'diplayRooms'])->name('roomsFront');
+    Route::get('/', [ChambreController::class,'diplayRoomswelcome'])->name('roomsWelcome');
 
 
     // Route::get('/roomFacilities', [ChambreController::class,'facilities'])->name('roomfacilities');

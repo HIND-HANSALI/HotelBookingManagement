@@ -197,17 +197,23 @@
         <div class="row">
             <div class="col-lg-12 bg-white shadow p-4 rounded">
                 <h5 class="col-lg-3">Check Availability</h5>
-                <form>
+                <form method="POST" action="{{route('searchRoom')}}">
+                    @csrf
                     <div class="row align-items-end">
                         <div class="col-lg-4 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-in</label>
-                            <input type="date" class="form-control shadow-none">
+                            <input type="date" name="checkIn" class="form-control shadow-none">
                         </div>
                         <div class="col-lg-4 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-in</label>
-                            <input type="date" class="form-control shadow-none">
+                            <input type="date" name="checkOut" class="form-control shadow-none">
                         </div>
                         <div class="col-lg-3 mb-3">
+                            <label class="form-label" style="font-weight: 500;">Members</label>
+                            <input class="form-control" type="number" name="numberPerson" id="numberPerson" value="" placeholder="" step="1" required>
+                       
+                        </div>
+                        <!-- <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight: 500;">Members</label>
                             <select class="form-select shadow-none">
 
@@ -215,7 +221,7 @@
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
                             </select>
-                        </div>
+                        </div> -->
                         <!-- <div class="col-lg-2 mb-3">
                             <label class="form-label" style="font-weight: 500;">Children</label>
                             <select class="form-select shadow-none">
@@ -239,13 +245,15 @@
     <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Our Rooms</h2>
     <div class="container">
         <div class="row">
-
+            <!-- Loop over the rooms and generate a card for each one -->
+            @foreach ($rooms as $room)
             <div class="col-lg-4 col-md-6 my-3">
+            
                 <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
 
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-2WXoZxYxKA2lL4WKjC3dxD3Ybb_Y67yb5g&usqp=CAU" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Room Name</h5>
+                        <h5 class="card-title">{{$room->nameR}}</h5>
                         <h6 class="mb-4">50 MAD Per Night </h6>
 
                         <div class="Facilities mb-4">
@@ -267,53 +275,11 @@
                         <div class="guests mb-2">
                             <h6 class="mb-1">Guests</h6>
                             <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                5
+                            {{$room->numberBed}}
                             </span>
 
                         </div>
-
-                        <div class="d-flex justify-content-end mb-2">
-                            <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
-                            <a href="#" class="btn btn-sm text-white btn-primary shadow-none ms-2">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
-                    <!-- <img src="images/rooms/1.jpg" class="card-img-top" alt="..."> -->
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-2WXoZxYxKA2lL4WKjC3dxD3Ybb_Y67yb5g&usqp=CAU" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Room Name</h5>
-                        <h6 class="mb-4">50 MAD Per Night </h6>
-
-                        <div class="Facilities mb-4">
-                            <h6 class="mb-1">Facilities</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                Wifi
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                Television
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                AC
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                Room Heater
-                            </span>
-                        </div>
-
-                        <div class="guests mb-2">
-                            <h6 class="mb-1">Guests</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                5
-                            </span>
-                            <!-- <span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		4 Children
-    				</span> -->
-                        </div>
-                        <!-- <div class="rating mb-4">
+                         <!-- <div class="rating mb-4">
 
     					<h6 class="mb-1">Rating</h6>
     					<span class="badge rounded-pill bg-light">
@@ -330,59 +296,11 @@
                         </div>
                     </div>
                 </div>
+             
             </div>
+             @endforeach 
 
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
-                    <!-- <img src="images/rooms/1.jpg" class="card-img-top" alt="..."> -->
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-2WXoZxYxKA2lL4WKjC3dxD3Ybb_Y67yb5g&usqp=CAU" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Room Name</h5>
-                        <h6 class="mb-4">50 MAD Per Night </h6>
-
-                        <div class="Facilities mb-4">
-                            <h6 class="mb-1">Facilities</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                Wifi
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                Television
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                AC
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                Room Heater
-                            </span>
-                        </div>
-
-                        <div class="guests mb-2">
-                            <h6 class="mb-1">Guests</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                5
-                            </span>
-                            <!-- <span class="badge rounded-pill bg-light text-dark text-wrap">
-			    		4 Children
-    				</span> -->
-                        </div>
-                        <!-- <div class="rating mb-4">
-
-    					<h6 class="mb-1">Rating</h6>
-    					<span class="badge rounded-pill bg-light">
-    						<i class="bi bi-star-fill text-warning"></i>
-    						<i class="bi bi-star-fill text-warning"></i>
-    						<i class="bi bi-star-fill text-warning"></i>
-    						<i class="bi bi-star-fill text-warning"></i>
-    					</span>
-    				</div> -->
-                        <div class="d-flex justify-content-end  mb-2">
-                            <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
-                            <a href="#" class="btn btn-sm text-white btn-primary shadow-none ms-2">Book Now<a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        
 
             <div class="col-lg-12 text-center mt-5">
                 <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms</a>
