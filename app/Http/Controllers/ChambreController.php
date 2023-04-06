@@ -6,7 +6,7 @@ use App\Models\Chambre;
 use App\Models\Facilitie;
 use App\Http\Requests\StoreChambreRequest;
 use App\Http\Requests\UpdateChambreRequest;
-
+use Illuminate\Support\Facades\Auth;
 class ChambreController extends Controller
 {
     /**
@@ -35,6 +35,16 @@ class ChambreController extends Controller
         return view('welcome', ['rooms' => $rooms]);
     }
    
+
+    public function confirmBooking($id){
+        $user = Auth::user(); // Retrieve the authenticated user
+        // $chambre=Chambre::findorfail($id);
+        $chambre = Chambre::with('chambreimages')->findOrFail($id);
+        return view('confirm-booking',['room' => $chambre, 'user' => $user]);
+    }
+
+   
+     
 
     /**
      * Show the form for creating a new resource.

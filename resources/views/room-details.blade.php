@@ -97,8 +97,8 @@
                         <p>{{$room->descriptionR}}</p>
                     
                         </div>
-                        <a href="#" class="btn  w-100 text-white custom-bg shadow-none my-4 mb-1">Book Now</a>
-
+                        <a href="{{route('confirmBooking',[$room->id])}}" class="btn  w-100 text-white custom-bg shadow-none my-4 mb-1">Book Now</a>
+                            
 
                     </div>
                 </div>

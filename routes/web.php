@@ -86,10 +86,10 @@ Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])
     // Route::get('/roomaddimage', [ChambreController::class,'createImage'])->name('roomImage');
 
     // Route::get('/roomdetails', [ChambreController::class,'show'])->name('roomdetails');
+    Route::get('/confirmBooking/{id}', [ChambreController::class,'confirmBooking'])->name('confirmBooking');
 
     Route::get('/roomsFront', [ChambreController::class,'diplayRooms'])->name('roomsFront');
     Route::get('/', [ChambreController::class,'diplayRoomswelcome'])->name('roomsWelcome');
-
 
     // Route::get('/roomFacilities', [ChambreController::class,'facilities'])->name('roomfacilities');
 
@@ -101,3 +101,9 @@ Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])
     Route::resource('bookings', ReservationController::class)->only(['index','show','create','store','edit','update','destroy']);
     Route::get('/bookingadd', [ReservationController::class,'create'])->name('bookingadd');
     Route::get('/bookingedit/{id}', [ReservationController::class,'edit'])->name('bookingedit');
+
+
+
+   
+    
+    // Route::post('/booking/check-availability/{checkin_val}/{checkout_val}', [ChambreController::class,''])->name('');
