@@ -146,7 +146,7 @@
 										</select>
 									</div>
 								</div>
-								<div class="col-md-4">
+								<!-- <div class="col-md-4">
 									<div class="form-group">
 										<label>Statut Room</label>
 										<select class="form-control" id="sel2" name="statutR">
@@ -155,7 +155,7 @@
 											<option>NON-AC</option>
 										</select>
 									</div>
-								</div>
+								</div> -->
 
 								<div class="col-md-4">
 									<div class="form-group">

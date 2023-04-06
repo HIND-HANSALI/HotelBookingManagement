@@ -147,7 +147,7 @@
 												<td>{{$room->categorie_id}}</td>
 												
 												<td>{{$room->numberBed}}</td>
-												<td>{{$room->descriptionR}}</td>
+												<td >{{substr($room->descriptionR, 0, 50)}}</td>
 												<td>{{$room->priceR}} MAD</td>
 												
 												<td>

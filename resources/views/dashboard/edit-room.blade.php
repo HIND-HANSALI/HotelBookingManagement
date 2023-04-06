@@ -195,16 +195,17 @@
 										</select>
 									</div>
 								</div>
-								<div class="col-md-4">
+								<!-- <div class="col-md-4">
 									<div class="form-group">
 										<label>Statut Room</label>
+										<input type="checkbox" id="statutR" name="statutR" value="1" checked>
 										<select class="form-control" id="sel2" name="statutR">
 											<option disabled selected>Open this select menu</option>
 											<option>AC</option>
 											<option>NON-AC</option>
 										</select>
 									</div>
-								</div>
+								</div> -->
 
 								<div class="col-md-4">
 									<div class="form-group">

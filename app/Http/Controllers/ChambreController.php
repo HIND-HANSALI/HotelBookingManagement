@@ -31,7 +31,8 @@ class ChambreController extends Controller
     //diplay Rooms in Welcome page
     public function diplayRoomswelcome()
     {
-        return view('welcome', ['rooms' => Chambre::paginate(3)]);
+        $rooms = Chambre::with(['facilities', 'chambreimages'])->paginate(3);
+        return view('welcome', ['rooms' => $rooms]);
     }
    
 
@@ -55,7 +56,7 @@ class ChambreController extends Controller
         // $photo = $request->file('pictureR');
         // $file_name = rand() . '.' . $photo->getClientOriginalName();
         // $photo->move(public_path('/assets/upload/rooms'), $file_name);
-        $data = $request->only(['nameR', 'descriptionR', 'categorie_id', 'statutR', 'numberBed', 'priceR']);
+        $data = $request->only(['nameR', 'descriptionR', 'categorie_id', 'numberBed', 'priceR']);
         // $data['pictureR'] = $file_name;
         $chambre = Chambre::create($data);
         // Store the selected facilities for the chambre
@@ -97,11 +98,11 @@ class ChambreController extends Controller
     {
         $chambre=Chambre::findorfail($id);
         // dd($request->All());
-        $photo = $request->file('pictureR');
-        $file_name = rand() . '.' . $photo->getClientOriginalName();
-        $photo->move(public_path('/assets/upload/rooms'), $file_name);
-        $data = $request->only(['nameR', 'descriptionR', 'categorie_id', 'statutR', 'numberBed', 'priceR']);
-        $data['pictureR'] = $file_name;
+        // $photo = $request->file('pictureR');
+        // $file_name = rand() . '.' . $photo->getClientOriginalName();
+        // $photo->move(public_path('/assets/upload/rooms'), $file_name);
+        $data = $request->only(['nameR', 'descriptionR', 'categorie_id', 'numberBed', 'priceR']);
+        // $data['pictureR'] = $file_name;
         $chambre ->update($data);
         // $chambre->facilities()->detach();
         
