@@ -115,39 +115,43 @@
 						<form method="POST" action="{{route('bookings.store')}}" enctype="multipart/form-data">
 							@csrf
 							<div class="row formtype">
+							@php
+							$users = \App\Models\User::all();
+							@endphp
 								<div class="col-md-4">
-									<div class="form-group">
-										<label>User</label>
-										<select class="form-control @error('user_id') is-invalid  @enderror" id="sel1" name="user_id">
-										<option disabled selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-											
-										</select>
-									</div>
+								<div class="form-group">
+								<label for="user_id">User</label>
+								<select class="form-control @error('user_id') is-invalid  @enderror" id="user_id" name="user_id">
+									<option disabled selected>Open this select menu</option>
+									@foreach ($users as $user)
+										<option value="{{ $user->id }}">{{ $user->name }}</option>
+									@endforeach
+								</select>
 								</div>
+								</div>
+								@php
+								$rooms = \App\Models\Chambre::all();
+								@endphp
 								<div class="col-md-4">
-									<div class="form-group">
-										<label>Room</label>
-										<select class="form-control @error('room_id') is-invalid  @enderror" id="sel1" name="room_id">
-										<option disabled selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-											
-										</select>
-									</div>
+								<div class="form-group">
+									<label for="chambre_id">Room</label>
+									<select class="form-control @error('chambre_id') is-invalid  @enderror" id="chambre_id" name="chambre_id">
+										@foreach ($rooms as $room)
+											<option value="{{ $room->id }}">{{ $room->nameR }}</option>
+										@endforeach
+									</select>
 								</div>
+								</div>
+								
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Booking Type</label>
 										<select class="form-control @error('typeBooking') is-invalid  @enderror" id="sel1" name="typeBooking">
 										<option disabled selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-											
+										<option value="All-Inclusive Booking">All-Inclusive Booking</option>
+										<option value="Package Booking">Package Booking</option>
+										<option value="Group Booking">Group Booking</option>
+										<option value="Half-Board Booking">Half-Board Booking</option>	
 										</select>
 									</div>
 								</div>
@@ -177,8 +181,10 @@
 										<input type="number" class="form-control @error('numberPerson') is-invalid  @enderror" id="numberPerson" name="numberPerson" value="{{old ('numberPerson')}}">
 									</div>
 								</div>
+								
+						
 
-								<div class="col-md-4">
+								<!-- <div class="col-md-4">
 									<div class="form-group">
 										<label>Statut Room</label>
 										<select class="form-control @error('statutBooking') is-invalid  @enderror" id="sel2" name="statutBooking">
@@ -187,7 +193,7 @@
 											<option>Refuse</option>
 										</select>
 									</div>
-								</div>
+								</div> -->
 								
 								
 								

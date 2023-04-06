@@ -11,7 +11,7 @@ class Reservation extends Model
     protected $fillable = [
         'checkIn',
         'checkOut',
-        'statutBooking',
+        // 'statutBooking',
         'typeBooking',
         'totalPrice',
         'numberPerson',
@@ -24,5 +24,9 @@ class Reservation extends Model
     public function chambre()
     {
         return $this->belongsTo(Chambre::class, 'chambre_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

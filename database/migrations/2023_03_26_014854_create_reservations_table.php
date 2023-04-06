@@ -16,13 +16,15 @@ return new class extends Migration
             $table->timestamps();
             $table->date('checkIn');
             $table->date('checkOut');
-            $table->string('statutBooking');
+            // $table->string('statutBooking');
+            $table->boolean('statutBooking')->default(1);
             $table->string('typeBooking');
             $table->float('totalPrice');
             $table->integer('numberPerson');
             $table->unsignedBigInteger('chambre_id');
             $table->foreign('chambre_id')->references('id')->on('chambres')->onDelete('cascade');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

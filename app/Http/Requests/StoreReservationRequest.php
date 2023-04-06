@@ -23,12 +23,13 @@ class StoreReservationRequest extends FormRequest
     {
         return [
             'checkIn'=>'required|date|after:tomorrow',
+            
             'checkOut'=>'required|date|after:tomorrow',
-            'statutBooking'=>'required',
+            // 'statutBooking'=>'required',
             'typeBooking'=>'required',
             'totalPrice'=>'required',
             'numberPerson'=>'required',
-            'room_id'=>'required',
+            'chambre_id'=>'required',
             'user_id'=>'required',
         ];
     }

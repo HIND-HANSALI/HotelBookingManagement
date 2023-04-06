@@ -126,8 +126,8 @@
 										<thead>
 											<tr>
 
-												<th>Roomid</th>
-												<th>Userid</th>
+												<th>Room</th>
+												<th>User</th>
 												<th>Booking Type</th>
 												<th>Arrival Date</th>
 												<th>Depature Date</th>
@@ -140,10 +140,16 @@
 										</thead>
 										<tbody>
 											@foreach ($bookings as $booking)
+											@php
+											$status = '<div class=""> <a href="#" class="btn  bg-success-light mr-2">active</a> </div>';
+											if(!$booking->statutBooking){
+												$status ='<div class=""> <a href="#" class="btn btn-sm bg-danger-light mr-2">inactive</a> </div>';
+											}
+										@endphp
 											<tr>
-												<td>{{$booking->room_id}}</td>
+												<td>{{$booking->chambre->nameR }}</td>
 
-												<td>{{$booking->user_id}}</td>
+												<td>{{$booking->user->name}}</td>
 												<td>{{$booking->typeBooking}}</td>
 												<td>{{$booking->checkIn}}</td>
 												<td>{{$booking->checkOut}}</td>
@@ -151,7 +157,7 @@
 												<td>{{$booking->numberPerson}}</td>
 
 												<td>
-													<div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">{{$booking->statutBooking}}</a> </div>
+													<div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">{!! $status !!}</a> </div>
 												</td>
 												<td class="text-right">
 													<div class="dropdown dropdown-action"> <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>

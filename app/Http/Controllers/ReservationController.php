@@ -83,8 +83,8 @@ class ReservationController extends Controller
      */
     public function store(StoreReservationRequest $request)
     {
-       
-        $data=$request->All();
+    //    dd('hiii');
+        $data=$request->only(['checkIn','checkOut','typeBooking','totalPrice','numberPerson','chambre_id','user_id']);
         Reservation::create($data);
         return redirect()->route('bookings.index')->with('success','Booking created successfully!');
 
