@@ -5,6 +5,7 @@ use App\Models\Reservation;
 // use App\Http\Controllers\Auth\Auth;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservationdetail;
+use App\Models\Chambre;
 use App\Http\Requests\StoreReservationdetailRequest;
 use App\Http\Requests\UpdateReservationdetailRequest;
 
@@ -15,7 +16,7 @@ class ReservationdetailController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
@@ -23,7 +24,9 @@ class ReservationdetailController extends Controller
      */
     public function create()
     {
-        //
+        $chambre_id = request()->input('chambre_id');
+        $availableBeds = Chambre::findOrFail($chambre_id)->numberBed;
+        return view('confirm-booking', ['availableBeds' => $availableBeds]);
     }
 
     /**
@@ -31,12 +34,8 @@ class ReservationdetailController extends Controller
      */
     public function store(StoreReservationdetailRequest $request)
     {
-        // dd("hii");
-        // insert into booking user_id room_id chech_in checkout
-        // insert into booking details booking_id room_name price totalpayment 
-        // $data=$request->All();
-
-        // Insert data into the reservations table
+   
+    // Insert data into the reservations table
     $reservation = new Reservation;
     $reservation->checkIn = $request->input('checkIn');
     $reservation->checkOut = $request->input('checkOut');
@@ -45,7 +44,30 @@ class ReservationdetailController extends Controller
     // $reservation->refund = null;
     $reservation->chambre_id = $request->input('chambre_id');
     $reservation->user_id = Auth::id();
-    $reservation->save();
+    
+
+    // Check if the rerservation is available and update the booking status
+    $bol = $reservation->isAvailable($reservation->checkIn, $reservation->checkOut, $reservation->chambre_id, $request->input('numberPerson'));
+    // dd($bol);
+    if ($bol > 0) {
+         // If the room is not available
+         return back()->with('error','The Room is not available for the selected dates.');
+
+    } else {
+        $reservation->save();
+
+    
+    $chambre = Chambre::findOrFail($reservation->chambre_id);
+    $chambre->numberBed -= $request->input('numberPerson');
+    $chambre->save();
+
+    // $chambre = Chambre::findOrFail($reservation->chambre_id);
+    // $newNumberBed = $chambre->numberBed - $request->input('numberPerson');
+    // if ($newNumberBed < 0) {
+    //     return back()->with('error','Not enough beds available in the selected room.');
+    // }
+    // $chambre->numberBed = $newNumberBed;
+    // $chambre->save();
 
     // Insert data into the reservationdetails table
     $reservationdetail = new Reservationdetail;
@@ -55,18 +77,21 @@ class ReservationdetailController extends Controller
     $reservationdetail->address = $request->input('address');
     // $reservationdetail->roomnum = $request->input('roomnum');
     $reservationdetail->price = $request->input('price');
-    // $reservationdetail->total_payement = 0.0;
     $reservationdetail->total_payement = $request->input('total_payement');
     $reservationdetail->numberPerson = $request->input('numberPerson');
-    // $reservationdetail->reservation_id = $reservation->id;
     $reservationdetail->reservation_id = $reservation->id;
 
-    $reservationdetail->save();
+        $reservation->statutBooking = "booked";
+        $reservation->save();
+        $reservationdetail->save();
+       
+    }
 
     return redirect()->route('reservationdetails.index')
     ->with('success', 'Reservation details created successfully.');
 
     }
+   
 
     /**
      * Display the specified resource.
