@@ -29,10 +29,17 @@ class Chambre extends Model
     {
         return $this->hasMany(Chambreimage::class);
     }
-    
+
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
     }
+    // public function getNumberBed($chambre_id)
+    // {
+    //     return DB::table('chambres')
+    //             ->select('numberBed')
+    //             ->where('id', $chambre_id)
+    //             ->value('numberBed');
+    // }
 
 }
