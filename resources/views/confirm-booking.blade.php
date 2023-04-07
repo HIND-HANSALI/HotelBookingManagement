@@ -77,42 +77,53 @@
             <div class="col-lg-5 col-md-12 px-4 ">
                 <div class="card mb-4 border-0 shadow-sm rounded-3">
                     <div class="card-body">
-                        <form action="" method="post" id="booking_form">
+                        <form method="POST" action="{{route('detailsbook.store')}}" id="booking_form">
+                        @csrf
+                        <input type="hidden" name="price" value="{{ $room->priceR }}">
+                        <input type="hidden" name="chambre_id" value="{{ $room->id }}">
+                        <input type="hidden" name="roomName" value="{{ $room->nameR }}">
+                        <input type="hidden" id="totalpayement" name="total_payement" value="">
 
                         <h6 class="mb-3">Booking Details</h6>
                         <div class="row">
                             <div class="col-md-6  mb-3">
                             <label for="form-label " >Name</label>
-                            <input type="text" class="form-control shadow-none" value="{{ $user->name }}" name="name" >
+                            <input type="text" class="form-control shadow-none" value="{{ $user->name }}" name="userName" >
                             </div>
                             <div class="col-md-6 ps-0 mb-3">
                             <label for="form-label " >Phone Number</label>
-                            <input type="text" class="form-control shadow-none" value="{{ $user->phone }}" name="phone" >
+                            <input type="text" class="form-control shadow-none" value="{{ $user->phone }}" name="phoneNum" >
                             </div>
 
-                            <div class="col-md-12 ps-0 mb-3">
+                            <div class="col-md-12 ps-0 mb-3 ms-3">
                             <label for="form-label ">Address</label>
-                            <textarea class="form-control shadow-none" rows="3" value="" id="description" name="adress">{{ $user->address }}</textarea>
+                            <textarea class="form-control shadow-none" rows="3" value="" id="address" name="address">{{ $user->address }}</textarea>
+                            </div>
+                            <div class="col-md-12 ps-0 mb-3 ms-3">
+                            <label for="form-label ">Number Guests</label>
+                            <input type="number" min="1" onchange="check()" class="form-control shadow-none " id="numberPerson" value="" name="numberPerson" >
+                            
                             </div>
                             <div class="col-md-6 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-in</label>
-                            <input type="date" onchange="check()" name="checkin" class="form-control shadow-none">
+                            <input type="date" onchange="check()" name="checkIn" class="form-control shadow-none">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-Out</label>
-                            <input type="date" onchange="check()" name="checkout" class="form-control shadow-none">
+                            <input type="date" onchange="check()" name="checkOut" class="form-control shadow-none">
                         </div>
                         </div>
-                        </form>
+                       
 
                   
                         <div class="col-12">
                             <h6 class="text-danger" id="pay_info"></h6>
                         <!-- <a href="" onclick ="senddata()" id="pay_now" name="pay_now" class="btn  w-100 text-white custom-bg shadow-none my-4 mb-1">Pay Now</a> -->
                       
-                        <button type="button" onclick="senddata()" id="pay_now" name="pay_now" class="btn w-100 text-dark custom-bg shadow-none my-4 mb-1" disabled>Pay Now</button>
+                        <button type="submit"  id="pay_now" name="pay_now" class="btn w-100 text-dark custom-bg shadow-none my-4 mb-1" disabled>Pay Now</button>
+                       
                     </div>
-
+                    </form>
                     </div>
                 </div>
             </div>
@@ -136,19 +147,26 @@
 
         function check(){
             // console.log('hi')
-           
-            let checkin_val=booking_form.elements['checkin'].value;
-            let checkout_val=booking_form.elements['checkout'].value;
+           let numberPerson =  parseInt(booking_form.elements['numberPerson'].value);
+           console.log(numberPerson);
+            let checkIn_val=booking_form.elements['checkIn'].value;
+            let totalpayement=booking_form.elements['totalpayement'];
+            let checkOut_val=booking_form.elements['checkOut'].value;
             let roomPrice = parseFloat(document.querySelector('.room-price').getAttribute('data-room-price'));
                 console.log(roomPrice);
-            if(checkin_val != '' && checkout_val != '' && checkin_val < checkout_val){
+                let currentDate = new Date().toJSON().slice(0, 10);
+                console.log(currentDate);
+                console.log(checkIn_val);
+            if(checkIn_val != '' && checkOut_val != '' && checkIn_val < checkOut_val &&  Date.parse(checkIn_val) >= Date.parse(currentDate) ){
 
                 
-                let timeDiff = Math.abs(new Date(checkout_val).getTime() - new Date(checkin_val).getTime());
+                
+                let timeDiff = Math.abs(new Date(checkOut_val).getTime() - new Date(checkIn_val).getTime());
                 let CountDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-                
-                let payment=CountDays*roomPrice;
+               
+                let payment=CountDays*roomPrice*numberPerson;
 
+                totalpayement.value = payment ;
 
                 document.getElementById('pay_now').removeAttribute('disabled');
 
@@ -158,22 +176,24 @@
                 
                     
             }else{
-                pay_info.textContent = 'Please provide a valid check-in and check-out date.';
+                
+                document.getElementById('pay_now').setAttribute('disabled', true);
                 pay_info.classList.add('text-danger');
+                pay_info.textContent = 'Please provide a valid check-in and check-out date.';
             }
         }
         
 
         // function check_availability(){
-        //     let checkin_val=booking_form.elements['checkin'].value;
-        //     let checkout_val=booking_form.elements['checkout'].value;
+        //     let checkIn_val=booking_form.elements['checkIn'].value;
+        //     let checkOut_val=booking_form.elements['checkOut'].value;
         //     booking_form.elements['pay_now'].setAttribute('disabled',true );
 
-        //     if(checkin_val!="" && checkout_val!="" ){
+        //     if(checkIn_val!="" && checkOut_val!="" ){
         //         let data=new FormData();
         //         data.append('check_availability','');
-        //         data.append('check_in',checkin_val);
-        //         data.append('check_out',checkout_val);
+        //         data.append('check_in',checkIn_val);
+        //         data.append('check_out',checkOut_val);
 
         //         let xhr=new XMLHttpRequest();
         //         xhr.open("POST","/confirmBooking/{id}",true);
@@ -185,8 +205,8 @@
         // }
 //         function senddata() {
 //             console.log('hi');
-//   let checkin_val = booking_form.elements['checkin'].value;
-//   let checkout_val = booking_form.elements['checkout'].value;
+//   let checkIn_val = booking_form.elements['checkIn'].value;
+//   let checkOut_val = booking_form.elements['checkOut'].value;
 //   booking_form.elements['pay_now'].setAttribute('disabled', true);
 
   
