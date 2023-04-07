@@ -25,10 +25,10 @@ class StoreReservationRequest extends FormRequest
             'checkIn'=>'required|date|after:tomorrow',
             
             'checkOut'=>'required|date|after:tomorrow',
-            // 'statutBooking'=>'required',
-            'typeBooking'=>'required',
-            'totalPrice'=>'required',
-            'numberPerson'=>'required',
+            'statutBooking'=>'required',
+            // 'typeBooking'=>'required',
+            // 'totalPrice'=>'required',
+            // 'numberPerson'=>'required',
             'chambre_id'=>'required',
             'user_id'=>'required',
         ];
