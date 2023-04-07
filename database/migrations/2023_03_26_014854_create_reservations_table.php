@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Reservation;
+use App\Models\Reservationdetail;
 
 return new class extends Migration
 {
@@ -17,10 +19,13 @@ return new class extends Migration
             $table->date('checkIn');
             $table->date('checkOut');
             // $table->string('statutBooking');
-            $table->boolean('statutBooking')->default(1);
-            $table->string('typeBooking');
-            $table->float('totalPrice');
-            $table->integer('numberPerson');
+            $table->string('statutBooking')->default("pending");
+            // $table->string('typeBooking');
+            $table->integer('arrival')->default(0);
+            $table->integer('refund')->nullable()->default(NULL);
+
+            // $table->float('totalPrice');
+           
             $table->unsignedBigInteger('chambre_id');
             $table->foreign('chambre_id')->references('id')->on('chambres')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
