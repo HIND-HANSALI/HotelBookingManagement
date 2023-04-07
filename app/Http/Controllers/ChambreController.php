@@ -39,8 +39,9 @@ class ChambreController extends Controller
     public function confirmBooking($id){
         $user = Auth::user(); // Retrieve the authenticated user
         // $chambre=Chambre::findorfail($id);
+        $availableBeds = Chambre::findOrFail($id)->numberBed;
         $chambre = Chambre::with('chambreimages')->findOrFail($id);
-        return view('confirm-booking',['room' => $chambre, 'user' => $user]);
+        return view('confirm-booking',['room' => $chambre, 'user' => $user,'availableBeds' => $availableBeds]);
     }
 
    
