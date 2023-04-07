@@ -66,6 +66,7 @@
                             <img src="" class="d-block w-90 img-fluid rounded" alt="...">
                         </div> -->
                         <h5>{{$room->nameR}}</h5>
+                        <h6>Available beds: {{ $availableBeds }} </h6>
                         <h6 class="room-price" data-room-price="{{ $room->priceR }}">{{$room->priceR}} per night </h6>
                         <!-- end foreach -->
                         
@@ -79,6 +80,13 @@
                     <div class="card-body">
                         <form method="POST" action="{{route('detailsbook.store')}}" id="booking_form">
                         @csrf
+                        
+                        @if ($message = Session::get('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{{ $message }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
                         <input type="hidden" name="price" value="{{ $room->priceR }}">
                         <input type="hidden" name="chambre_id" value="{{ $room->id }}">
                         <input type="hidden" name="roomName" value="{{ $room->nameR }}">
@@ -102,7 +110,7 @@
                             <div class="col-md-12 ps-0 mb-3 ms-3">
                             <label for="form-label ">Number Guests</label>
                             <input type="number" min="1" onchange="check()" class="form-control shadow-none " id="numberPerson" value="" name="numberPerson" >
-                            
+                            <small>Available beds: {{ $availableBeds }} </small>
                             </div>
                             <div class="col-md-6 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-in</label>
