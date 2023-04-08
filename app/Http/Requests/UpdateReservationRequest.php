@@ -22,14 +22,18 @@ class UpdateReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'checkIn'=>'required|date|after:tomorrow',
-            'checkOut'=>'required|date|after:tomorrow',
+            'checkIn'=>'required|date',
+            'checkOut'=>'required|date',
             // 'statutBooking'=>'required',
-            'typeBooking'=>'required',
-            'totalPrice'=>'required',
-            'numberPerson'=>'required',
+            // 'typeBooking'=>'required',
+            // 'totalPrice'=>'required',
+            // 'numberPerson'=>'required',
             'chambre_id'=>'required',
             'user_id'=>'required',
+            'numberPerson'=>'integer',
+            'total_payement'=>'numeric',
+            
+            // ' reservationdetail_id'=>'required',
         ];
     }
 }

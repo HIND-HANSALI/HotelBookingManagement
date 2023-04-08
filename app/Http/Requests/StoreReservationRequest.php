@@ -22,15 +22,16 @@ class StoreReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'checkIn'=>'required|date|after:tomorrow',
+            'checkIn'=>'required|date',
             
-            'checkOut'=>'required|date|after:tomorrow',
-            'statutBooking'=>'required',
+            'checkOut'=>'required|date',
+            // 'statutBooking'=>'required',
             // 'typeBooking'=>'required',
             // 'totalPrice'=>'required',
             // 'numberPerson'=>'required',
             'chambre_id'=>'required',
             'user_id'=>'required',
+            
         ];
     }
 }
