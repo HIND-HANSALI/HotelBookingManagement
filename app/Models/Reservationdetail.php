@@ -10,7 +10,8 @@ class Reservationdetail extends Model
     use HasFactory;
 
     protected $fillable = [
-
+        'numberPerson',
+        'total_payement',
     ];
 
     public function reservation()

@@ -12,9 +12,9 @@ class Reservation extends Model
         'checkIn',
         'checkOut',
         // 'statutBooking',
-        'typeBooking',
-        'totalPrice',
-        'numberPerson',
+        // 'typeBooking',
+        // 'totalPrice',
+        // 'numberPerson',
         'chambre_id',
         'user_id',
         
