@@ -190,32 +190,24 @@
 								</div>
 								</div>
 
-								@php
-								$rooms = \App\Models\Chambre::all();
-								@endphp
+								@foreach ($booking->reservationdetails as $reservationdetail)
 								<div class="col-md-4">
 								<div class="form-group">
 									<label for="chambre_id">Room</label>
 									<select class="form-control @error('chambre_id') is-invalid  @enderror" id="chambre_id" name="chambre_id">
 										@foreach ($rooms as $room)
-											<option value="{{ $room->id }}">{{ old ('$room->nameR',$room->nameR) }}</option>
+										<option value="{{ $room->id }}" {{ $room->id == $reservationdetail->chambre_id ? 'selected' : '' }}>
+										{{ $room->nameR }}
+												
+										</option>
+
 										@endforeach
 									</select>
 								</div>
 								</div>
 
-								<div class="col-md-4">
-									<div class="form-group">
-										<label>Booking Type</label>
-										<select class="form-control @error('typeBooking') is-invalid  @enderror" id="sel1" name="typeBooking">
-										<option disabled selected>Open this select menu</option>
-										<option value="All-Inclusive Booking">All-Inclusive Booking</option>
-										<option value="Package Booking">Package Booking</option>
-										<option value="Group Booking">Group Booking</option>
-										<option value="Half-Board Booking">Half-Board Booking</option>	
-										</select>
-									</div>
-								</div>
+								
+								<input type="hidden" name="reservationdetail_id" value="{{ $reservationdetail->id }}">
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Arrival Date</label>
@@ -223,6 +215,7 @@
 									</div>
 									
 								</div>
+
 								
 								<div class="col-md-4">
 									<div class="form-group">
@@ -230,21 +223,23 @@
 										<input type="date" class="form-control datetimepicker @error('checkOut') is-invalid  @enderror" name="checkOut" value="{{old ('checkOut',$booking->checkOut)}}"> 
 									</div>
 								</div>
+								
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Price Total</label>
-										<input type="number" class="form-control @error('totalPrice') is-invalid  @enderror" id="totalPrice" name="totalPrice" value="{{old ('totalPrice',$booking->totalPrice)}}">
+										<label>Total Payement</label>
+										<input type="number" class="form-control @error('total_payement') is-invalid  @enderror" id="totalPrice" name="total_payement" value="{{old ('total_payement',$reservationdetail->total_payement)}}">
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Number Person</label>
-										<input type="number" class="form-control @error('numberPerson') is-invalid  @enderror" id="numberPerson" name="numberPerson" value="{{old ('numberPerson',$booking->numberPerson)}}">
+										<input type="number" class="form-control @error('numberPerson') is-invalid  @enderror" id="numberPerson" name="numberPerson" value="{{old ('numberPerson',$reservationdetail->numberPerson)}}">
 									</div>
 								</div>
-
 								
-						
+								
+								
+							@endforeach
 							</div>
 						
 					</div>
