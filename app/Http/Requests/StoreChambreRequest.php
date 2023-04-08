@@ -26,7 +26,7 @@ class StoreChambreRequest extends FormRequest
             'descriptionR'=>'required',
             'categorie_id'=>'required',
             // 'statutR'=>'required',
-            'numberBed'=>'required',
+            'numberBed'=>'required|integer|min:1',
             'priceR'=>'required',
             // 'pictureR'=>'required|file',
         ];

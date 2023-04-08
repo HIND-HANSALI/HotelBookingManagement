@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('statutR')->default(1);
             // $table->string('pictureR');
             $table->integer('numberBed');
+            $table->integer('numberBedOriginal')->default(1);
             $table->float('priceR');
 
             // $table->unsignedBigInteger('facility_id');
