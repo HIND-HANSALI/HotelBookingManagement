@@ -125,44 +125,67 @@
 									<table class="datatable table table-stripped table table-hover table-center mb-0">
 										<thead>
 											<tr>
-
-												<th>Room</th>
-												<th>User</th>
-												<th>Booking Type</th>
-												<th>Arrival Date</th>
-												<th>Depature Date</th>
-												<th>Total Price</th>
-												<th>Number Person</th>
-
+											<th>User Details</th>
+											<th>Room Details</th>
+											<th>Booking Details</th>
 												<th>Status</th>
 												<th class="text-right">Actions</th>
 											</tr>
 										</thead>
 										<tbody>
 											@foreach ($bookings as $booking)
-											@php
-											$status = '<div class=""> <a href="#" class="btn  bg-success-light mr-2">active</a> </div>';
-											if(!$booking->statutBooking){
-												$status ='<div class=""> <a href="#" class="btn btn-sm bg-danger-light mr-2">inactive</a> </div>';
+										
+										@php
+											$status = '';
+											switch ($booking->statutBooking) {
+												case 'pending':
+													$status = '<div class="btn btn-sm bg-warning-light mr-2">Pending</div>';
+													break;
+												case 'booked':
+													$status = '<div class="btn btn-sm bg-success-light mr-2">Booked</div>';
+													break;
+												case 'cancel':
+													$status = '<div class="btn btn-sm bg-danger-light mr-2">Cancelled</div>';
+													break;
+												default:
+													$status = '';
+													break;
 											}
 										@endphp
 											<tr>
-												<td>{{$booking->chambre->nameR }}</td>
+											<!-- Loop through reservation details for this booking -->
+											@foreach ($booking->reservationdetails as $reservationdetail)
 
-												<td>{{$booking->user->name}}</td>
-												<td>{{$booking->typeBooking}}</td>
-												<td>{{$booking->checkIn}}</td>
-												<td>{{$booking->checkOut}}</td>
-												<td>{{$booking->totalPrice}}</td>
-												<td>{{$booking->numberPerson}}</td>
+											<td>
+												<b>Name: </b> {{$booking->user->name}}
+												<br>
+												<b>Address:</b> {{$reservationdetail->address}}
+												<br>
+												<b>Phone:</b>{{$reservationdetail->phoneNum}}
+											</td>	
 
+											<td>
+												<b>Room: </b>{{$booking->chambre->nameR }}
+												<br>
+												<b>Price:</b> {{$reservationdetail->price }} MAD
+											</td>
+											<td>
+												<b>Amount: </b>{{ $reservationdetail->total_payement}} MAD
+												<br>
+												<b>Arrival Date: </b>{{ $booking->checkIn}}
+												<br>
+												<b>Depature Date: </b>{{ $booking->checkOut}}
+
+											</td>
+											@endforeach
+										
 												<td>
-													<div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">{!! $status !!}</a> </div>
+													{!! $status !!} 
 												</td>
 												<td class="text-right">
 													<div class="dropdown dropdown-action"> <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
 														<div class="dropdown-menu dropdown-menu-right">
-															<a class="dropdown-item" href="{{ route('bookings.edit', $booking->id) }}"><i class="fas fa-pencil-alt m-r-5"></i> Edit</a>
+															<a class="dropdown-item" href="{{ route('bookings.edit', $booking->id) }}"><i class="fas fa-pencil-alt m-r-5"></i>Assign Room</a>
 															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset_{{ $booking->id }}"><i class="fas fa-trash-alt m-r-5"></i> Delete</a>
 														</div>
 													</div>
