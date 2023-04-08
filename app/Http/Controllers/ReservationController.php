@@ -7,6 +7,7 @@ use App\Models\Chambre;
 use App\Models\Reservation;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
+use App\Models\Reservationdetail;
 
 class ReservationController extends Controller
 {
@@ -15,7 +16,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return view('dashboard.all-booking',['bookings'=>Reservation::paginate(10)]);
+        // return view('dashboard.all-booking',['bookings'=>Reservation::paginate(10)]);
+        $bookings = Reservation::with('reservationdetails')->paginate(10);
+        return view('dashboard.all-booking',['bookings'=>$bookings]);
     }
 //     public function searchRoom(Request $request)
 // {
@@ -109,7 +112,7 @@ class ReservationController extends Controller
     public function store(StoreReservationRequest $request)
     {
     //    dd('hiii');
-        $data=$request->only(['checkIn','checkOut','typeBooking','totalPrice','numberPerson','chambre_id','user_id']);
+        $data=$request->only(['checkIn','checkOut','chambre_id','user_id']);
         Reservation::create($data);
         return redirect()->route('bookings.index')->with('success','Booking created successfully!');
 
@@ -124,8 +127,10 @@ class ReservationController extends Controller
      */
     public function edit($id)
     {
-        $reservation=Reservation::findorfail($id);
-        return view('dashboard.edit-booking',['booking'=>$reservation]);
+        $booking=Reservation::findorfail($id);
+        $reservationdetail = $booking->reservationdetails();
+        $rooms = Chambre::all();
+        return view('dashboard.edit-booking',compact('booking', 'reservationdetail', 'rooms'));
     }
 
     /**
@@ -136,10 +141,21 @@ class ReservationController extends Controller
         $validatedData = $request->validated();
        
         $reservation=Reservation::findorfail($id);
-            $reservation->update($validatedData);
+        $reservation->update($validatedData);
 
-       
-        
+        $room = Chambre::find($request->input('chambre_id'));
+        $new_room_name = $room->nameR;
+
+        $reservationDetails = Reservationdetail::findOrFail($request->input('reservationdetail_id'));
+        $reservationDetails->update([
+            // 'phoneNum' => $request->input('phoneNum'),
+            // 'address' => $request->input('address'),
+            // 'price' => $request->input('price'),
+            'numberPerson' => $request->input('numberPerson'),
+            'total_payement' => $request->input('total_payement'),
+            'chambre_id' => $request->input('chambre_id'), 
+        ]);
+    
         return redirect()->route('bookings.index')->with('success','Reservation updated successfully!');
     }
 
