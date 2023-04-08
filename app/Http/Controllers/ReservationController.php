@@ -17,34 +17,59 @@ class ReservationController extends Controller
     {
         return view('dashboard.all-booking',['bookings'=>Reservation::paginate(10)]);
     }
-    public function searchRoom(Request $request)
-{
-    $rooms = null;
+//     public function searchRoom(Request $request)
+// {
+//     $rooms = null;
 
-    if($request->filled(['checkIn', 'checkOut', 'numberPerson'])) {
-        $checkIn = Carbon::parse($request->input('checkIn'));
-        $checkOut = Carbon::parse($request->input('checkOut'));
-        $numberPerson = $request->input('numberPerson');
+//     if($request->filled(['checkIn', 'checkOut', 'numberPerson'])) {
+//         $checkIn = Carbon::parse($request->input('checkIn'));
+//         $checkOut = Carbon::parse($request->input('checkOut'));
+//         $numberPerson = $request->input('numberPerson');
 
-        $rooms = Chambre::where('numberBed', '>=', $numberPerson)
-            ->whereDoesntHave('reservations', function ($query) use ($checkIn, $checkOut) {
-                $query->where(function ($query) use ($checkIn, $checkOut) {
-                    $query->where('checkIn', '>=', $checkIn)
-                          ->where('checkOut', '<=', $checkOut);
-                })->orWhere(function ($query) use ($checkIn, $checkOut) {
-                    $query->where('checkIn', '<=', $checkIn)
-                          ->where('checkOut', '>', $checkIn);
-                })->orWhere(function ($query) use ($checkIn, $checkOut) {
-                    $query->where('checkIn', '<', $checkOut)
-                          ->where('checkOut', '>=', $checkOut);
-                });
-            })
-            ->get();
-    }
+//         $rooms = Chambre::where('numberBed', '>=', $numberPerson)
+//             ->whereDoesntHave('reservations', function ($query) use ($checkIn, $checkOut) {
+//                 $query->where(function ($query) use ($checkIn, $checkOut) {
+//                     $query->where('checkIn', '>=', $checkIn)
+//                           ->where('checkOut', '<=', $checkOut);
+//                 })->orWhere(function ($query) use ($checkIn, $checkOut) {
+//                     $query->where('checkIn', '<=', $checkIn)
+//                           ->where('checkOut', '>', $checkIn);
+//                 })->orWhere(function ($query) use ($checkIn, $checkOut) {
+//                     $query->where('checkIn', '<', $checkOut)
+//                           ->where('checkOut', '>=', $checkOut);
+//                 });
+//             })
+//             ->get();
+//     }
 
-    return view('welcome', compact('rooms'));
-}
+//     return view('welcome', compact('rooms'));
+// }
+// public function isAvailable($checkIn, $checkOut, $chambre_id, $excludeId = null)
+// {
+//     $query = $this->where('chambre_id', $chambre_id)
+//         ->where(function ($q) use ($checkIn, $checkOut) {
+//             $q->whereBetween('checkIn', [$checkIn, $checkOut])
+//                 ->orWhereBetween('checkOut', [$checkIn, $checkOut])
+//                 ->orWhere(function ($q) use ($checkIn, $checkOut) {
+//                     $q->where('checkIn', '<', $checkIn)
+//                         ->where('checkOut', '>', $checkOut);
+//                 });
+//         });
 
+//     if ($excludeId) {
+//         $query->where('id', '<>', $excludeId);
+//     }
+
+//     return $query->count() === 0;
+// }
+        // public function isAvailable($checkIn, $checkOut, $chambre_id)
+        // {
+        //     $reservations = $this->where('chambre_id', $chambre_id)
+        //                         ->whereBetween('checkIn', [$checkIn, $checkOut])
+        //                         ->orWhereBetween('checkOut', [$checkIn, $checkOut])
+        //                         ->get();
+        //     return $reservations->isEmpty();
+        // }
 
     // public function searchRoom(Request $request)
     // {
