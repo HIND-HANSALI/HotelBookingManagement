@@ -35,35 +35,47 @@ class Reservation extends Model
         return $this->hasMany(Reservationdetail::class);
     }
 
-    public function isAvailable($checkIn, $checkOut, $chambre_id,$numberPerson)
-    {
+    public function isAvailable($checkIn, $checkOut, $chambre_id, $numberPerson, $reservation_id = null)
+{
+    $count = $this->join('reservationdetails', 'reservations.id', '=', 'reservationdetails.reservation_id')
+        ->where('reservations.chambre_id', $chambre_id)
+        ->where('reservations.statutBooking', 'booked')
+        ->where(function ($query) use ($checkIn, $checkOut, $reservation_id) {
+            $query->where(function ($query) use ($checkIn, $checkOut) {
+                $query->whereBetween('reservations.checkIn', [$checkIn, $checkOut])
+                    ->orWhereBetween('reservations.checkOut', [$checkIn, $checkOut]);
+            })
+            ->orWhere(function ($query) use ($checkIn, $checkOut, $reservation_id) {
+                $query->where('reservations.checkIn', '<', $checkIn)
+                    ->where('reservations.checkOut', '>', $checkOut);
+            })
+            ->when($reservation_id, function ($query, $reservation_id) {
+                $query->where('reservations.id', '<>', $reservation_id);
+            });
+        })
+        ->sum('reservationdetails.numberPerson');
 
-    $room = Chambre::findOrFail($chambre_id);
-    $count = $this->where('chambre_id', $chambre_id)
-                  ->where(function ($query) use ($checkIn, $checkOut) {
-                      $query->whereBetween('checkIn', [$checkIn, $checkOut])
-                            ->orWhereBetween('checkOut', [$checkIn, $checkOut])
-                            ->orWhere(function ($query) use ($checkIn, $checkOut) {
-                                $query->where('checkIn', '<', $checkIn)
-                                      ->where('checkOut', '>', $checkOut);
-                            });
-                  })
-                  ->whereHas('reservationdetails', function($query) use ($numberPerson) {
-                    $query->where('numberPerson', '<=', $numberPerson);
-                })
-                
-                // ->whereHas('chambre', function ($query) use ($numberPerson) {
-                //     $query->where('numberBed', '>=', $numberPerson);
-                // })
-                
-                  ->count();
-                  $room = Chambre::find($chambre_id);
-                  if ($numberPerson > $room->numberBed) {
-                      return "The selected room does not have enough beds for the number of persons entered.";
-                  }
+        $numberBedOriginal = Chambre::findOrFail($chambre_id)->numberBedOriginal;
+        $availableBeds = Chambre::findOrFail($chambre_id)->numberBed;
+    
+        // Check if the available number of beds is less than the required number of beds
+        if ($availableBeds > $numberPerson) {
+            return 0;
+        }
+    
+        // Check if the number of beds that will be occupied by all reservations in the given period
+        // exceeds the number of beds available for the room
+        if ($numberBedOriginal - $count > $numberPerson) {
+            return 0;
+        }
+        
+        // If the room is available for the selected dates and has enough beds for the reservation
+        return $availableBeds - $count;
+       
+    
+   
+}
 
-    return $count ;
-    }
 
     // public function isAvailable($checkIn, $checkOut, $chambre_id)
     // {
