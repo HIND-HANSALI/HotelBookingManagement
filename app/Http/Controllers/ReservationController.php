@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Chambre;
+use App\Models\User;
+use App\Models\Facilitie;
 use App\Models\Reservation;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
@@ -34,8 +36,26 @@ class ReservationController extends Controller
         return view('historique-Bookings',['bookings'=>$bookings]);
     }
 
-
+   
+    public function dashboard(){
+        // product::count()
+        $roomsReserved=Chambre::with('reservations')->get();
+        $countRoomsReserved =  $roomsReserved->count();
     
+        $roomsNotReserved = Chambre::whereDoesntHave('reservations')->get();
+        $countRoomsNotReserved =  $roomsNotReserved->count();
+    
+        $facilities=Facilitie::count();
+
+        // Count clients
+        $userClient = User::where('userType', 1)->count();
+        // $users=User::count();
+    
+        return view('dashboard.index', compact('countRoomsReserved', 'countRoomsNotReserved', 'facilities', 'userClient'));
+    }
+
+
+ 
 
 //     public function searchRoom(Request $request)
 // {
