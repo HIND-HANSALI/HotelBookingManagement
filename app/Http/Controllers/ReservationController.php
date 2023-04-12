@@ -8,6 +8,8 @@ use App\Models\Reservation;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Reservationdetail;
+use Illuminate\Support\Facades\DB;
+
 
 class ReservationController extends Controller
 {
@@ -20,6 +22,21 @@ class ReservationController extends Controller
         $bookings = Reservation::with('reservationdetails')->paginate(10);
         return view('dashboard.all-booking',['bookings'=>$bookings]);
     }
+
+    public function historiqueBookings()
+    {
+        $user = auth()->user();
+        // return view('dashboard.all-booking',['bookings'=>Reservation::paginate(10)]);
+        $bookings = Reservation::with('reservationdetails')
+                    ->where('user_id', $user->id)
+        
+                    ->paginate(10);
+        return view('historique-Bookings',['bookings'=>$bookings]);
+    }
+
+
+    
+
 //     public function searchRoom(Request $request)
 // {
 //     $rooms = null;
@@ -47,56 +64,22 @@ class ReservationController extends Controller
 
 //     return view('welcome', compact('rooms'));
 // }
-// public function isAvailable($checkIn, $checkOut, $chambre_id, $excludeId = null)
-// {
-//     $query = $this->where('chambre_id', $chambre_id)
-//         ->where(function ($q) use ($checkIn, $checkOut) {
-//             $q->whereBetween('checkIn', [$checkIn, $checkOut])
-//                 ->orWhereBetween('checkOut', [$checkIn, $checkOut])
-//                 ->orWhere(function ($q) use ($checkIn, $checkOut) {
-//                     $q->where('checkIn', '<', $checkIn)
-//                         ->where('checkOut', '>', $checkOut);
-//                 });
-//         });
 
-//     if ($excludeId) {
-//         $query->where('id', '<>', $excludeId);
-//     }
+public function changeStatutBooking(Request $request){
 
-//     return $query->count() === 0;
-// }
-        // public function isAvailable($checkIn, $checkOut, $chambre_id)
-        // {
-        //     $reservations = $this->where('chambre_id', $chambre_id)
-        //                         ->whereBetween('checkIn', [$checkIn, $checkOut])
-        //                         ->orWhereBetween('checkOut', [$checkIn, $checkOut])
-        //                         ->get();
-        //     return $reservations->isEmpty();
-        // }
+       $validated= $request->validate([
+            'Bookingid' => 'required|integer',
+            'statut_ids'=>'required'
+        ]);
+        $id = $request->input('Bookingid');
+        $statusIds = $request->input('statut_ids');
+        // dd($id , $statusIds);
+        $booking = Reservation::findOrFail($id);
+        $booking->statutBooking = $statusIds;
+        $booking->save();
 
-    // public function searchRoom(Request $request)
-    // {
-    //     $rooms = null;
-    //     if($request->filled(['checkIn', 'checkOut', 'numberPerson'])) {
-    //         $times = [
-    //             Carbon::parse($request->input('checkIn')),
-    //             Carbon::parse($request->input('checkOut')),
-    //         ];
-
-    //         $rooms = Room::where('numberPerson', '>=', $request->input('numberPerson'))
-    //             ->whereDoesntHave('events', function ($query) use ($times) {
-    //                 $query->whereBetween('checkIn', $times)
-    //                     ->orWhereBetween('checkOut', $times)
-    //                     ->orWhere(function ($query) use ($times) {
-    //                         $query->where('checkIn', '<', $times[0])
-    //                             ->where('checkOut', '>', $times[1]);
-    //                     });
-    //             })
-    //             ->get();
-    //     }
-
-    //     return view('welcome', compact('rooms'));
-    // }
+    return redirect()->back()->with('success', 'statut Booking is changed!');
+}
 
     /**
      * Show the form for creating a new resource.
@@ -170,4 +153,5 @@ class ReservationController extends Controller
 
          return redirect()->back()->with('success','Booking deleted successfully!');
     }
+
 }

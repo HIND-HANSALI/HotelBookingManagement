@@ -133,19 +133,28 @@
 											</tr>
 										</thead>
 										<tbody>
-											@foreach ($bookings as $booking)
+										
+										@foreach ($bookings as $booking)
 										
 										@php
 											$status = '';
+											$tempId = null;
+											$bookingid = $booking->id;
+											$statusBocking =$booking->statutBooking;
 											switch ($booking->statutBooking) {
 												case 'pending':
-													$status = '<div class="btn btn-sm bg-warning-light mr-2">Pending</div>';
+													$status = '<button class="btn btn-sm bg-warning-light mr-2" data-toggle="modal"  onclick="changeStatusBooking('.$bookingid.', \''.$statusBocking.'\' )"   data-target="#editStatusModal">Pending</button>' ;
 													break;
 												case 'booked':
-													$status = '<div class="btn btn-sm bg-success-light mr-2">Booked</div>';
+													
+													$status = '<button type="button" class="btn btn-sm bg-success-light mr-2" onclick="changeStatusBooking('.$bookingid.', \''.$statusBocking.'\' )"  data-toggle="modal" data-target="#editStatusModal">Booked</button>';
 													break;
-												case 'cancel':
-													$status = '<div class="btn btn-sm bg-danger-light mr-2">Cancelled</div>';
+												case 'canceled':
+													$status = '<div class="btn btn-sm bg-danger-light mr-2" data-toggle="modal" onclick="changeStatusBooking('.$bookingid.', \''.$statusBocking.'\' )"  data-target="#editStatusModal">Canceled</div>';
+													break;
+												
+												case 'completed':
+													$status = '<div class="btn btn-sm bg-info-light mr-2" data-toggle="modal"  onclick="changeStatusBooking('.$bookingid.', \''.$statusBocking.'\' )" data-target="#editStatusModal">Completed</div>';
 													break;
 												default:
 													$status = '';
@@ -222,9 +231,53 @@
 
 		</div>
 	</div>
+	<!-- modal edit Status -->
+	<div class="modal fade" id="editStatusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content w-100">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Change Statut</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body text-center">
+                      <form method="POST" action="{{route('changeStatutBooking') }}">
+                        @csrf
+                        @method('POST')
+                        <input type="hidden" name="Bookingid" id="Bookingid" value="">
+                        <label for="changeRole">Select Statut</label> <br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"  name="statut_ids" id="pendingRadio" value="pending">
+                            <label class="form-check-label" for="inlineRadio1">Pending</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"  name="statut_ids" id="bookedRadio" value="booked">
+                            <label class="form-check-label" for="inlineRadio2">Booked</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"  name="statut_ids" id="cancelRadio" value="canceled">
+                            <label class="form-check-label" for="inlineRadio3">Canceled</label>
+                          </div>
+						  <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"  name="statut_ids" id="completRadio" value="completed">
+                            <label class="form-check-label" for="inlineRadio4">Completed</label>
+                          </div>
+                       <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" id="saveBtn" class="btn btn-primary">Save</button>
+                    </div>
+                      </form>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 	<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 	<script src="assets/js/jquery-3.5.1.min.js"></script>
 	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/main.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
 	<script src="assets/plugins/datatables/datatables.min.js"></script>
