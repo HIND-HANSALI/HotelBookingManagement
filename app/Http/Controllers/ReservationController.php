@@ -55,7 +55,69 @@ class ReservationController extends Controller
     }
 
 
- 
+    private function  getSpecificRooms($checkIn,$checkOut,$numberPerson){
+        $rooms = Chambre::with('reservations')->get();
+        $available_Rooms_Without_Resevation =[];
+        $available_Rooms_With_reservation = [];
+        foreach($rooms as $room){
+            if(count($room->reservations)==0){
+                array_push($available_Rooms_Without_Resevation,$room);
+            }
+        }
+        $reservations_in_range = Reservation::with('reservationdetails','chambre')
+        ->get();
+        $whiting_chambres = [];
+        foreach($reservations_in_range as $reservation){
+            if($reservation->checkIn>$checkOut || $reservation->checkOut<$checkIn){
+                if(!in_array($reservation->chambre,$whiting_chambres)){
+                    array_push($whiting_chambres,$reservation->chambre);
+                }
+            }
+            foreach($reservation->reservationdetails as $details){
+                
+                
+                if((($reservation->chambre->numberBedOriginal) - $details->numberPerson) >=$numberPerson){
+                    if(!in_array($reservation->chambre,$available_Rooms_With_reservation)){
+                        array_push($available_Rooms_With_reservation,$reservation->chambre);
+                    }
+                }
+                elseif($reservation->checkIn<=$checkIn && $reservation->checkOut>=$checkOut){
+                    if(in_array($reservation->chambre,$whiting_chambres)){
+                        $whiting_chambres =  array_diff($whiting_chambres, [$reservation->chambre]);
+                    }
+                }
+            }
+        }
+        
+        // echo (count($available_Rooms_Without_Resevation));
+        // echo "<br>";
+        // echo (count($available_Rooms_With_reservation));
+        foreach($whiting_chambres as $chambre){
+            if(!in_array($chambre,$available_Rooms_With_reservation)){
+                array_push($available_Rooms_With_reservation,$chambre);
+            }
+
+        }
+       
+        $rooms = array_merge($available_Rooms_Without_Resevation, $available_Rooms_With_reservation);
+        return $rooms;
+    }
+    
+    public function checkAvailability(Request $request)
+    {
+
+        // Retrieve the available rooms based on the input parameters
+        $checkIn = $request->input('checkIn');
+        $checkOut = $request->input('checkOut');
+        $numberPerson = $request->input('numberPerson');
+        $rooms = $this->getSpecificRooms($checkIn,$checkOut,$numberPerson);
+
+        // Pass the available rooms to the view
+        return view('welcome', ["rooms"=>$rooms]);
+        
+        
+            
+    }
 
 //     public function searchRoom(Request $request)
 // {

@@ -197,7 +197,7 @@
         <div class="row">
             <div class="col-lg-12 bg-white shadow p-4 rounded">
                 <h5 class="col-lg-3">Check Availability</h5>
-                <form method="POST" action="{{route('searchRoom')}}">
+                <form method="POST" action="{{route('checkAvailability')}}">
                     @csrf
                     <div class="row align-items-end">
                         <div class="col-lg-4 mb-3">
@@ -205,7 +205,7 @@
                             <input type="date" name="checkIn" class="form-control shadow-none">
                         </div>
                         <div class="col-lg-4 mb-3">
-                            <label class="form-label" style="font-weight: 500;">Check-in</label>
+                            <label class="form-label" style="font-weight: 500;">Check-Out</label>
                             <input type="date" name="checkOut" class="form-control shadow-none">
                         </div>
                         <div class="col-lg-3 mb-3">
@@ -250,26 +250,30 @@
             <div class="col-lg-4 col-md-6 my-3">
             
                 <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach($room->chambreimages as $key => $image)
+                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                        <img src="{{asset('assets/upload/rooms/'. $image->picture) }}" class="d-block w-100" alt="...">
+                    </div>
+                @endforeach
+            </div>
+            </div>
 
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-2WXoZxYxKA2lL4WKjC3dxD3Ybb_Y67yb5g&usqp=CAU" class="card-img-top" alt="...">
+                    <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-2WXoZxYxKA2lL4WKjC3dxD3Ybb_Y67yb5g&usqp=CAU" class="card-img-top" alt="..."> -->
+
                     <div class="card-body">
                         <h5 class="card-title">{{$room->nameR}}</h5>
-                        <h6 class="mb-4">50 MAD Per Night </h6>
+                        <h6 class="mb-4">{{$room->priceR}}MAD Per Night </h6>
 
                         <div class="Facilities mb-4">
                             <h6 class="mb-1">Facilities</h6>
+                            @foreach ($room->facilities as $facility)
                             <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                Wifi
+                            {{ $facility->name }}
                             </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                Television
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                AC
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                Room Heater
-                            </span>
+                            @endforeach
+                            
                         </div>
 
                         <div class="guests mb-2">
