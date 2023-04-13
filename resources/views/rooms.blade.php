@@ -3,6 +3,7 @@
 
 <head>
     <title>Hotel Booking Website-Rooms</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- links section -->
     @include('links')
 
@@ -57,105 +58,131 @@
                                 <label class="form-label">Check-in</label>
                                 <input type="date" class="form-control shadow-none mb-3">
                                 <label class="form-label">Check-in</label>
-                                <input type="date" class="form-control shadow-none">
-                            </div>
-                            <div class="border bg-light p-3 rounded mb-3">
-                                <h5 class="mb-3" style="font-size: 18px;">FACILITIES</h5>
-                                <div class="mb-2">
-                                    <input type="checkbox" id="f1" class="form-check-input shadow-none me-1">
-                                    <label class="form-check-label" for="f1">WIFI</label>
+                                <input type="date" class="form-control shadow-none mb-3">
+                                <label class="form-label">Members</label>
+                                <input type="number" min="1" id="guests" oninput="guests_filter()" class=" form-control shadow-none">
+                                <div class=" mb-lg-3 mt-4">
+                                    <button type="submit" class="w-100 btn text-dark shadow-none custom-bg">Rechercher</button>
                                 </div>
+                            </div>
+                            
+                            <div class="border bg-light p-3 rounded mb-3">
+                            <h5 class="d-flex align-items-center justify-content-between mb-5" style="font-size: 18px;">
+                                <span>FACILITIES</span>
+                                
+                                <button id="facilities_btn" onclick="facilities_clear()" class="btn shado-none btn-sm text-secondary d-none">Reset</button>
+                            </h5>
+                            @foreach ($rooms as $room)
+                            @foreach ($room->facilities as $facilitie)
                                 <div class="mb-2">
+                                    <input type="checkbox" onclick="fetch_rooms()" name="facilities" value="{{ $facilitie->id}}" class="form-check-input shadow-none me-1" id="{{ $facilitie->id}}">
+                                    <label class="form-check-label" for="{{ $facilitie->id}}">{{ $facilitie->name }}</label>
+                                </div>
+                            @endforeach  
+                            @endforeach  
+                                <!-- <div class="mb-2">
                                     <input type="checkbox" id="f1" class="form-check-input shadow-none me-1">
                                     <label class="form-check-label" for="f2">TV</label>
                                 </div>
                                 <div class="mb-2">
                                     <input type="checkbox" id="f1" class="form-check-input shadow-none me-1">
                                     <label class="form-check-label" for="f3">AC</label>
-                                </div>
+                                </div> -->
                             </div>
-                            <!-- <div class="border bg-light p-3 rounded mb-3">
-                                <h5 class="mb-3" style="font-size: 18px;">Adults</h5>
+                            <div class="border bg-light p-3 rounded mb-3">
+                                <h5 class="d-flex align-items-center justify-content-between mb-5" style="font-size: 18px;">
+                                <span>GUESTS</span>
+                                <button id="guests-button" onclick="guests_clear()" class="btn shado-none btn-sm text-secondary d-none">Reset</button>
+                            </h5>
+
                                 <div class="d-flex">
                                     <div class="me-2">
-                                        <label class="form-label">Adults</label>
-                                        <input type="number" class="form-control shadow-none">
+                                        <label class="form-label">Members</label>
+                                        <input type="number" min="1" id="guests" oninput="guests_filter()" class="form-control shadow-none">
                                     </div>
-                                    <div>
+                                    <!-- <div>
                                         <label class="form-label">Children</label>
                                         <input type="number" class="form-control shadow-none">
-                                    </div>
+                                    </div> -->
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </nav>
             </div>
+          
 
             <div class="col-lg-9 col-md-12 px-4">
 
+            <!-- <div id="matching-rooms"> -->
+                                <!-- Content  updated here -->
+                            <!-- </div>        -->
+                 <section id="matching-rooms">
+
                 @foreach ($rooms as $room)
-                <div class="card mb-4 border-0 shadow">
+               
+
+                <div class="card mb-4 border-0 shadow" >
                     <div class="row g-0 p-3 align-items-center">
-                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
-                            <!-- <img src="https://nomadsworld.com/wp-content/uploads/2018/11/nomads-brisbane-hostel-dorm.jpg" class="img-fluid rounded"> -->
-                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                           
-                                    <div class="carousel-inner">
-                                    @foreach($room->chambreimages as $image)
-                                    <div class="carousel-item active">
-                                        <img src="{{asset('assets/upload/rooms/'. $image->picture) }}" class="d-block w-100" alt="...">
+                            <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
+                               
+                                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                
+                                            <div class="carousel-inner">
+                                            @foreach($room->chambreimages as $image)
+                                            <div class="carousel-item active">
+                                                <img src="{{asset('assets/upload/rooms/'. $image->picture) }}" class="d-block w-100" alt="...">
+                                            </div>
+                                            @endforeach
+                                        
+                                            </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
                                     </div>
-                                    @endforeach
-                                  
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
                             </div>
-                        </div>
                         <div class="col-md-5 px-lg-3 px-md-3 px-0">
 
-                            <div class="d-flex align-items-center mb-2">
-                                <h5 class="mb-1 me-2">{{$room->nameR}}</h5>
-                                <div>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
+                                <div class="d-flex align-items-center mb-2">
+                                    <h5 class="mb-1 me-2">{{$room->nameR}}</h5>
+                                    <div>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                    </div>
+
                                 </div>
 
-                            </div>
+                                <div class="Facilities mb-3">
+                                    <h6 class="mb-1">Facilities</h6>
+                                    @foreach ($room->facilities as $facility)
+                                    <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                    {{ $facility->name }}
+                                    </span>
+                                    @endforeach
+                                    <!-- <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                        Television
+                                    </span>
+                                    <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                        AC
+                                    </span>
+                                    <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                        Room Heater
+                                    </span> -->
+                                </div>
+                                <div class="guests">
+                                    <h6 class="mb-1">Guests</h6>
+                                    <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                        {{$room->numberBed}} Adults
+                                    </span>
 
-                            <div class="Facilities mb-3">
-                                <h6 class="mb-1">Facilities</h6>
-                                @foreach ($room->facilities as $facility)
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                {{ $facility->name }}
-                                </span>
-                                @endforeach
-                                <!-- <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Television
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    AC
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    Room Heater
-                                </span> -->
-                            </div>
-                            <div class="guests">
-                                <h6 class="mb-1">Guests</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    {{$room->numberBed}} Adults
-                                </span>
-
-                            </div>
+                                </div>
                         </div>
                         <div class="col-md-2 ">
                             <a href="#!" class="text-dark ms-auto d-flex justify-content-end">
@@ -170,11 +197,13 @@
                             <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
                             <a href="{{ route('roomss.show',$room->id ) }}" class="btn btn-sm w-100 btn-outline-dark shadow-none">Check details</a>
                         </div>
+                   
                     </div>
-                </div>
+                </div> 
                 @endforeach
-
-                <div class="card mb-4 border-0 shadow">
+            </section>
+                    <!-- print_r($_GET['facility_list']); -->
+                <!-- <div class="card mb-4 border-0 shadow">
                     <div class="row g-0 p-3 align-items-center">
                         <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
                             <img src="images/rooms/1.jpg" class="img-fluid rounded">
@@ -184,7 +213,7 @@
 
                             <div class="Facilities mb-3">
                                 <h6 class="mb-1">Facilities</h6>
-                                <!-- foreach here -->
+                                
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
                                     Wifi
                                 </span>
@@ -207,12 +236,12 @@
                             </div>
                         </div>
                         <div class="col-md-2 text-center">
-                            <h6 class="mb-4">50 MADper night </h6>
+                            <h6 class="mb-4">50 MAD per night </h6>
                             <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
                             <a href="#" class="btn btn-sm w-100 btn-outline-dark shadow-none">More details</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
 
@@ -223,6 +252,8 @@
 
     <!-- Footer Section -->
     @include('footer')
+    <script src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
