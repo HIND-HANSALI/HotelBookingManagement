@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Chambre;
 use App\Models\Facilitie;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreChambreRequest;
 use App\Http\Requests\UpdateChambreRequest;
-use Illuminate\Support\Facades\Auth;
+
 class ChambreController extends Controller
 {
     /**
@@ -34,7 +36,59 @@ class ChambreController extends Controller
         $rooms = Chambre::with(['facilities', 'chambreimages'])->paginate(3);
         return view('welcome', ['rooms' => $rooms]);
     }
-   
+
+    // dd($request);
+        // $fac_count=0;
+        // $roomFacilities = Chambre::with(['facilities'])->get();
+
+        // if(in_array($roomFacilities->id,$request->facilities)){
+        //     $fac_count++; 
+        // }
+        // if(count($request->facilities)!=$fac_count){
+        //     continue;
+        // }
+        // // $facilities = $request->input('facilities');
+        // // Do something with the facilities list
+        // $response = "Rooms updated!";
+        // return response()->json($response);
+
+
+
+     
+
+    public function fetchRoomfacilities(Request $request)
+    {
+        
+        $matching_rooms = [];
+        $fac_count = 0;
+        $roomFacilities = Chambre::with(['facilities','chambreimages'])->get();
+        foreach ($roomFacilities as $room) {
+            $room_fac_count = 0;
+            
+                    foreach ($request->facilities as $fac) {
+
+                        // Check if the room has this facility
+                        if ($room->facilities->contains('id', $fac)) {
+                            // If it does, increment the count of matching facilities for this room
+                            $room_fac_count++;
+                        }
+                    }
+
+                    // If the room has all the requested facilities, increment the count of matching rooms
+                    if ($room_fac_count == count($request->facilities)) {
+                        // $fac_count++;
+                        $matching_rooms[] = $room;
+                    }
+                }
+
+              
+
+                // If there are rooms with all the requested facilities, return a success message
+               
+                return response()->json($matching_rooms);
+     }
+                
+            
 
     public function confirmBooking($id){
         $user = Auth::user(); // Retrieve the authenticated user
