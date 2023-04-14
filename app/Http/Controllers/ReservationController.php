@@ -22,6 +22,7 @@ class ReservationController extends Controller
     {
         // return view('dashboard.all-booking',['bookings'=>Reservation::paginate(10)]);
         $bookings = Reservation::with('reservationdetails')->paginate(10);
+        // dd($bookings);
         return view('dashboard.all-booking',['bookings'=>$bookings]);
     }
 
@@ -33,6 +34,7 @@ class ReservationController extends Controller
                     ->where('user_id', $user->id)
         
                     ->paginate(10);
+                    // dd($bookings);
         return view('historique-Bookings',['bookings'=>$bookings]);
     }
 
@@ -62,47 +64,52 @@ class ReservationController extends Controller
         foreach($rooms as $room){
             if(count($room->reservations)==0){
                 array_push($available_Rooms_Without_Resevation,$room);
+            }else{
+                array_push($available_Rooms_With_reservation,$room);
             }
         }
-        $reservations_in_range = Reservation::with('reservationdetails','chambre')
+        $reservations = Reservation::with('reservationdetails','chambre')
         ->get();
-        $whiting_chambres = [];
-        foreach($reservations_in_range as $reservation){
-            if($reservation->checkIn>$checkOut || $reservation->checkOut<$checkIn){
-                if(!in_array($reservation->chambre,$whiting_chambres)){
-                    array_push($whiting_chambres,$reservation->chambre);
+        $chambres_temp= [];
+        $inrange_false = [];
+        foreach($reservations as $reservation){
+            if($reservation->checkOut<$checkIn ||$reservation->checkIn>$checkOut){
+                echo "out of range";
+            }elseif((($reservation->chambre->numberBedOriginal) - $reservation->reservationdetails->numberPerson) >=$numberPerson){
+                if(!in_array($reservation->chambre,$chambres_temp) && !in_array($reservation->chambre,$inrange_false)){
+                    echo "inrange true";
+                    array_push($chambres_temp,$reservation->chambre);
+                }else{
+                    echo "inrange true but another is false ";
                 }
             }
-            foreach($reservation->reservationdetails as $details){
-                
-                
-                if((($reservation->chambre->numberBedOriginal) - $details->numberPerson) >=$numberPerson){
-                    if(!in_array($reservation->chambre,$available_Rooms_With_reservation)){
-                        array_push($available_Rooms_With_reservation,$reservation->chambre);
-                    }
-                }
-                elseif($reservation->checkIn<=$checkIn && $reservation->checkOut>=$checkOut){
-                    if(in_array($reservation->chambre,$whiting_chambres)){
-                        $whiting_chambres =  array_diff($whiting_chambres, [$reservation->chambre]);
-                    }
-                }
+            else{
+                echo "in range condition false";
+                echo(count($chambres_temp));
+                array_push($inrange_false,$reservation->chambre);
+                $chambres_temp =  array_diff($chambres_temp, [$reservation->chambre]);
+                echo(count($chambres_temp));
+                echo '--------------------------------------- <br>';
+               
             }
         }
-        
-        // echo (count($available_Rooms_Without_Resevation));
-        // echo "<br>";
-        // echo (count($available_Rooms_With_reservation));
-        foreach($whiting_chambres as $chambre){
-            if(!in_array($chambre,$available_Rooms_With_reservation)){
-                array_push($available_Rooms_With_reservation,$chambre);
-            }
+        foreach($available_Rooms_With_reservation as $room){
+            $in = false;
+            foreach($room->reservations as $reservation){
+                if($reservation->checkOut<$checkIn ||$reservation->checkIn>$checkOut){
 
+                }else{
+                    $in = true;
+                }
+            }
+            if($in){
+                $available_Rooms_With_reservation =  array_diff($available_Rooms_With_reservation, [$room]);
+            }
         }
-       
-        $rooms = array_merge($available_Rooms_Without_Resevation, $available_Rooms_With_reservation);
+        $rooms = array_merge($available_Rooms_With_reservation, $chambres_temp);
         return $rooms;
     }
-    
+
     public function checkAvailability(Request $request)
     {
 
@@ -163,6 +170,27 @@ public function changeStatutBooking(Request $request){
     return redirect()->back()->with('success', 'statut Booking is changed!');
 }
 
+
+
+        public function updateStatut(Request $request,$id){
+            
+            
+            $validated= $request->validate([
+                'statutBooking'=>'required']);
+                dd($id);
+                // dd($request->all());
+                // dd($validated);
+              
+            $reservation=Reservation::findorfail($id);
+
+            // dd($reservation);
+            
+            $reservation->statutBooking='canceled';
+             $reservation->save();
+
+             return view('historique-Bookings')->with('success','Status Reservation updated successfully!');
+        }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -193,7 +221,9 @@ public function changeStatutBooking(Request $request){
     public function edit($id)
     {
         $booking=Reservation::findorfail($id);
+        
         $reservationdetail = $booking->reservationdetails();
+        
         $rooms = Chambre::all();
         return view('dashboard.edit-booking',compact('booking', 'reservationdetail', 'rooms'));
     }
@@ -203,9 +233,11 @@ public function changeStatutBooking(Request $request){
      */
     public function update(UpdateReservationRequest $request, $id)
     {
+
         $validatedData = $request->validated();
        
         $reservation=Reservation::findorfail($id);
+        
         $reservation->update($validatedData);
 
         $room = Chambre::find($request->input('chambre_id'));
