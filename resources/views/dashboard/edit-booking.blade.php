@@ -184,19 +184,20 @@
 								<select class="form-control @error('user_id') is-invalid  @enderror" id="user_id" name="user_id">
 									<option disabled selected>Open this select menu</option>
 									@foreach ($users as $user)
-										<option value="{{ $user->id }}">{{ $user->name }}</option>
+										<option value="{{ $user->id }}"{{$user->id== $booking->user_id ? 'selected' : ''}}>{{$user->name}}</option>
 									@endforeach
+								
 								</select>
 								</div>
 								</div>
 
-								@foreach ($booking->reservationdetails as $reservationdetail)
+								
 								<div class="col-md-4">
 								<div class="form-group">
 									<label for="chambre_id">Room</label>
 									<select class="form-control @error('chambre_id') is-invalid  @enderror" id="chambre_id" name="chambre_id">
 										@foreach ($rooms as $room)
-										<option value="{{ $room->id }}" {{ $room->id == $reservationdetail->chambre_id ? 'selected' : '' }}>
+										<option value="{{ $room->id }}" {{ $room->id == $booking->chambre_id ? 'selected' : '' }}>
 										{{ $room->nameR }}
 												
 										</option>
@@ -207,7 +208,7 @@
 								</div>
 
 								
-								<input type="hidden" name="reservationdetail_id" value="{{ $reservationdetail->id }}">
+								<input type="hidden" name="reservationdetail_id" value="{{ $booking->reservationdetails->id }}">
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Arrival Date</label>
@@ -227,19 +228,19 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Total Payement</label>
-										<input type="number" class="form-control @error('total_payement') is-invalid  @enderror" id="totalPrice" name="total_payement" value="{{old ('total_payement',$reservationdetail->total_payement)}}">
+										<input type="number" class="form-control @error('total_payement') is-invalid  @enderror" id="totalPrice" name="total_payement" value="{{old ('total_payement',$booking->reservationdetails->total_payement)}}">
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Number Person</label>
-										<input type="number" class="form-control @error('numberPerson') is-invalid  @enderror" id="numberPerson" name="numberPerson" value="{{old ('numberPerson',$reservationdetail->numberPerson)}}">
+										<input type="number" class="form-control @error('numberPerson') is-invalid  @enderror" id="numberPerson" name="numberPerson" value="{{old ('numberPerson',$booking->reservationdetails->numberPerson)}}">
 									</div>
 								</div>
 								
 								
 								
-							@endforeach
+							
 							</div>
 						
 					</div>

@@ -132,6 +132,7 @@
 												<th class="text-right">Actions</th>
 											</tr>
 										</thead>
+										
 										<tbody>
 										
 										@foreach ($bookings as $booking)
@@ -163,30 +164,30 @@
 										@endphp
 											<tr>
 											<!-- Loop through reservation details for this booking -->
-											@foreach ($booking->reservationdetails as $reservationdetail)
+											
 
 											<td>
 												<b>Name: </b> {{$booking->user->name}}
 												<br>
-												<b>Address:</b> {{$reservationdetail->address}}
+												<b>Address:</b> {{ $booking->reservationdetails->address ?? 'N/A' }}
 												<br>
-												<b>Phone:</b>{{$reservationdetail->phoneNum}}
+												<b>Phone:</b>{{$booking->reservationdetails->phoneNum ?? 'N/A'}}
 											</td>	
 
 											<td>
 												<b>Room: </b>{{$booking->chambre->nameR }}
 												<br>
-												<b>Price:</b> {{$reservationdetail->price }} MAD
+												<b>Price:</b> {{$booking->reservationdetails->price ?? 'N/A' }} MAD
 											</td>
 											<td>
-												<b>Amount: </b>{{ $reservationdetail->total_payement}} MAD
+												<b>Amount: </b>{{ $booking->reservationdetails->total_payement ?? 'N/A'}} MAD
 												<br>
 												<b>Arrival Date: </b>{{ $booking->checkIn}}
 												<br>
 												<b>Depature Date: </b>{{ $booking->checkOut}}
 
 											</td>
-											@endforeach
+											
 										
 												<td>
 													{!! $status !!} 
@@ -194,7 +195,7 @@
 												<td class="text-right">
 													<div class="dropdown dropdown-action"> <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
 														<div class="dropdown-menu dropdown-menu-right">
-															<a class="dropdown-item" href="{{ route('bookings.edit', $booking->id) }}"><i class="fas fa-pencil-alt m-r-5"></i>Assign Room</a>
+															<a class="dropdown-item" href="{{ route('bookings.edit', [$booking->id]) }}"><i class="fas fa-pencil-alt m-r-5"></i>Assign Room</a>
 															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset_{{ $booking->id }}"><i class="fas fa-trash-alt m-r-5"></i> Delete</a>
 														</div>
 													</div>
