@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
+use Mail;
 
 class ContactController extends Controller
 {
@@ -13,7 +14,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        // $contacts=Contact::paginate(10); ['contacts'=>$contacts])
+        return view('dashboard.all-contacts');
     }
 
     /**
@@ -21,7 +23,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('contact');
     }
 
     /**
@@ -29,7 +31,15 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        //
+        $data = $request->All();
+        // $contact = Contact::create($data);
+        // return redirect()->back()->with('success', 'Contact created successfully!');
+        // dd($data);
+        Mail::send('email-page', $data, function($message) use ($data) {
+            $message->to($data['email'])
+            ->subject($data['subject']);
+          });
+        return back()->with(['message' => 'Email successfully sent!']);
     }
 
     /**
@@ -61,6 +71,10 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        // $contact=Contact::findorfail($id);
+        
+        $contact->DELETE();
+
+         return redirect()->back()->with('success','Contact deleted successfully!');
     }
 }
