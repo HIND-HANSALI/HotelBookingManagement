@@ -49,7 +49,7 @@ class ReservationdetailController extends Controller
     // Check if the rerservation is available and update the booking status
     $bol = $reservation->isAvailable($reservation->checkIn, $reservation->checkOut, $reservation->chambre_id, $request->input('numberPerson'), $reservation->id);
     // dd($bol);
-    if ($bol < 0) {
+    if ($bol == 0) {
          // If the room is not available
     return back()->with('error','The Room is not available for the selected dates.');
 
@@ -68,13 +68,7 @@ class ReservationdetailController extends Controller
     }
     $chambre->save();
 
-    // $chambre = Chambre::findOrFail($reservation->chambre_id);
-    // $newNumberBed = $chambre->numberBed - $request->input('numberPerson');
-    // if ($newNumberBed < 0) {
-    //     return back()->with('error','Not enough beds available in the selected room.');
-    // }
-    // $chambre->numberBed = $newNumberBed;
-    // $chambre->save();
+   
 
     // Insert data into the reservationdetails table
     $reservationdetail = new Reservationdetail;

@@ -17,8 +17,6 @@ class Reservation extends Model
         // 'numberPerson',
         'chambre_id',
         'user_id',
-        
-        
     ];
 
     public function chambre()
@@ -29,48 +27,72 @@ class Reservation extends Model
     {
         return $this->belongsTo(User::class);
     }
-
     public function reservationdetails()
     {
-        return $this->hasMany(Reservationdetail::class);
+        return $this->hasOne(Reservationdetail::class);
     }
 
     public function isAvailable($checkIn, $checkOut, $chambre_id, $numberPerson, $reservation_id = null)
 {
-    $count = $this->join('reservationdetails', 'reservations.id', '=', 'reservationdetails.reservation_id')
-        ->where('reservations.chambre_id', $chambre_id)
-        ->where('reservations.statutBooking', 'booked')
-        ->where(function ($query) use ($checkIn, $checkOut, $reservation_id) {
-            $query->where(function ($query) use ($checkIn, $checkOut) {
-                $query->whereBetween('reservations.checkIn', [$checkIn, $checkOut])
-                    ->orWhereBetween('reservations.checkOut', [$checkIn, $checkOut]);
-            })
-            ->orWhere(function ($query) use ($checkIn, $checkOut, $reservation_id) {
-                $query->where('reservations.checkIn', '<', $checkIn)
-                    ->where('reservations.checkOut', '>', $checkOut);
-            })
-            ->when($reservation_id, function ($query, $reservation_id) {
-                $query->where('reservations.id', '<>', $reservation_id);
-            });
-        })
-        ->sum('reservationdetails.numberPerson');
-
-        $numberBedOriginal = Chambre::findOrFail($chambre_id)->numberBedOriginal;
-        $availableBeds = Chambre::findOrFail($chambre_id)->numberBed;
-    
-        // Check if the available number of beds is less than the required number of beds
-        if ($availableBeds > $numberPerson) {
-            return 0;
-        }
-    
-        // Check if the number of beds that will be occupied by all reservations in the given period
-        // exceeds the number of beds available for the room
-        if ($numberBedOriginal - $count > $numberPerson) {
-            return 0;
-        }
+    $room = Chambre::with('reservations')->where('id',$chambre_id)->first();
+    $available_Rooms_With_reservation = [];
         
-        // If the room is available for the selected dates and has enough beds for the reservation
-        return $availableBeds - $count;
+        if(count($room->reservations)==0){
+            return  1;
+        }
+        $reservations = Reservation::with('reservationdetails','chambre')->where('chambre_id',$chambre_id)
+        ->get();
+        $chambres_temp= [];
+        $inrange_false = [];
+        $out_of_range=0;
+        foreach($reservations as $reservation){
+            if($reservation->checkOut<$checkIn ||$reservation->checkIn>$checkOut){
+                echo "out of range";
+                $out_of_range++;
+            }elseif((($reservation->chambre->numberBedOriginal) - $reservation->reservationdetails->numberPerson) >=$numberPerson){
+                if(!in_array($reservation->chambre,$chambres_temp) && !in_array($reservation->chambre,$inrange_false)){
+                    echo "inrange true";
+                    array_push($chambres_temp,$reservation->chambre);
+                }else{
+                    echo "inrange true but another is false ";
+                }
+            }
+            else{
+                echo "in range condition false";
+                echo(count($chambres_temp));
+                array_push($inrange_false,$reservation->chambre);
+                $chambres_temp =  array_diff($chambres_temp, [$reservation->chambre]);
+                echo(count($chambres_temp));
+                echo '--------------------------------------- <br>';
+               
+            }
+        }
+        if($out_of_range==count($reservations)){
+            return 1;
+        }
+        foreach($available_Rooms_With_reservation as $room){
+            $in = false;
+            foreach($room->reservations as $reservation){
+                if($reservation->checkOut<$checkIn ||$reservation->checkIn>$checkOut){
+
+                }else{
+                    $in = true;
+                }
+            }
+            if($in){
+                $available_Rooms_With_reservation =  array_diff($available_Rooms_With_reservation, [$room]);
+            }
+        }
+        $roome = array_merge($available_Rooms_With_reservation, $chambres_temp);
+        if(count($roome)>0){
+
+            return 1;
+        }
+        else{
+            // dd();
+            return 0;
+        }
+   
        
     
    
