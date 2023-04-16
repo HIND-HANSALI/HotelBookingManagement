@@ -196,4 +196,17 @@ class ChambreController extends Controller
 
          return redirect()->back()->with('success','Room deleted successfully!');
     }
+
+
+    public function changeStatutRoom(Request $request){
+        $id = $request->input('id');
+        $statusRoom = $request->input('value');
+
+        $room=Chambre::findorfail($id);
+        $room->statutR = $statusRoom ;
+        $room->save();
+        return response()->json([
+            'status' => $statusRoom
+          ]);
+    }
 }

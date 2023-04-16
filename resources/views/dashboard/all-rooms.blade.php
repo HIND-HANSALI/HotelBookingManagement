@@ -4,15 +4,24 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>Hotel Dashboard Template</title>
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
 	<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
 	<link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
+	<!-- DataTables -->
+	<!-- <link rel="stylesheet"  href="assets/plugins/datatables/css/jquery.dataTables.css"/> -->
+	<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"> -->
+
+
 	<link rel="stylesheet" href="assets/css/feathericon.min.css">
 	<link rel="stylesheet" href="assets/plugins/morris/morris.css">
 	<link rel="stylesheet" href="assets/css/style.css"> </head>
+	<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css"> -->
+	
+    
 
 <body>
 	<div class="main-wrapper">
@@ -118,11 +127,11 @@
 						<div class="card card-table">
 							<div class="card-body booking_card">
 								<div class="table-responsive">
-									<table class="datatable table table-stripped table table-hover table-center mb-0">
+									<table class="datatable table table-stripped table table-hover table-center mb-0" id="datatableRooms">
 										<thead>
 											<tr>
 												
-												<th>Picture  </th>
+												<!-- <th>Picture  </th> -->
 												<th>Name</th>
 												<th>Room Categorie</th>
 												<th>Number Beds</th>
@@ -135,14 +144,16 @@
 											</tr>
 										</thead>
 										<tbody>
+										
 										@foreach ($rooms as $room)
+					
 											<tr>
 												
-												<td>
+												<!-- <td>
 													
                                                     <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle"  src="{{asset('assets/upload/rooms/'.$room-> pictureR)}}" alt="Room Image"></a>
                                               
-                                                </td>
+                                                </td> -->
 												<td>{{$room->nameR}}</td>
 												<td>{{$room->categorie_id}}</td>
 												
@@ -151,7 +162,12 @@
 												<td>{{$room->priceR}} MAD</td>
 												
 												<td>
-													<div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">{{$room->statutR}}</a> </div>
+												@if ($room->statutR)
+													<button id="room_{{ $room->id }}_status" onclick="toggle_status({{ $room->id }}, 0)" class="btn btn-sm btn-success mr-2 shadow-none">active</button>
+												@else
+													<button id="room_{{ $room->id }}_status" onclick="toggle_status({{ $room->id }}, 1)" class="btn btn-sm btn-danger mr-2 shadow-none">inactive</button>
+												@endif
+													
 												</td>
 												<td>
 													@foreach ($room->facilities as $facility)
@@ -211,6 +227,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<script src="assets/js/main.js"></script>
 	<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 	<script src="assets/js/jquery-3.5.1.min.js"></script>
 	<script src="assets/js/popper.min.js"></script>
@@ -220,6 +238,22 @@
 	<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
 	<script src="assets/plugins/datatables/datatables.min.js"></script>
 	<script src="assets/js/script.js"></script>
+	<script>
+		// var table = $('#datatableRooms').DataTable();
+
+		// // Destroy the existing DataTable
+		// table.destroy();
+
+		// // Initialize DataTables on the table again
+		// $('#datatableRooms').DataTable({
+		// 	searching: true
+		// });
+	// 		$(document).ready(function () {
+	// 	$('#datatableRooms').DataTable({
+	// 	searching: true
+	// });
+	// });
+	</script>
 </body>
 
 </html>

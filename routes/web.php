@@ -6,6 +6,9 @@ use App\Http\Controllers\FacilitieController;
 use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\ChambreimageController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ReservationdetailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,10 +29,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
+    
+    
 Route::get('/redirect',[HomeController::class,'redirect']);
+Route::get('/dashboard',[ReservationController::class,'dashboard'])->name('dashboard');
 });
 // Route::get('/redirect',[HomeController::class,'redirect']);
 
@@ -37,9 +40,9 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+// Route::get('/contact', function () {
+//     return view('contact');
+// })->name('contact');
 
 // Route::get('/roomsFront', function () {
 //     return view('rooms');
@@ -81,8 +84,16 @@ Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])
     Route::resource('roomss', ChambreController::class)->only(['index','show','create','store','edit','update','destroy']);
     Route::get('/roomadd', [ChambreController::class,'create'])->name('roomadd');
     Route::get('/roomedit', [ChambreController::class,'edit'])->name('roomedit');
-    
+    //here
     Route::post('/searchRoom',[ReservationController::class,'searchRoom'])->name('searchRoom');
+
+    
+
+   
+    Route::post('/checkAvailability',[ReservationController::class,'checkAvailability'])->name('checkAvailability');
+
+   
+
     // Route::get('/roomaddimage', [ChambreController::class,'createImage'])->name('roomImage');
 
     // Route::get('/roomdetails', [ChambreController::class,'show'])->name('roomdetails');
@@ -97,13 +108,49 @@ Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])
     Route::get('/roomaddimage/{id}', [ChambreimageController::class,'createImage'])->name('roomImage');
     Route::get('/roomgetimage/{id}', [ChambreimageController::class,'getallImage'])->name('getImage');
 
+    Route::post('/changeStatutRoom', [ChambreController::class,'changeStatutRoom']);
+
+
     Route::get('/booking', [ReservationController::class,'index'])->name('bookings');
     Route::resource('bookings', ReservationController::class)->only(['index','show','create','store','edit','update','destroy']);
     Route::get('/bookingadd', [ReservationController::class,'create'])->name('bookingadd');
     Route::get('/bookingedit/{id}', [ReservationController::class,'edit'])->name('bookingedit');
 
-
-
-   
     
+
+
+    Route::resource('detailsbook', ReservationdetailController::class)->only(['index','show','create','store','edit','update','destroy']);
+    Route::get('/isAvailable', [ReservationController::class,'isAvailable'])->name('reservationisAvailable');
+    Route::post('/changeStatutBooking', [ReservationController::class,'changeStatutBooking'])->name('changeStatutBooking');
+    Route::post('/updateStatut/{id}', [ReservationController::class,'updateStatut'])->name('updateStatut');
+
+    
+    
+
+    
+    
+
+    // Route::get('/changeStatutBooking', [ReservationController::class,'changeStatutBooking'])->name('changeStatutBooking');
+    Route::get('/historique-Bookings', [ReservationController::class,'historiqueBookings'])->name('historique-Bookings');
+
+
+
+    Route::get('/responcebooking', function () {
+    return view('responcebooking');
+})->name('responcebooking');
+
+// Route::get('/historique-Bookings', function () {
+//     return view('historique-Bookings');
+// })->name('historique-Bookings');
+   
+    // responcebooking
     // Route::post('/booking/check-availability/{checkin_val}/{checkout_val}', [ChambreController::class,''])->name('');
+
+
+
+
+    Route::resource('users', AuthController::class)->only(['index','show','create','store','edit','update','destroy']);
+    Route::post('/rooms/fetchFacilities', [ChambreController::class, 'fetchRoomfacilities']);
+
+    // Route::get('/contactAdd', [ContactController::class,'create'])->name('contactAdd');
+    Route::resource('contacts', ContactController::class);

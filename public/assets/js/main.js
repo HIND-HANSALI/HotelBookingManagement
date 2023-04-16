@@ -183,3 +183,38 @@ get_facilities.forEach((facility)=>{
     fetch_rooms();
 
 }
+
+
+
+function toggle_status(id,val){
+    // (val==1)? val==0 : val==1;
+    // console.log(val);
+    $.ajax({
+        type: 'POST',
+        url: '/changeStatutRoom',
+        data: {
+          id: id,
+          value: val
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(data) {
+          // update the button text based on the new status
+          
+          var btn = $('#room_' + id + '_status');
+          if ( data.status == 1) {
+            btn.removeClass('btn-danger').addClass('btn-success').text('active');
+          } else if (data.status == 0) {
+            btn.removeClass('btn-success').addClass('btn-danger').text('inactive');
+          } else {
+            // handle the case where the server response is unexpected
+            alert('Error updating status: unexpected server response');
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          // handle the error case
+          alert('Error updating status: ' + errorThrown);
+        }
+      });
+}
