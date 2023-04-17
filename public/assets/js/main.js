@@ -218,3 +218,29 @@ function toggle_status(id,val){
         }
       });
 }
+
+function cancelBooking(bookingId) {
+    // alert(bookingId)
+    // if (confirm('Are you sure you want to cancel this booking?')) {
+      $.ajax({
+        url: '/cancelbooking/'+bookingId,
+        type: 'GET',
+        dataType:'json',
+        success: function(data) {
+          // update the status badge to "Canceled"
+          if(data.success){
+            $('[name="statutBooking"]').removeClass().addClass('badge text-bg-danger').text('Canceled');
+            // disable the "Cancel" button
+            $('[onclick="cancelBooking(' + bookingId + ')"]').prop('disabled', true);
+          }
+        // alert(data.success); 
+         
+        },
+        error: function(jqXHR, textStatus, errorThrown ,xhr) {
+            // alert('tfoo');
+          console.error('Error canceling booking:', errorThrown);
+        }
+      });
+    // }
+  }
+  

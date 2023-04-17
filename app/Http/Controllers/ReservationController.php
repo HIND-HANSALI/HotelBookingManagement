@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Models\Chambre;
 use App\Models\User;
+use App\Models\Chambre;
 use App\Models\Facilitie;
 use App\Models\Reservation;
-use App\Http\Requests\StoreReservationRequest;
-use App\Http\Requests\UpdateReservationRequest;
+use Illuminate\Http\Request;
 use App\Models\Reservationdetail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Http\Requests\StoreReservationRequest;
+use App\Http\Requests\UpdateReservationRequest;
 
 
 class ReservationController extends Controller
@@ -41,23 +42,27 @@ class ReservationController extends Controller
    
     public function dashboard(){
         // product::count()
-        $roomsReserved=Chambre::with('reservations')->get();
-        $countRoomsReserved =  $roomsReserved->count();
+        // $roomsReserved=Chambre::with('reservations')->get();
+        // $countRoomsReserved =  $roomsReserved->count();
+        $roomsReserved = Chambre::has('reservations')->get();
+        $countRoomsReserved = $roomsReserved->count();
     
         $roomsNotReserved = Chambre::whereDoesntHave('reservations')->get();
         $countRoomsNotReserved =  $roomsNotReserved->count();
     
         $facilities=Facilitie::count();
+        $rooms=Chambre::count();
 
         // Count clients
-        $userClient = User::where('userType', 1)->count();
+        $userClient = User::where('userType', 0)->count();
         // $users=User::count();
     
-        return view('dashboard.index', compact('countRoomsReserved', 'countRoomsNotReserved', 'facilities', 'userClient'));
+        return view('dashboard.index', compact('countRoomsReserved', 'countRoomsNotReserved', 'facilities', 'userClient','rooms'));
     }
 
 
     private function  getSpecificRooms($checkIn,$checkOut,$numberPerson){
+
         $rooms = Chambre::with('reservations')->get();
         $available_Rooms_Without_Resevation =[];
         $available_Rooms_With_reservation = [];
@@ -190,6 +195,35 @@ public function changeStatutBooking(Request $request){
 
              return view('historique-Bookings')->with('success','Status Reservation updated successfully!');
         }
+
+    public function cancelbooking( $bookingId){
+        // dd($bookingId);
+            try {
+                // dd($request);
+                // $booking_id = $request->input('id');
+
+                
+                $booking = Reservation::find($bookingId);
+                
+            $booking->statutBooking = 'canceled';
+            
+            DB::table('reservationdetails')
+            ->where('id',$bookingId )
+            ->update(['numberPerson' => 0]);
+            // $booking->reservationdetails->numberPerson=0;
+            $booking->save();
+
+            return response()->json([
+                'success' => true,
+            ]);    
+        } catch (Exception $th) {
+            Log::error($th->getMessage());
+        }        
+    }
+    // public function cancelbooking1($bookingId){
+    //     return response()->json(['success' => $bookingId]);
+    //     dd($bookingId);
+    // }
 
     /**
      * Show the form for creating a new resource.
