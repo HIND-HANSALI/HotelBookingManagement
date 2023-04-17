@@ -14,8 +14,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        // $contacts=Contact::paginate(10); ['contacts'=>$contacts])
-        return view('dashboard.all-contacts');
+        $contacts=Contact::paginate(10); 
+        return view('dashboard.all-contacts',['contacts'=>$contacts]);
     }
 
     /**
@@ -32,7 +32,7 @@ class ContactController extends Controller
     public function store(StoreContactRequest $request)
     {
         $data = $request->All();
-        // $contact = Contact::create($data);
+        $contact = Contact::create($data);
         // return redirect()->back()->with('success', 'Contact created successfully!');
         // dd($data);
         Mail::send('email-page', $data, function($message) use ($data) {
