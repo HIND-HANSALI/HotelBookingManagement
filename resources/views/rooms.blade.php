@@ -4,6 +4,8 @@
 <head>
     <title>Hotel Booking Website-Rooms</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-VKChmp6TT5i5j07U6HuIou6z/CUW4ql8Nyv3qjo9yb/wx2xZYV7c8d2nhuV7bIT74ZMfjBp8DvCBHzX7QUrrg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
     <!-- links section -->
     @include('links')
 
@@ -20,6 +22,9 @@
             background-color: var(--teal_hover);
             border: 1px solid var(--teal_hover);
         }
+        /* .btn.custom-bg:active {
+            color: black !important;
+        } */
 
         .h-line {
             width: 150px;
@@ -179,7 +184,7 @@
                                 <div class="guests">
                                     <h6 class="mb-1">Guests</h6>
                                     <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                        {{$room->numberBed}} Adults
+                                    {{ $room->numberBedOriginal }} Beds<i class="fas fa-bed"></i>
                                     </span>
 
                                 </div>
@@ -194,7 +199,7 @@
                                 <h6 class="text-striked text-muted mr-2">100 MAD</h6>
                                 <h6 class="text-success">32% off</h6>
                             </div>
-                            <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
+                            <a href="{{route('confirmBooking',[$room->id])}}" class="btn btn-sm w-100  custom-bg shadow-none mb-2">Book Now</a>
                             <a href="{{ route('roomss.show',$room->id ) }}" class="btn btn-sm w-100 btn-outline-dark shadow-none">Check details</a>
                         </div>
                    

@@ -202,15 +202,15 @@
                     <div class="row align-items-end">
                         <div class="col-lg-4 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-in</label>
-                            <input type="date" name="checkIn" class="form-control shadow-none">
+                            <input type="date" name="checkIn" class="form-control shadow-none" value="{{old ('checkIn')}}">
                         </div>
                         <div class="col-lg-4 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-Out</label>
-                            <input type="date" name="checkOut" class="form-control shadow-none">
+                            <input type="date" name="checkOut" class="form-control shadow-none" value="{{old ('checkOut')}}">
                         </div>
                         <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight: 500;">Members</label>
-                            <input class="form-control" type="number" name="numberPerson" id="numberPerson" value="" placeholder="" step="1" required>
+                            <input class="form-control" type="number" name="numberPerson" id="numberPerson" value="{{old ('numberPerson')}}" placeholder="" step="1" required>
                        
                         </div>
                         <!-- <div class="col-lg-3 mb-3">
@@ -279,7 +279,7 @@
                         <div class="guests mb-2">
                             <h6 class="mb-1">Guests</h6>
                             <span class="badge rounded-pill bg-light text-dark text-wrap">
-                            {{$room->numberBed}}
+                            {{ $room->numberBedOriginal }}  Members
                             </span>
 
                         </div>
@@ -295,8 +295,8 @@
     				</div> -->
 
                         <div class="d-flex justify-content-end mb-2">
-                            <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
-                            <a href="#" class="btn btn-sm text-white btn-primary shadow-none ms-2">Book Now</a>
+                            <a href="{{ route('roomss.show',$room->id ) }}" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
+                            <a href="{{route('confirmBooking',[$room->id])}}" class="btn btn-sm text-white btn-primary shadow-none ms-2">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -307,7 +307,7 @@
         
 
             <div class="col-lg-12 text-center mt-5">
-                <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms</a>
+                <a href="{{ route('roomsFront')}}" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms</a>
             </div>
         </div>
     </div>
@@ -362,7 +362,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12 text-center mt-5">
-                    <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Activities</a>
+                    <a href="{{ route('activitiesFront')}}" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Activities</a>
                 </div>
             </div>
 

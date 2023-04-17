@@ -44,9 +44,9 @@
             <div class="col-12 my-5 px-4 mb-4">
                 <h2 class="fw-bold h-font ">Confirm Booking</h2>
                 <div style="font-size:14px;">
-                    <a href="index.php" class="text-secondary text-decoration-none">HOME</a>
+                    <a href="{{route('roomsWelcome')}}" class="text-secondary text-decoration-none">HOME</a>
                     <span class="text-secondary"> > </span>
-                    <a href="index.php" class="text-secondary text-decoration-none">ROOMS</a>
+                    <a href="{{ route('roomsFront')}}" class="text-secondary text-decoration-none">ROOMS</a>
                     <span class="text-secondary"> > </span>
                     <a href="index.php" class="text-secondary text-decoration-none">CONFIRM</a>
                 </div>
@@ -66,7 +66,7 @@
                             <img src="" class="d-block w-90 img-fluid rounded" alt="...">
                         </div> -->
                         <h5>{{$room->nameR}}</h5>
-                        <h6>Available beds: {{ $availableBeds }} </h6>
+                        <h6>Total beds: {{ $room->numberBedOriginal }} </h6>
                         <h6 class="room-price" data-room-price="{{ $room->priceR }}">{{$room->priceR}} per night </h6>
                         <!-- end foreach -->
                         
@@ -109,16 +109,16 @@
                             </div>
                             <div class="col-md-12 ps-0 mb-3 ms-3">
                             <label for="form-label ">Number Guests</label>
-                            <input type="number" min="1" onchange="check()" class="form-control shadow-none " id="numberPerson" value="" name="numberPerson" >
-                            <small>Available beds: {{ $availableBeds }} </small>
+                            <input type="number" min="1" onchange="check()" class="form-control shadow-none " id="numberPerson" value="{{old ('numberPerson')}}" name="numberPerson" >
+                            <!-- <small>Available beds: {{ $availableBeds }} </small> -->
                             </div>
                             <div class="col-md-6 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-in</label>
-                            <input type="date" onchange="check()" name="checkIn" class="form-control shadow-none">
+                            <input type="date" onchange="check()" name="checkIn" class="form-control shadow-none" value="{{old ('checkIn')}}" >
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-Out</label>
-                            <input type="date" onchange="check()" name="checkOut" class="form-control shadow-none">
+                            <input type="date" onchange="check()" name="checkOut" class="form-control shadow-none" value="{{old ('checkOut')}}">
                         </div>
                         </div>
                        

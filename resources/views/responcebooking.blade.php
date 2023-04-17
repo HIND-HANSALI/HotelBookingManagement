@@ -55,7 +55,7 @@
                     <i class="bi-check-circle-fill"></i>
                     <strong class="mx-2">Payment! Booking successfull.</strong> 
                     
-                    <a href="">Go to Bookings </a>
+                    <a href="{{route('historique-Bookings')}}">Go to Bookings </a>
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
                 </div>

@@ -114,6 +114,22 @@
 							<div class="card-body">
 								<div class="dash-widget-header">
 									<div>
+										<h3 class="card_widget_header">{{$rooms}}</h3>
+										<h6 class="text-muted"> Rooms</h6> </div>
+									<div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="#009688" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
+										<line x1="12" y1="1" x2="12" y2="23"></line>
+										<path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+										</svg></span> 
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-6 col-12">
+						<div class="card board1 fill">
+							<div class="card-body">
+								<div class="dash-widget-header">
+									<div>
 										<h3 class="card_widget_header">{{$facilities}}</h3>
 										<h6 class="text-muted">Facilities</h6> </div>
 									<div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="#009688" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-plus">

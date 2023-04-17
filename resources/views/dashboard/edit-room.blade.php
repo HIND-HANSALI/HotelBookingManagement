@@ -229,7 +229,7 @@
 										<input type="number" class="form-control" id="priceR" name="priceR"  value="{{old ('priceR',$room->priceR)}}">
 									</div>
 								</div>
-								<div class="col-md-4">
+								<!-- <div class="col-md-4">
 									<div class="form-group">
 										<label>Picture Room</label>
 										<div class="custom-file mb-3">
@@ -237,7 +237,7 @@
 											<label class="custom-file-label" for="customFile">Choose file</label>
 										</div>
 									</div>
-								</div>
+								</div> -->
 								<div class="col-md-12">
 									<div class="form-group">
 										<label>Room description</label>

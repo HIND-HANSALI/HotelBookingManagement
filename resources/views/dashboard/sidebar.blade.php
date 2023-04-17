@@ -82,9 +82,9 @@
                         <li><a href="provident-fund.html">Provident Fund </a></li>
                     </ul>
                 </li>
-                <li class="submenu"> <a href="#"><i class="fas fa-book"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
+                <li class="submenu"> <a href="#"><i class="fas fa-book"></i> <span> Contacts </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href="salary.html">Employee Salary </a></li>
+                        <li><a href="{{ route('contacts.index') }}">All Contacts </a></li>
                         <li><a href="salary-veiw.html">Payslip </a></li>
                     </ul>
                 </li>

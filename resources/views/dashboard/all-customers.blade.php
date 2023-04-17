@@ -150,7 +150,7 @@
                                                 <form style="display:inline" method="POST" action="{{route('users.destroy',['user'=>$user->id])}}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+                                                    <button class="btn btn-sm btn-outline-danger" type="submit"><i class="fas fa-trash-alt m-r-5"></i>Delete</button>
                                                 </form>																			
 												</td>
 
