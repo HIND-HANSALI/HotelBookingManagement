@@ -21,7 +21,7 @@ return new class extends Migration
             // $table->string('statutBooking');
             $table->string('statutBooking')->default("pending");
             // $table->string('typeBooking');
-            $table->integer('arrival')->default(0);
+            // $table->integer('arrival')->default(0);
             $table->integer('refund')->nullable()->default(NULL);
 
             // $table->float('totalPrice');
