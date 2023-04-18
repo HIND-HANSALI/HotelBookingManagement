@@ -9,6 +9,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ReservationdetailController;
+use App\Http\Controllers\PDFController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,13 +33,17 @@ Route::middleware([
     
     
 Route::get('/redirect',[HomeController::class,'redirect']);
-Route::get('/dashboard',[ReservationController::class,'dashboard'])->name('dashboard');
+Route::middleware('admin')->get('/dashboard', [ReservationController::class,'dashboard'])->name('dashboard');
+
 });
+
+
 // Route::get('/redirect',[HomeController::class,'redirect']);
 
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+
 
 // Route::get('/contact', function () {
 //     return view('contact');
@@ -122,10 +127,11 @@ Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])
     Route::resource('detailsbook', ReservationdetailController::class)->only(['index','show','create','store','edit','update','destroy']);
     Route::get('/isAvailable', [ReservationController::class,'isAvailable'])->name('reservationisAvailable');
     Route::post('/changeStatutBooking', [ReservationController::class,'changeStatutBooking'])->name('changeStatutBooking');
-    Route::post('/updateStatut/{id}', [ReservationController::class,'updateStatut'])->name('updateStatut');
+    // Route::post('/updateStatut/{id}', [ReservationController::class,'updateStatut'])->name('updateStatut');
 
-    
-    
+    Route::get('/cancelbooking/{bookingId}', [ReservationController::class,'cancelbooking']);
+
+   
 
     
     
@@ -154,3 +160,5 @@ Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])
 
     // Route::get('/contactAdd', [ContactController::class,'create'])->name('contactAdd');
     Route::resource('contacts', ContactController::class);
+
+    Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF'])->name('generatePDF');
