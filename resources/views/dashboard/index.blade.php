@@ -14,6 +14,8 @@
 	<link rel="stylesheet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
 	<link rel="stylesheet" href="assets/plugins/morris/morris.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
 </head>
 	
 	
@@ -22,8 +24,8 @@
 	<div class="main-wrapper">
 		<div class="header">
 			<div class="header-left">
-				<a href="index.html" class="logo"> <img src="assets/img/hotel_.jpg" width="50" height="70" alt="logo"> <span class="logoclass">HOTEL</span> </a>
-				<a href="index.html" class="logo logo-small"> <img src="assets/img/hotel_logo.png" alt="Logo" width="30" height="30"> </a>
+				<a href="{{route('roomsWelcome')}}" class="logo"> <img src="assets/img/adventure_logo_hostel.png " style="width:4rem" alt="logo"> </a>
+				<!-- <a href="index.html" class="logo logo-small"> <img src="assets/img/hotel_logo.png" alt="Logo" width="30" height="30"> </a> -->
 			</div>
 			<a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
 			<a class="mobile_btn" id="mobile_btn"> <i class="fas fa-bars"></i> </a>
@@ -36,8 +38,8 @@
 						<div class="topnav-dropdown-footer"> <a href="#">View all Notifications</a> </div>
 					</div> -->
 				</li>
-				<li class="nav-item dropdown has-arrow">
-					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img"><img class="rounded-circle" src="assets/img/profiles/avatar-0.jpg" width="31" alt="photo Hind"></span> </a>
+				<li class="nav-item dropdown has-arrow me-3">
+					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img">{{Auth::user()->name}}</span> </a>
 					<div class="dropdown-menu">
 						<div class="user-header">
 							<div class="avatar avatar-sm"> <img src="assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle"> </div>
@@ -69,7 +71,7 @@
 				<div class="page-header">
 					<div class="row">
 						<div class="col-sm-12 mt-5">
-							<h3 class="page-title mt-3">Good Morning Hind Hansali</h3>
+							<h3 class="page-title mt-3">Good Morning {{Auth::user()->name}}</h3>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item active">Dashboard</li>
 							</ul>
@@ -109,6 +111,23 @@
 							</div>
 						</div>
 					</div>
+					<!-- <div class="col-xl-3 col-sm-6 col-12">
+  <div class="card board1 fill">
+    <div class="card-body">
+      <div class="dash-widget-header">
+        <div>
+          <h3 class="card_widget_header">{{$countRoomsNotReserved}}</h3>
+          <h6 class="text-muted">Available Rooms</h6>
+        </div>
+        <div class="ml-auto mt-md-3 mt-lg-0">
+          <span class="opacity-7 text-muted">
+		  <i class="fas fa-bed fs-6"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
 					<div class="col-xl-3 col-sm-6 col-12">
 						<div class="card board1 fill">
 							<div class="card-body">
