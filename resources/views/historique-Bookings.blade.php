@@ -118,7 +118,9 @@
                                 </div>
                                 <div
                                     class="col-md-4 card-body d-flex flex-column justify-content-center align-items-center">
-      
+
+                                    <a href="{{ route('generatePDF',[$booking->id])}}" class="btn btn-dark mb-4"> <i class="bi bi-file-earmark-pdf"></i>Generate PDF</a>
+
                                     <button onclick="cancelBooking({{ $booking->id }})" class="btn btn-danger"><i class="bi bi-x-circle"></i>Cancel </button>
                                     <!-- <button     class="btn btn-sm btn-danger mr-2 shadow-none"><i class="bi bi-x-circle"></i>Cancel </button> -->
                                 </div>
