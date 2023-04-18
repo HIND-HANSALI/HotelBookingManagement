@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/adventure_logo_hostel.png">
+    <title>Together Hostel</title>
     <!-- links section -->
     @include('links')
 

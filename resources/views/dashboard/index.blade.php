@@ -5,8 +5,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<title>Hotel Dashboard Template</title>
-	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+	<title>Hotel Dashboard </title>
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/adventure_logo_hostel.png">
 	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
 	<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
@@ -24,7 +24,7 @@
 	<div class="main-wrapper">
 		<div class="header">
 			<div class="header-left">
-				<a href="{{route('roomsWelcome')}}" class="logo"> <img src="assets/img/adventure_logo_hostel.png " style="width:4rem" alt="logo"> </a>
+				<a href="{{route('roomsWelcome')}}" class="logo"> <img src="{{asset('assets/img/adventure_logo_hostel.png')}}" style="width:4rem" alt="logo"> </a>
 				<!-- <a href="index.html" class="logo logo-small"> <img src="assets/img/hotel_logo.png" alt="Logo" width="30" height="30"> </a> -->
 			</div>
 			<a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
