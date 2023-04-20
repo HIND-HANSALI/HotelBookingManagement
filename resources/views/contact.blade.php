@@ -33,10 +33,7 @@
 
         <div class="h-line bg-dark"></div>
         <p class="text-center mt-3">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat.
+        We would love to hear from you! If you have any questions, concerns, or feedback about our hostel, please do not hesitate to get in touch with us. Our friendly and knowledgeable staff are always available to assist you and ensure that you have a comfortable and enjoyable stay with us. You can reach us by phone, email, or by filling out the contact form below. We appreciate your interest in our hostel and we look forward to hearing from you soon.
         </p>
     </div>
 

@@ -31,22 +31,16 @@
 
         <div class="h-line bg-dark"></div>
         <p class="text-center mt-3">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat.
+        At Together Hostel, we believe in creating a community of travelers from all over the world. Our mission is to provide a comfortable and social environment where our guests can connect with each other, share their experiences, and create memories that will last a lifetime.
         </p>
     </div>
 
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-6 col-md-5 mb-4 order-lg-1 order-md-1 order-2">
-                <h3 class="mb-3">Lorem Ipsum doler sit</h3>
+                <h3 class="mb-3">Our Team</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.
+                At our hostel, we are proud to have a diverse and dedicated team of individuals who work hard every day to ensure that our guests have the best possible experience. Our team is made up of people from all walks of life, each with their own unique backgrounds and skill sets.
                 </p>
             </div>
             <div class="col-lg-5 col-md-5 mb-4 order-lg-2 order-md-2 order-1">

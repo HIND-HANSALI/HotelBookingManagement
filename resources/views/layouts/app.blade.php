@@ -21,7 +21,7 @@
         <x-banner />
 
         <div class="">
-            <!-- @livewire('navigation-menu') -->
+            @livewire('navigation-menu')
 
             <!-- Page Heading -->
             @if (isset($header))

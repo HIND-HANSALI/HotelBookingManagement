@@ -121,7 +121,7 @@
 
                                     <a href="{{ route('generatePDF',[$booking->id])}}" class="btn btn-dark mb-4"> <i class="bi bi-file-earmark-pdf"></i>Generate PDF</a>
 
-                                    <button onclick="cancelBooking({{ $booking->id }})" class="btn btn-danger"><i class="bi bi-x-circle"></i>Cancel </button>
+                                    <button id="cancelBookingBtn" onclick="cancelBooking({{ $booking->id }})" class="btn btn-danger"><i class="bi bi-x-circle"></i>Cancel </button>
                                     <!-- <button     class="btn btn-sm btn-danger mr-2 shadow-none"><i class="bi bi-x-circle"></i>Cancel </button> -->
                                 </div>
                             </div>

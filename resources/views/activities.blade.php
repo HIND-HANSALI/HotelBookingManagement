@@ -7,11 +7,28 @@
     <title>Document</title>
     <!-- links section -->
     @include('links')
+
+    <style>
+      .h-line{
+		width: 150px;
+		margin: 0 auto;
+		height: 1.7px;
+	    }
+    </style>
+
     
 </head>
 <body>
     <!-- navbar section -->
     @include('header')
+    <div class="my-2 px-4">
+        <h2 class="fw-bold h-font text-center">OUR ACTIVITIES</h2>
+
+        <div class="h-line bg-dark"></div>
+        <p class="text-center mt-3">
+        The hostel encourages interaction among guests by organizing activities such as group tours, game nights, and other events that promote socializing and meeting new people. It also provides a friendly and welcoming atmosphere where guests can feel comfortable to express themselves and make friends with people from different cultures and backgrounds.
+        </p>
+    </div>
     <div class="container px-4 py-5" id="custom-cards">
         <div class="row row-cols-3 row-cols-lg-3 align-items-stretch g-4 py-5">
           <div class="col">

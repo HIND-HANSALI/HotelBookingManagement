@@ -48,7 +48,7 @@
                         
                     </ul>
                 </li>
-                <li> <a href="calendar.html"><i class="fas fa-calendar-alt"></i> <span>Calendar</span></a> </li>
+                <li> <a href="{{route('calendar')}}"><i class="fas fa-calendar-alt"></i> <span>Calendar</span></a> </li>
                 <li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Blog </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="blog.html">Blog </a></li>

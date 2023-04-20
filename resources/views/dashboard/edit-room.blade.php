@@ -77,12 +77,12 @@
 										<label>Number Of Beds </label>
 										<select class="form-control" id="sel" name="numberBed">
 											<option disabled selected>Open this select menu</option>
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-											<option>6</option>
+											<option {{$room->numberBedOriginal== 1 ? 'selected' : ''}}>1</option>
+											<option{{$room->numberBedOriginal== 2 ? 'selected' : ''}}>2</option>
+											<option{{$room->numberBedOriginal== 3 ? 'selected' : ''}}>3</option>
+											<option {{$room->numberBedOriginal== 4 ? 'selected' : ''}}>4</option>
+											<option {{$room->numberBedOriginal== 5 ? 'selected' : ''}}>5</option>
+											<option{{$room->numberBedOriginal== 6 ? 'selected' : ''}}>6</option>
 										</select>
 									</div>
 								</div>
@@ -118,7 +118,14 @@
 										@foreach($facilities as $facilitie)
 										<div class="col-md-3 mb-1">
 											<label for="">
-												<input class="form-check-input shadow-none" name="facilities[]" type="checkbox" value="{{$facilitie->id}}" id="flexCheckDefault">
+												<input class="form-check-input shadow-none" name="facilities[]" type="checkbox" value="{{$facilitie->id}}" id="flexCheckDefault" 
+												@php 
+												foreach($room->facilities as $rf){
+													if($facilitie->id == $rf->id){
+														echo 'checked';
+													}
+												}
+												@endphp  >
 												{{$facilitie->name}}
 											</label>
 										</div>

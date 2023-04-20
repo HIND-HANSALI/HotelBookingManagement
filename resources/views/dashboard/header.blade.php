@@ -81,15 +81,21 @@
 						</div> <a class="dropdown-item" href="profile.html">My Profile</a> <a class="dropdown-item" href="settings.html">Account Settings</a> <a class="dropdown-item" href="login.html">Logout</a> </div>
 				</li> -->
                 <li class="nav-item dropdown has-arrow me-3">
-					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img">{{Auth::user()->name}}</span> </a>
+					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> 
+						<span class="user-img">
+							<!-- <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" class="rounded-circle" style="width: 30px; height: 30px; object-fit: cover;"> -->
+						{{Auth::user()->name}}
+					</span> </a>
 					<div class="dropdown-menu">
 						<div class="user-header">
-							<div class="avatar avatar-sm"> <img src="assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle"> </div>
+							<div class="avatar avatar-sm"> <img src="{{Auth::user()->profile_photo_url}}" alt="User Image" class="avatar-img rounded-circle"> </div>
 							<div class="user-text">
 								<h6>{{Auth::user()->name}}</h6>
 								<p class="text-muted mb-0">Administrator</p>
 							</div>
-						</div> <a class="dropdown-item" href="{{route('profile.show')}}">My Profile</a>  
+						</div>
+						<a class="dropdown-item" href="{{route('profile.show')}}">My Profile</a>  
+                        
 					
 						<form method="post" action="{{route('logout')}}">
 							@csrf

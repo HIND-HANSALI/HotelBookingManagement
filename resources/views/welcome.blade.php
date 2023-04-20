@@ -6,178 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/adventure_logo_hostel.png">
     <title>Together Hostel</title>
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <link rel="stylesheet" href="{{asset('assets/style.css')}}">
+
     <!-- links section -->
     @include('links')
 
     <!-- Styles -->
     <style>
-        :root {
-            --teal: #F7D1C9;
-            --teal_hover: #E9967A;
-        }
-
-        * {
-            /* font-family: 'Poppins', sans-serif; */
-            font-family: 'Roboto', sans-serif;
-
-        }
-
-        .custom-bg {
+       .custom-bg {
             background-color: var(--teal_hover);
             border: 1px solid var(--teal_hover);
-        }
-
-        .h-font {
-            font-family: 'Merienda' cursive;
-        }
-
-        .availability-form {
-            margin-top: -50px;
-            z-index: 2;
-            position: relative;
-        }
-
-        @media screen and (max-width: 575px) {
-            .availability-form {
-                margin-top: 25px;
-                padding: 0 35px;
-            }
-
-        }
-
-        .banner-wrapper {
-            height: 40.6rem;
-        }
-
-        .banner-wrapper .swiper {
-            width: 100%;
-            height: 100%;
-        }
-
-        .banner-wrapper .swiper-slide {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100%;
-            position: relative;
-        }
-
-        .banner-wrapper .swiper .slide-caption {
-            height: 100%;
-            position: relative;
-            z-index: 99;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .banner-wrapper .swiper .slide-caption p {
-            max-width: 37.5rem;
-            margin: 0 auto;
-            color: white;
-        }
-
-        .activities_wrapper .activitie-items {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .activities_wrapper .activitie-items img {
-            width: 100%;
-            -webkit-transition: all 400ms ease-in 0s;
-            transition: all 400ms ease-in 0s;
-        }
-
-        .activities_wrapper .activitie-items:hover img {
-            -webkit-transform: scale3d(1.05, 1.05, 1.05);
-            transform: scale3d(1.05, 1.05, 1.05);
-        }
-
-        .activities_wrapper .activitie-item-wrap {
-            position: absolute;
-            left: 1.875rem;
-            right: 1.875rem;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-
-        .activities_wrapper .activitie-items .activitie-content {
-            border: .125rem solid var(--bg-white);
-            padding: 5rem 1.875rem;
-            -webkit-transform: scale3d(1.2, 1.2, 1.2);
-            transform: scale3d(1.2, 1.2, 1.2);
-            transition: all 500ms ease-in 0s;
-            opacity: 0;
-        }
-
-        .activities_wrapper .activitie-items:hover .activitie-content {
-            border: .125rem solid white;
-
-            -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1);
-
-            opacity: 1;
-        }
-
-        .activitie-items .activitie-content {
-            padding: 2rem 1.875rem;
-        }
-
-        .activitie-items .activitie-content h5 {
-            font-size: 1.2rem;
-        }
-
-        .activitie-items .activitie-content p {
-            font-size: 0.75rem;
         }
     </style>
 </head>
 
 <body class="antialiased">
-    <!-- @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif -->
+   
     <!-- navbar section -->
     @include('header')
     <!-- Swiper images-->
     <div class="container-fluid banner-wrapper px-lg-4 mt-4">
         <div class="swiper swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image:url(https://img.freepik.com/premium-photo/abstract-blur-luxury-hotel-lobby-background_1339-98452.jpg);">
+                <div class="swiper-slide" style="background-image:url(https://images5.alphacoders.com/650/650970.jpg);">
 
                     <div class="slide-caption text-center">
                         <div>
-                            <h1 class="fw-bold">Welcome to Our Hotel</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, amet.</p>
+                            <h1 class="fw-bold text-white">Welcome to Our Hostel</h1>
+                            <p class="fs-4">We are excited to have you here and provide you with a comfortable and enjoyable stay.</p>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide" style="background-image:url(https://png.pngtree.com/thumb_back/fh260/background/20210909/pngtree-wedding-daytime-wedding-hall-hall-hotel-interior-empty-mirror-photography-map-image_837460.jpg);">
+                <div class="swiper-slide" style="background-image:url(https://images.alphacoders.com/439/439191.jpg);">
 
                     <div class="slide-caption text-center">
                         <div>
-                            <h1>Welcome to Our Hotel</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, amet.</p>
+                            <h1 class="fw-bold text-white">Welcome to Our Hostel</h1>
+                            <p class="fs-4">We are excited to have you here and provide you with a comfortable and enjoyable stay.</p>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide" style="background-image:url(https://png.pngtree.com/thumb_back/fh260/background/20220311/pngtree-bedroom-guest-room-five-star-hotel-image_990205.jpg);">
+                <div class="swiper-slide" style="background-image:url(https://images7.alphacoders.com/362/362619.jpg);">
 
                     <div class="slide-caption text-center">
                         <div>
-                            <h1>Welcome to Our Hotel</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, amet.</p>
+                            <h1 class="fw-bold text-white">Welcome to Our Hostel</h1>
+                            <p class="fs-4">We are excited to have you here and provide you with a comfortable and enjoyable stay.</p>
                         </div>
                     </div>
                 </div>
@@ -202,37 +77,20 @@
                     <div class="row align-items-end">
                         <div class="col-lg-4 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-in</label>
-                            <input type="date" name="checkIn" class="form-control shadow-none" value="{{old ('checkIn')}}">
+                            <input type="date" name="checkIn" class="form-control shadow-none @error('checkIn') is-invalid  @enderror" value="{{old('checkIn')}}">
                         </div>
                         <div class="col-lg-4 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-Out</label>
-                            <input type="date" name="checkOut" class="form-control shadow-none" value="{{old ('checkOut')}}">
+                            <input type="date" name="checkOut" class="form-control shadow-none @error('checkOut') is-invalid  @enderror" value="{{old('checkOut')}}">
                         </div>
                         <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight: 500;">Members</label>
-                            <input class="form-control" type="number" name="numberPerson" id="numberPerson" value="{{old ('numberPerson')}}" placeholder="" step="1" required>
+                            <input class="form-control @error('numberPerson') is-invalid  @enderror" type="number" name="numberPerson" id="numberPerson" value="{{old('numberPerson')}}" placeholder="" step="1" required>
                        
                         </div>
-                        <!-- <div class="col-lg-3 mb-3">
-                            <label class="form-label" style="font-weight: 500;">Members</label>
-                            <select class="form-select shadow-none">
-
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div> -->
-                        <!-- <div class="col-lg-2 mb-3">
-                            <label class="form-label" style="font-weight: 500;">Children</label>
-                            <select class="form-select shadow-none">
-
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div> -->
+                       
                         <div class="col-lg-1 mb-lg-3 mt-2">
-                            <button type="submit" class="btn text-white shadow-none custom-bg">Submit</button>
+                            <button type="submit" class="btn shadow-none text-dark custom-bg">Submit</button>
                         </div>
 
                     </div>
@@ -296,7 +154,7 @@
 
                         <div class="d-flex justify-content-end mb-2">
                             <a href="{{ route('roomss.show',$room->id ) }}" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
-                            <a href="{{route('confirmBooking',[$room->id])}}" class="btn btn-sm text-white btn-primary shadow-none ms-2">Book Now</a>
+                            <a href="{{route('confirmBooking',[$room->id])}}" class="btn btn-sm text-dark custom-bg shadow-none ms-2">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -307,7 +165,7 @@
         
 
             <div class="col-lg-12 text-center mt-5">
-                <a href="{{ route('roomsFront')}}" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms</a>
+                <a href="{{ route('roomsFront')}}" class="btn btn-sm btn-outline-dark rounded-2 fw-bold shadow-none ">More Rooms</a>
             </div>
         </div>
     </div>
@@ -324,7 +182,7 @@
             <div class="row m-0">
                 <div class="col-md-4 mb-4 mb-lg-0">
                     <div class="activitie-items">
-                        <img src="https://media.sport-decouverte.com/images/disciplinecard/t1080x600/167/0/randonnee-quad-buggy.jpg?v=a3b0c" class="img-fluid">
+                        <img src="assets/upload/activities/climbmon" class="img-fluid">
                         <div class="activitie-item-wrap">
                             <div class="activitie-content">
                                 <h5 class="text-white mb-lg-5 text-decoration-underline ">Acivity Name</h5>
@@ -337,7 +195,7 @@
                 </div>
                 <div class="col-md-4 mb-4 mb-lg-0">
                     <div class="activitie-items">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStZK49-CTTHLhMjranm1fZi2hnYN8gfc7qjJ7ZMUxuoJhXoXa1HsXvgUi3xr73vh0mRKo&usqp=CAU" class="img-fluid">
+                        <img src="https://images4.alphacoders.com/199/199766.jpg" class="img-fluid rounded-2">
                         <div class="activitie-item-wrap">
                             <div class="activitie-content">
                                 <h5 class="text-dark mb-lg-5 text-decoration-underline ">Acivity Name</h5>
@@ -350,7 +208,7 @@
                 </div>
                 <div class="col-md-4 mb-4 mb-lg-0">
                     <div class="activitie-items">
-                        <img src="" class="img-fluid">
+                        <img src="https://i.pinimg.com/564x/d4/fc/fa/d4fcfaf245187b50204f73a5f314d66c.jpg"  class="img-fluid">
                         <div class="activitie-item-wrap">
                             <div class="activitie-content">
                                 <h5 class="text-dark mb-lg-5 text-decoration-underline ">Acivity Name</h5>
@@ -362,7 +220,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12 text-center mt-5">
-                    <a href="{{ route('activitiesFront')}}" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Activities</a>
+                    <a href="{{ route('activitiesFront')}}" class="btn btn-sm btn-outline-dark rounded-2 fw-bold shadow-none">More Activities</a>
                 </div>
             </div>
 

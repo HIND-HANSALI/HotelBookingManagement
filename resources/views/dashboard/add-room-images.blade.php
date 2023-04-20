@@ -72,7 +72,7 @@
                             <tr>
 
                                 <th scope="col" width="">Picture </th>
-                                <th scope="col" width="">Thumb </th>
+                               
                                 <th scope="col" class="">Delete</th>
                             </tr>
                         </thead>
@@ -89,17 +89,13 @@
                        
                         @foreach ($images as $key => $image)
                             <tr class="align-middle">
-                            @if($image->thumb == 1)
-                            <?php $thumb_btn = '<button type="submit" class="btn text-success "><i class="fas fa-check m-r-5"></i></button>'; ?>
-                        @else
-                            <?php $thumb_btn = '<button type="submit" class="btn text-secondary"><i class="fas fa-check m-r-5"></i></button>'; ?>
-                        @endif
+                            
 
                                 <td>
                                     <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{asset('assets/upload/rooms/'.$image_list[$key])}}" alt="Room Image"></a>
 
                                 </td>
-                                <td>{!! $thumb_btn !!}</td>
+                                
 
                                 <td >
                                     <form  method="POST" action="{{route('images.destroy',['image'=>$image->id])}}">

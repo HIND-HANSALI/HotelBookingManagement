@@ -1,11 +1,10 @@
 <div class="container-fluid bg-white mt-5 border-top">
         <div class="row">
             <div class="col-lg-4 p-4">
-                <h3 class="h-font fw-bold fs-3 mb-2">TOGETHER HOTEL</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.</p>
+                <h3 class="h-font fw-bold fs-3 mb-2">TOGETHER HOSTEL</h3>
+                <p>Together Hostel is a type of accommodation that caters to social travelers who want to meet new people and form connections while traveling.
+                Guests can make new friends and create lasting memories, making their trip more enjoyable and meaningful.
+                </p>
             </div>
             <div class="col-lg-4 p-4 text-center">
                 <h5 class="mb-3">Quick Links</h5>

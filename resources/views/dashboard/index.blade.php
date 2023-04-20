@@ -40,9 +40,10 @@
 				</li>
 				<li class="nav-item dropdown has-arrow me-3">
 					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img">{{Auth::user()->name}}</span> </a>
+					
 					<div class="dropdown-menu">
 						<div class="user-header">
-							<div class="avatar avatar-sm"> <img src="assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle"> </div>
+							<div class="avatar avatar-sm"> <img src="{{Auth::user()->profile_photo_url}}" alt="User Image" class="avatar-img rounded-circle"> </div>
 							<div class="user-text">
 								<h6>{{Auth::user()->name}}</h6>
 								<p class="text-muted mb-0">Administrator</p>
