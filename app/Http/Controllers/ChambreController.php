@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreChambreRequest;
 use App\Http\Requests\UpdateChambreRequest;
 
+use App\Models\ReviewRating;
+
 class ChambreController extends Controller
 {
     /**
@@ -123,9 +125,12 @@ class ChambreController extends Controller
         // $photo->move(public_path('/assets/upload/rooms'), $file_name);
         $data = $request->only(['nameR', 'descriptionR', 'categorie_id', 'numberBed', 'priceR']);
         // $data['pictureR'] = $file_name;
+
+        $data['numberBedOriginal'] = $data['numberBed'];
         $chambre = Chambre::create($data);
         // Store the selected facilities for the chambre
         
+
         $facilities = $request->input('facilities');
         if ($facilities) {
             foreach ($facilities as $facility_id) {
@@ -142,7 +147,7 @@ class ChambreController extends Controller
      */
     public function show($id)
     {
-        $room = Chambre::with(['facilities', 'chambreimages'])->find($id);
+        $room = Chambre::with(['facilities', 'chambreimages','ReviewData'])->find($id);
         return view('room-details',['room'=>$room]); 
         // return view('room-details');
     }
@@ -208,5 +213,20 @@ class ChambreController extends Controller
         return response()->json([
             'status' => $statusRoom
           ]);
+    }
+
+
+
+
+    public function reviewstore(Request $request){
+        $review = new ReviewRating();
+        $review->chambre_id = $request->chambre_id;
+        $review->name    = $request->name;
+        $review->email   = $request->email;
+        $review->phone   = $request->phone;
+        $review->comments= $request->comment;
+        $review->star_rating = $request->rating;
+        $review->save();
+        return redirect()->back()->with('flash_msg_success','Your review has been submitted Successfully,');
     }
 }
