@@ -77,7 +77,7 @@
                     <div class="row align-items-end">
                         <div class="col-lg-4 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-in</label>
-                            <input type="date" name="checkIn" class="form-control shadow-none @error('checkIn') is-invalid  @enderror" value="{{old('checkIn')}}">
+                            <input type="date" name="checkIn" class="form-control shadow-none @error('checkIn') is-invalid  @enderror" value="{{ old('checkIn') }}">
                         </div>
                         <div class="col-lg-4 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-Out</label>

@@ -77,13 +77,11 @@
                                 
                                 <button id="facilities_btn" onclick="facilities_clear()" class="btn shado-none btn-sm text-secondary d-none">Reset</button>
                             </h5>
-                            @foreach ($rooms as $room)
-                            @foreach ($room->facilities as $facilitie)
+                            @foreach ($facilities as $facilitie)
                                 <div class="mb-2">
                                     <input type="checkbox" onclick="fetch_rooms()" name="facilities" value="{{ $facilitie->id}}" class="form-check-input shadow-none me-1" id="{{ $facilitie->id}}">
                                     <label class="form-check-label" for="{{ $facilitie->id}}">{{ $facilitie->name }}</label>
                                 </div>
-                            @endforeach  
                             @endforeach  
                                 <!-- <div class="mb-2">
                                     <input type="checkbox" id="f1" class="form-check-input shadow-none me-1">

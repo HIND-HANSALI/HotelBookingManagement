@@ -51,33 +51,15 @@
                 </div>
 
 
-
-
-                <!-- <div class="col-md-4 mb-4 px-4">
-                    <div class="bg-white p-3 rounded shadow-sm border card ">
-                        <h5 class="fw-bold">name room</h5>
-                        <p class="fs-6">Description goes here</p>
-                        <p>
-                            <b>checkin :</b>here <br>
-                            <b>checkout :</b>here
-                        </p>
-                        <p>
-                            <b>Amount :</b>total payment <br>
-                            <b>Date :</b>here
-                        </p>
-                        <p>
-                            <span class="badge bg-warning"> pending</span>
-                        </p>
-                        <button type="button" class="btn bg-danger  mr-2"><i class="bi bi-x-circle"></i> Cancel</button>
-                    </div>
-                </div> -->
-
-
-
                 @if(count($bookings) > 0)
 
                 @foreach ($bookings as $booking)
                 <div class="container  mt-5">
+                        <!-- @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif -->
                     <form action="" method="">
                        
                         <div class="card mt-3">
