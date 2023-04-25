@@ -182,10 +182,10 @@
             <div class="row m-0">
                 <div class="col-md-4 mb-4 mb-lg-0">
                     <div class="activitie-items">
-                        <img src="assets/upload/activities/climbmon" class="img-fluid">
+                        <img src="assets/upload/activities/climbmon.jpg" class="img-fluid rounded-2">
                         <div class="activitie-item-wrap">
                             <div class="activitie-content">
-                                <h5 class="text-white mb-lg-5 text-decoration-underline ">Acivity Name</h5>
+                                <h5 class="text-white mb-lg-5 text-decoration-underline ">Moutain climb</h5>
                                 <p class="text-white ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sed harum deleniti cum quaerat deserunt perferendis ullam mollitia quas voluptates?</p>
                                 <a class="main-btn border-white text-white mt-lg-5" href=""></a>
                             </div>
@@ -198,8 +198,8 @@
                         <img src="https://images4.alphacoders.com/199/199766.jpg" class="img-fluid rounded-2">
                         <div class="activitie-item-wrap">
                             <div class="activitie-content">
-                                <h5 class="text-dark mb-lg-5 text-decoration-underline ">Acivity Name</h5>
-                                <p class="text-dark ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sed harum deleniti cum quaerat deserunt perferendis ullam mollitia quas voluptates?</p>
+                                <h5 class="text-white mb-lg-5 text-decoration-underline ">Jet Ski</h5>
+                                <p class="text-white ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sed harum deleniti cum quaerat deserunt perferendis ullam mollitia quas voluptates?</p>
                                 <a class="main-btn border-white text-white mt-lg-5" href=""></a>
                             </div>
                         </div>
@@ -208,11 +208,11 @@
                 </div>
                 <div class="col-md-4 mb-4 mb-lg-0">
                     <div class="activitie-items">
-                        <img src="https://i.pinimg.com/564x/d4/fc/fa/d4fcfaf245187b50204f73a5f314d66c.jpg"  class="img-fluid">
+                        <img src="assets/upload/activities/quadd.jpg" class="img-fluid rounded-2">
                         <div class="activitie-item-wrap">
                             <div class="activitie-content">
-                                <h5 class="text-dark mb-lg-5 text-decoration-underline ">Acivity Name</h5>
-                                <p class="text-dark ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sed harum deleniti cum quaerat deserunt perferendis ullam mollitia quas voluptates?</p>
+                                <h5 class="text-white mb-lg-5 text-decoration-underline ">Quad</h5>
+                                <p class="text-white ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sed harum deleniti cum quaerat deserunt perferendis ullam mollitia quas voluptates?</p>
                                 <a class="main-btn border-white text-white mt-lg-5" href=""></a>
                             </div>
                         </div>

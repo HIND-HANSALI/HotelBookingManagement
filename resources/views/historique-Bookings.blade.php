@@ -74,16 +74,12 @@
 
 
 
-
+                @if(count($bookings) > 0)
 
                 @foreach ($bookings as $booking)
                 <div class="container  mt-5">
                     <form action="" method="">
                        
-
-
-
-
                         <div class="card mt-3">
                             <div class="row no-gutters">
                                 <div class="col-md-4 d-flex flex-column justify-content-center align-items-center">
@@ -135,7 +131,14 @@
 
                     </form>
 
+                    @else
+                    <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+                                <strong>No réservations</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    
                 </div>
+                @endif
             </div>
         </div>
 </div>

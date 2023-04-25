@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-           
+        <a href="{{route('roomsWelcome')}}" class="logo"> <img src="{{asset('assets/img/adventure_logo_hostel.png')}}" style="width:4rem" alt="logo"> </a>
         </x-slot>
 
         <x-validation-errors class="mb-4" />

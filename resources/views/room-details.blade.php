@@ -196,7 +196,7 @@
                             
                            @foreach($room->ReviewData as $review)
                            <div class=" review-content">
-                              <!-- <img src="https://www.w3schools.com/howto/img_avatar.png" class="avatar "> -->
+                             
                               <span class="font-weight-bold ml-2">{{$review->name}}</span>
                               <p class="mt-1">
                                  @for($i=1; $i<=$review->star_rating; $i++) 

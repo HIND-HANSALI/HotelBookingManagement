@@ -58,7 +58,7 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse flex-column align-items-stretch mt-2" id="filterDropdown">
-                            <div class="border bg-light p-3 rounded mb-3">
+                            <!-- <div class="border bg-light p-3 rounded mb-3">
                                 <h5 class="mb-3" style="font-size: 18px;">CHECK AVAILABILITY</h5>
                                 <label class="form-label">Check-in</label>
                                 <input type="date" class="form-control shadow-none mb-3">
@@ -69,7 +69,7 @@
                                 <div class=" mb-lg-3 mt-4">
                                     <button type="submit" class="w-100 btn text-dark shadow-none custom-bg">Rechercher</button>
                                 </div>
-                            </div>
+                            </div> -->
                             
                             <div class="border bg-light p-3 rounded mb-3">
                             <h5 class="d-flex align-items-center justify-content-between mb-5" style="font-size: 18px;">
@@ -94,23 +94,7 @@
                                     <label class="form-check-label" for="f3">AC</label>
                                 </div> -->
                             </div>
-                            <div class="border bg-light p-3 rounded mb-3">
-                                <h5 class="d-flex align-items-center justify-content-between mb-5" style="font-size: 18px;">
-                                <span>GUESTS</span>
-                                <button id="guests-button" onclick="guests_clear()" class="btn shado-none btn-sm text-secondary d-none">Reset</button>
-                            </h5>
-
-                                <div class="d-flex">
-                                    <div class="me-2">
-                                        <label class="form-label">Members</label>
-                                        <input type="number" min="1" id="guests" oninput="guests_filter()" class="form-control shadow-none">
-                                    </div>
-                                    <!-- <div>
-                                        <label class="form-label">Children</label>
-                                        <input type="number" class="form-control shadow-none">
-                                    </div> -->
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </nav>
@@ -155,12 +139,12 @@
 
                                 <div class="d-flex align-items-center mb-2">
                                     <h5 class="mb-1 me-2">{{$room->nameR}}</h5>
-                                    <div>
+                                    <!-- <div>
                                         <i class="bi bi-star-fill text-warning"></i>
                                         <i class="bi bi-star-fill text-warning"></i>
                                         <i class="bi bi-star-fill text-warning"></i>
                                         <i class="bi bi-star-fill text-warning"></i>
-                                    </div>
+                                    </div> -->
 
                                 </div>
 
@@ -195,10 +179,10 @@
                             </a>
 
                             <h6 class="mb-4 text-center">{{$room->priceR}}  MAD per night </h6>
-                            <div class="d-flex justify-content-lg-between">
+                            <!-- <div class="d-flex justify-content-lg-between">
                                 <h6 class="text-striked text-muted mr-2">100 MAD</h6>
                                 <h6 class="text-success">32% off</h6>
-                            </div>
+                            </div> -->
                             <a href="{{route('confirmBooking',[$room->id])}}" class="btn btn-sm w-100  custom-bg shadow-none mb-2">Book Now</a>
                             <a href="{{ route('roomss.show',$room->id ) }}" class="btn btn-sm w-100 btn-outline-dark shadow-none">Check details</a>
                         </div>

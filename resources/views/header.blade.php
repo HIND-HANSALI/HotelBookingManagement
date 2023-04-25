@@ -55,6 +55,7 @@
 							</div>
 					</div>
                         <a class="dropdown-item" href="{{ route('profile.show') }}">My Profile</a>
+                        <a class="dropdown-item" href="{{ route('historique-Bookings') }}">Historique Bookings</a>
                         <form method="post" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="dropdown-item">Logout</button>
