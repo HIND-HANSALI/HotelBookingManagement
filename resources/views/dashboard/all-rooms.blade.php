@@ -74,7 +74,7 @@
                                               
                                                 </td> -->
 												<td>{{$room->nameR}}</td>
-												<td>{{$room->categorie_id}}</td>
+												<td>{{$room->categorie->title}}</td>
 												
 												<td>{{$room->numberBedOriginal}}</td>
 												<td >{{substr($room->descriptionR, 0, 50)}}</td>

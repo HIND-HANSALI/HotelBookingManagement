@@ -55,10 +55,12 @@
 										<label>Room Categorie</label>
 										<select class="form-control @error('categorie_id') is-invalid  @enderror" id="sel1" name="categorie_id">
 											<option disabled selected>Open this select menu</option>
-											<option value="1">cat1</option>
-											<option value="2">cat2</option>
-											<option value="3">cat3</option>
-
+											<option value="1">Family Room</option>
+											<option value="2">Female-only Room</option>
+											<option value="3">Budget Room</option>
+											<option value="4">Luxury Room</option>
+											<option value="5">Ensuite Room</option>
+											<option value="6">Dormitory Room</option>
 										</select>
 									</div>
 								</div>

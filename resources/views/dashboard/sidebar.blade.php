@@ -20,8 +20,7 @@
                 <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="{{route('users.index')}}"> All customers </a></li>
-                        <!-- <li><a href="edit-customer.html"> Edit Customer </a></li>
-                        <li><a href="add-customer.html"> Add Customer </a></li> -->
+                        
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-hand-holding"></i> <span> Facilities </span> <span class="menu-arrow"></span></a>
@@ -49,14 +48,7 @@
                     </ul>
                 </li>
                 <li> <a href="{{route('calendar')}}"><i class="fas fa-calendar-alt"></i> <span>Calendar</span></a> </li>
-                <li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Blog </span> <span class="menu-arrow"></span></a>
-                    <ul class="submenu_class" style="display: none;">
-                        <li><a href="blog.html">Blog </a></li>
-                        <li><a href="blog-details.html">Blog Veiw </a></li>
-                        <li><a href="add-blog.html">Add Blog </a></li>
-                        <li><a href="edit-blog.html">Edit Blog </a></li>
-                    </ul>
-                </li>
+               
                 
                
                 
