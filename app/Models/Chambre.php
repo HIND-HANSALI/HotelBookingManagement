@@ -16,6 +16,7 @@ class Chambre extends Model
        
         'numberBed',
         'priceR',
+        'numberBedOriginal',
 
         // 'pictureR',
         // 'facility_id',
@@ -33,6 +34,14 @@ class Chambre extends Model
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
+    }
+    public function ReviewData()
+    {
+    return $this->hasMany('App\Models\ReviewRating','chambre_id');
+    }
+    
+    public function categorie(){
+        return $this->belongsTo(Categorie::class);
     }
 
 }

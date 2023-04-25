@@ -16,13 +16,15 @@ return new class extends Migration
             $table->timestamps();
             $table->string('nameR');
             $table->text('descriptionR');
-            $table->integer('categorie_id');
-            // $table->string('statutR');
+          
             $table->boolean('statutR')->default(1);
             // $table->string('pictureR');
             $table->integer('numberBed');
             $table->integer('numberBedOriginal')->default(1);
             $table->float('priceR');
+
+            $table->unsignedBigInteger('categorie_id');
+            $table->foreign('categorie_id')->references('id')->on('categories')->onDelete('cascade');
 
             // $table->unsignedBigInteger('facility_id');
             // $table->foreign('facility_id')->references('id')->on('facilities')->onDelete('cascade');
