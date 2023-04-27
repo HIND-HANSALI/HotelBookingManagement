@@ -33,47 +33,34 @@ Route::middleware([
     
     
 Route::get('/redirect',[HomeController::class,'redirect']);
-Route::middleware('admin')->get('/dashboard', [ReservationController::class,'dashboard'])->name('dashboard');
 
+
+Route::middleware('admin')->group(function () {
+    Route::get('/dashboard', [ReservationController::class,'dashboard'])->name('dashboard');
+    // bookings routes
+    Route::get('/booking', [ReservationController::class,'index'])->name('bookings');
+    Route::resource('bookings', ReservationController::class)->only(['index','show','create','store','edit','update','destroy']);
+    Route::get('/bookingadd', [ReservationController::class,'create'])->name('bookingadd');
+    Route::get('/bookingedit/{id}', [ReservationController::class,'edit'])->name('bookingedit');
+
+});
 });
 
 
-// Route::get('/redirect',[HomeController::class,'redirect']);
+
 
 Route::get('/about', function () {
     return view('about');
 })->name('about');
 
 
-// Route::get('/contact', function () {
-//     return view('contact');
-// })->name('contact');
-
-// Route::get('/roomsFront', function () {
-//     return view('rooms');
-// })->name('roomsFront');
-
 Route::get('/activitiesFront', function () {
     return view('activities');
 })->name('activitiesFront');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard.index');
-// })->name('dashboard');
-
-// Route::get('/facilitiesFront', function () {
-//     return view('facilities');
-// })->name('facilitiesFront');
-
 Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])->name('facilitiesFront');
 
-    // Route::view('/dashboard','dashboard.index');
-    // Route::view('/all-facilities','dashboard.all-facilities');
-// Route::get('/facilities', function () {
-//         return view('dashboard.all-facilities');
-//     })->name('facilities');
-
-
+   
     Route::get('/addfacilitie', function () {
         return view('dashboard.add-facilitie');
     })->name('addfacilitie');
@@ -115,15 +102,9 @@ Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])
 
     Route::post('/changeStatutRoom', [ChambreController::class,'changeStatutRoom']);
 
-
-    Route::get('/booking', [ReservationController::class,'index'])->name('bookings');
-    Route::resource('bookings', ReservationController::class)->only(['index','show','create','store','edit','update','destroy']);
-    Route::get('/bookingadd', [ReservationController::class,'create'])->name('bookingadd');
-    Route::get('/bookingedit/{id}', [ReservationController::class,'edit'])->name('bookingedit');
-
+    Route::get('/calendar', [ReservationController::class,'calendar'])->name('calendar');
     
-
-
+    
     Route::resource('detailsbook', ReservationdetailController::class)->only(['index','show','create','store','edit','update','destroy']);
     Route::get('/isAvailable', [ReservationController::class,'isAvailable'])->name('reservationisAvailable');
     Route::post('/changeStatutBooking', [ReservationController::class,'changeStatutBooking'])->name('changeStatutBooking');
@@ -145,9 +126,7 @@ Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])
     return view('responcebooking');
 })->name('responcebooking');
 
-// Route::get('/historique-Bookings', function () {
-//     return view('historique-Bookings');
-// })->name('historique-Bookings');
+
    
     // responcebooking
     // Route::post('/booking/check-availability/{checkin_val}/{checkout_val}', [ChambreController::class,''])->name('');
@@ -162,3 +141,32 @@ Route::get('/facilitiesFront', [FacilitieController::class,'displayFacilities'])
     Route::resource('contacts', ContactController::class);
 
     Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF'])->name('generatePDF');
+
+   
+    #Manage Review
+Route::post('/review-store',[ChambreController::class, 'reviewstore'])->name('review.store');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Route::get('/booking', [ReservationController::class,'index'])->name('bookings');
+    // Route::resource('bookings', ReservationController::class)->only(['index','show','create','store','edit','update','destroy']);
+    // Route::get('/bookingadd', [ReservationController::class,'create'])->name('bookingadd');
+    // Route::get('/bookingedit/{id}', [ReservationController::class,'edit'])->name('bookingedit');
