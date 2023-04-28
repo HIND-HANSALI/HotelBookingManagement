@@ -66,7 +66,7 @@ function changeStatusBooking(Bookingid , statut) {
 // };
 // }
 function fetch_rooms() {
-    console.log('hi');
+    // console.log('hi');
     let facilities_btn = $('#facilities_btn');
     let facility_list = { "facilities": [] };
     let olddata =$('#matching-rooms');
@@ -84,6 +84,7 @@ function fetch_rooms() {
         url: '/rooms/fetchFacilities',
         method: 'POST',
         dataType: 'json',
+        // convert array to json
         data: JSON.stringify(facility_list),
         contentType: 'application/json',
         headers: {
@@ -129,12 +130,7 @@ function fetch_rooms() {
                 html += '<div class="col-md-5 px-lg-3 px-md-3 px-0">';
                 html += '<div class="d-flex align-items-center mb-2">';
                 html += '<h5 class="mb-1 me-2">' + room.nameR + '</h5>';
-                html += '<div>';
-                html += '<i class="bi bi-star-fill text-warning"></i>';
-                html += '<i class="bi bi-star-fill text-warning"></i>';
-                html += '<i class="bi bi-star-fill text-warning"></i>';
-                html += '<i class="bi bi-star-fill text-warning"></i>';
-                html += '</div>';
+               
                 html += '</div>';
                 html += '<div class="Facilities mb-3">';
                 html += '<h6 class="mb-1">Facilities</h6>';
@@ -144,7 +140,7 @@ function fetch_rooms() {
                 html += '</div>';
                 html += '<div class="guests">';
                 html += '<h6 class="mb-1">Guests</h6>';
-                html += '<span class="badge rounded-pill bg-light text-dark text-wrap">' + room.numberBed + ' Adults</span>';
+                html += '<span class="badge rounded-pill bg-light text-dark text-wrap">' + room.numberBedOriginal + ' Members</span>';
                 html += '</div>';
                 html += '</div>';
                 html += '<div class="col-md-2">';
@@ -152,10 +148,7 @@ function fetch_rooms() {
                 html += '<i class="bi bi-heart"></i>';
                 html += '</a>';
                 html += '<h6 class="mb-4 text-center">' + room.priceR + ' MAD per night </h6>';
-                html += '<div class="d-flex justify-content-lg-between">';
-                html += '<h6 class="text-striked text-muted mr-2">100 MAD</h6>';
-                html +='<h6 class="text-success">32% off</h6>';
-                html+='</div>';
+              
                 html += '<a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>';
                 html += '<a href="/roomss/' + room.id + '" class="btn btn-sm w-100 btn-outline-dark shadow-none">Check details</a>';
                 html += '</div>';
@@ -201,7 +194,6 @@ function toggle_status(id,val){
         },
         success: function(data) {
           // update the button text based on the new status
-          
           var btn = $('#room_' + id + '_status');
           if ( data.status == 1) {
             btn.removeClass('btn-danger').addClass('btn-success').text('active');
@@ -237,7 +229,7 @@ function cancelBooking(bookingId) {
          
         },
         error: function(jqXHR, textStatus, errorThrown ,xhr) {
-            // alert('tfoo');
+            
           console.error('Error canceling booking:', errorThrown);
         }
       });

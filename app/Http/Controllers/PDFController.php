@@ -17,9 +17,14 @@ class PDFController extends Controller
                 ->where('id', $reservation_id)
                 ->firstOrFail();
     
-               
-         $pdf = PDF::loadView('pdfReservation', compact('booking'))->setOptions(['defaultFont' => 'sans-serif']);
-        return $pdf->stream('pdfReservation.pdf');
+         if($booking->statutBooking=='booked'){
+            $pdf = PDF::loadView('pdfReservation', compact('booking'))->setOptions(['defaultFont' => 'sans-serif']);
+            return $pdf->stream('pdfReservation.pdf');
+         } 
+        //  else {
+        //     return redirect()->back()->with('error', ' Booking is canceled!');
+        //  }     
+       
         
     }
 }

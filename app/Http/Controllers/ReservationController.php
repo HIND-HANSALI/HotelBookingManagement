@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Chambre;
 use App\Models\Facilitie;
 use App\Models\Reservation;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Models\Reservationdetail;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        // return view('dashboard.all-booking',['bookings'=>Reservation::paginate(10)]);
+        
         $bookings = Reservation::with('reservationdetails')->paginate(10);
         // dd($bookings);
         return view('dashboard.all-booking',['bookings'=>$bookings]);
@@ -33,10 +34,18 @@ class ReservationController extends Controller
         // return view('dashboard.all-booking',['bookings'=>Reservation::paginate(10)]);
         $bookings = Reservation::with('reservationdetails')
                     ->where('user_id', $user->id)
-        
+                    ->orderBy('id', 'desc')
                     ->paginate(10);
                     // dd($bookings);
         return view('historique-Bookings',['bookings'=>$bookings]);
+    }
+
+    public function calendar()
+    {
+        
+        $bookings = Reservation::with('reservationdetails')->paginate(10);
+        // dd($bookings);
+        return view('dashboard.calendar',['bookings'=>$bookings]);
     }
 
    
@@ -52,12 +61,13 @@ class ReservationController extends Controller
     
         $facilities=Facilitie::count();
         $rooms=Chambre::count();
+        $categories=Categorie::count();
 
         // Count clients
         $userClient = User::where('userType', 0)->count();
         // $users=User::count();
-    
-        return view('dashboard.index', compact('countRoomsReserved', 'countRoomsNotReserved', 'facilities', 'userClient','rooms'));
+        $bookings = Reservation::with('reservationdetails')->get();
+        return view('dashboard.index', compact('countRoomsReserved', 'countRoomsNotReserved', 'facilities', 'userClient','rooms','categories','bookings'));
     }
 
 
@@ -79,35 +89,36 @@ class ReservationController extends Controller
         $inrange_false = [];
         foreach($reservations as $reservation){
             if($reservation->checkOut<$checkIn ||$reservation->checkIn>$checkOut){
-                echo "out of range";
+                // echo "out of range";
             }elseif((($reservation->chambre->numberBedOriginal) - $reservation->reservationdetails->numberPerson) >=$numberPerson){
                 if(!in_array($reservation->chambre,$chambres_temp) && !in_array($reservation->chambre,$inrange_false)){
-                    echo "inrange true";
+                    // echo "inrange true";
                     array_push($chambres_temp,$reservation->chambre);
                 }else{
-                    echo "inrange true but another is false ";
+                    // echo "inrange true but another is false ";
                 }
             }
             else{
-                echo "in range condition false";
+                // echo "in range condition false";
                 echo(count($chambres_temp));
                 array_push($inrange_false,$reservation->chambre);
                 $chambres_temp =  array_diff($chambres_temp, [$reservation->chambre]);
                 echo(count($chambres_temp));
-                echo '--------------------------------------- <br>';
+                // echo '--------------------------------------- <br>';
                
             }
         }
         foreach($available_Rooms_With_reservation as $room){
             $in = false;
             foreach($room->reservations as $reservation){
-                if($reservation->checkOut<$checkIn ||$reservation->checkIn>$checkOut){
-
+                if(($reservation->checkOut<$checkIn ||$reservation->checkIn>$checkOut) && $room->numberBedOriginal>=$numberPerson){
+                    // out of range
                 }else{
+                    
                     $in = true;
                 }
             }
-            if($in){
+            if($in ){
                 $available_Rooms_With_reservation =  array_diff($available_Rooms_With_reservation, [$room]);
             }
         }
@@ -118,11 +129,24 @@ class ReservationController extends Controller
     public function checkAvailability(Request $request)
     {
 
-        // Retrieve the available rooms based on the input parameters
-        $checkIn = $request->input('checkIn');
-        $checkOut = $request->input('checkOut');
-        $numberPerson = $request->input('numberPerson');
+
+         // Validate the form data
+        $validatedData = $request->validate([
+            'checkIn' => 'required|date|after_or_equal:today',
+            'checkOut' => 'required|date|after:checkIn',
+            'numberPerson' => 'required|integer|min:1',
+            
+        ]);
+        $checkIn = $validatedData['checkIn'];
+        $checkOut = $validatedData['checkOut'];
+        $numberPerson = $validatedData['numberPerson'];
+        
+        // $checkIn = $request->input('checkIn');
+        // $checkOut = $request->input('checkOut');
+        // $numberPerson = $request->input('numberPerson');
         $rooms = $this->getSpecificRooms($checkIn,$checkOut,$numberPerson);
+
+        $request->session()->flashInput($validatedData);
 
         // Pass the available rooms to the view
         return view('welcome', ["rooms"=>$rooms]);

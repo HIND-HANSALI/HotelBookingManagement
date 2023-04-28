@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function redirect(){
         $usertype=Auth::user()->usertype;
-        dd('User usertype is: '.$usertype);
+        // dd('User usertype is: '.$usertype);
         if($usertype==1){
             return redirect()->route('dashboard');
             // return view('dashboard.index');

@@ -26,7 +26,7 @@ class UpdateChambreRequest extends FormRequest
             'descriptionR'=>'required',
             'categorie_id'=>'required',
             // 'statutR'=>'required',
-            'numberBed'=>'required',
+            'numberBedOriginal'=>'required',
             'priceR'=>'required',
             // 'pictureR'=>'required|file',
         ];

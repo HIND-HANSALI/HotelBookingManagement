@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chambre;
 use App\Models\Facilitie;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreChambreRequest;
@@ -29,7 +30,8 @@ class ChambreController extends Controller
     {
         // Chambre::paginate(10)
         $rooms = Chambre::with(['facilities', 'chambreimages'])->paginate(10);
-        return view('rooms', ['rooms' =>$rooms ]);
+        $facilities = Facilitie::get();
+        return view('rooms', ['rooms' =>$rooms , 'facilities'=>$facilities]);
     }
 
     //diplay Rooms in Welcome page
@@ -39,24 +41,7 @@ class ChambreController extends Controller
         return view('welcome', ['rooms' => $rooms]);
     }
 
-    // dd($request);
-        // $fac_count=0;
-        // $roomFacilities = Chambre::with(['facilities'])->get();
-
-        // if(in_array($roomFacilities->id,$request->facilities)){
-        //     $fac_count++; 
-        // }
-        // if(count($request->facilities)!=$fac_count){
-        //     continue;
-        // }
-        // // $facilities = $request->input('facilities');
-        // // Do something with the facilities list
-        // $response = "Rooms updated!";
-        // return response()->json($response);
-
-
-
-     
+  
 
     public function fetchRoomfacilities(Request $request)
     {
@@ -158,7 +143,7 @@ class ChambreController extends Controller
     public function edit($id)
     {
         $chambre=Chambre::findorfail($id);
-        return view('dashboard.edit-room',['room'=>$chambre,'facilities' => Facilitie::All()]);
+        return view('dashboard.edit-room',['room'=>$chambre,'facilities' => Facilitie::All(),'categories' => Categorie::All()]);
     }
 
     /**
@@ -168,22 +153,18 @@ class ChambreController extends Controller
     {
         $chambre=Chambre::findorfail($id);
         // dd($request->All());
-        // $photo = $request->file('pictureR');
-        // $file_name = rand() . '.' . $photo->getClientOriginalName();
-        // $photo->move(public_path('/assets/upload/rooms'), $file_name);
-        $data = $request->only(['nameR', 'descriptionR', 'categorie_id', 'numberBed', 'priceR']);
-        // $data['pictureR'] = $file_name;
+        $data = $request->only(['nameR', 'descriptionR', 'categorie_id', 'numberBedOriginal', 'priceR']);
+     
         $chambre ->update($data);
         // $chambre->facilities()->detach();
         
         // Store the selected facilities for the chambre
-        
         $facilities = $request->input('facilities');
+        // return $facilities;
         if ($facilities) {
-            foreach ($facilities as $facility_id) {
-                $chambre->facilities()->sync([$facility_id => ['chambre_id' => $chambre->id]]);
-                // $chambre->facilities()->attach($facility_id, ['chambre_id' => $chambre->id]);
-            }
+                $chambre->facilities()->sync($facilities);
+                
+            
         }
        
 

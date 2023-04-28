@@ -5,6 +5,8 @@ use App\Models\Reservation;
 // use App\Http\Controllers\Auth\Auth;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservationdetail;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\Models\Chambre;
 use App\Http\Requests\StoreReservationdetailRequest;
 use App\Http\Requests\UpdateReservationdetailRequest;
@@ -34,22 +36,28 @@ class ReservationdetailController extends Controller
      */
     public function store(StoreReservationdetailRequest $request)
     {
+
    
     // Insert data into the reservations table
     $reservation = new Reservation;
-    $reservation->checkIn = $request->input('checkIn');
-    $reservation->checkOut = $request->input('checkOut');
-    // $reservation->statutBooking = "pending";
-    // $reservation->arrival = 0;
-    // $reservation->refund = null;
+    $reservation->checkIn = Carbon::createFromFormat('Y-m-d', $request->input('checkIn'));
+    $reservation->checkOut = Carbon::createFromFormat('Y-m-d', $request->input('checkOut'));
     $reservation->chambre_id = $request->input('chambre_id');
+    $chabreinfo = DB::select('SELECT priceR , nameR FROM chambres WHERE id = ? LIMIT 1', [$reservation->chambre_id]);
+    $chambrePrice =$chabreinfo[0]->priceR;
+    $chambreName =$chabreinfo[0]->nameR;
+    // dd($chambrePrice , $chambreName , $totalPrice);
     $reservation->user_id = Auth::id();
-    
 
+    $numberPerson = intval($request->input('numberPerson'));
+
+
+    
+// dd($request->input('numberPerson'));
     // Check if the rerservation is available and update the booking status
-    $bol = $reservation->isAvailable($reservation->checkIn, $reservation->checkOut, $reservation->chambre_id, $request->input('numberPerson'), $reservation->id);
-    // dd($bol);
-    if ($bol == 0) {
+    $bol = $reservation->isAvailable($reservation->checkIn, $reservation->checkOut, $reservation->chambre_id,  $numberPerson, $reservation->id);
+   
+    if ($bol == 0 ) {
          // If the room is not available
     return back()->with('error','The Room is not available for the selected dates.');
 
@@ -68,18 +76,23 @@ class ReservationdetailController extends Controller
     }
     $chambre->save();
 
+    $numberPerson = $request->input('numberPerson');
+    $totalPrice = ( $reservation->checkOut->diffInDays($reservation->checkIn)) *  $chambrePrice * $numberPerson;
+
+
+   
    
 
     // Insert data into the reservationdetails table
     $reservationdetail = new Reservationdetail;
-    $reservationdetail->roomName = $request->input('roomName');
+    $reservationdetail->roomName = $chambreName;
     $reservationdetail->userName = $request->input('userName');
     $reservationdetail->phoneNum = $request->input('phoneNum');
     $reservationdetail->address = $request->input('address');
     // $reservationdetail->roomnum = $request->input('roomnum');
-    $reservationdetail->price = $request->input('price');
-    $reservationdetail->total_payement = $request->input('total_payement');
-    $reservationdetail->numberPerson = $request->input('numberPerson');
+    $reservationdetail->price = $chambrePrice;
+    $reservationdetail->total_payement =$totalPrice;
+    $reservationdetail->numberPerson =  $numberPerson;
     $reservationdetail->reservation_id = $reservation->id;
 
         $reservation->statutBooking = "booked";

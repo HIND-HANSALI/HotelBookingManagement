@@ -46,15 +46,15 @@ class Reservation extends Model
         $inrange_false = [];
         $out_of_range=0;
         foreach($reservations as $reservation){
-            if($reservation->checkOut<$checkIn ||$reservation->checkIn>$checkOut){
-                echo "out of range";
+            if($reservation && ($reservation->checkOut<$checkIn ||$reservation->checkIn>$checkOut) && $room->numberBedOriginal>=$numberPerson  ){
+                // echo "out of range";
                 $out_of_range++;
-            }elseif((($reservation->chambre->numberBedOriginal) - $reservation->reservationdetails->numberPerson) >=$numberPerson){
+            }elseif($reservation && (($reservation->chambre->numberBedOriginal ?? 0) - ($reservation->reservationdetails->numberPerson ?? 0)) >= $numberPerson){
                 if(!in_array($reservation->chambre,$chambres_temp) && !in_array($reservation->chambre,$inrange_false)){
-                    echo "inrange true";
+                    // echo "inrange true";
                     array_push($chambres_temp,$reservation->chambre);
                 }else{
-                    echo "inrange true but another is false ";
+                    // echo "inrange true but another is false ";
                 }
             }
             else{
@@ -73,13 +73,13 @@ class Reservation extends Model
         foreach($available_Rooms_With_reservation as $room){
             $in = false;
             foreach($room->reservations as $reservation){
-                if($reservation->checkOut<$checkIn ||$reservation->checkIn>$checkOut){
-
+                if(($reservation->checkOut<$checkIn ||$reservation->checkIn>$checkOut) && $room->numberBedOriginal>=$numberPerson){
+                    // out of range
                 }else{
                     $in = true;
                 }
             }
-            if($in){
+            if($in && $room->numberBedOriginal<=$numberPerson){
                 $available_Rooms_With_reservation =  array_diff($available_Rooms_With_reservation, [$room]);
             }
         }
