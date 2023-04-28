@@ -87,6 +87,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
+                        
                         <input type="hidden" name="price" value="{{ $room->priceR }}">
                         <input type="hidden" name="chambre_id" value="{{ $room->id }}">
                         <input type="hidden" name="roomName" value="{{ $room->nameR }}">
@@ -114,11 +115,11 @@
                             </div>
                             <div class="col-md-6 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-in</label>
-                            <input type="date" onchange="check()" name="checkIn" class="form-control shadow-none" value="{{old ('checkIn')}}" >
+                            <input type="date" onchange="check()" name="checkIn" class="form-control shadow-none @error('checkIn') is-invalid  @enderror" value="{{old ('checkIn')}}" >
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-Out</label>
-                            <input type="date" onchange="check()" name="checkOut" class="form-control shadow-none" value="{{old ('checkOut')}}">
+                            <input type="date" onchange="check()" name="checkOut" class="form-control shadow-none @error('checkOut') is-invalid  @enderror" value="{{old ('checkOut')}}">
                         </div>
                         </div>
                        

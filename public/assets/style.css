@@ -1,0 +1,129 @@
+
+/* welcome page landing */
+:root {
+    --teal: #F7D1C9;
+    --teal_hover: #E9967A;
+}
+
+* {
+    /* font-family: 'Poppins', sans-serif; */
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.custom-bg {
+    background-color: var(--teal_hover);
+    border: 1px solid var(--teal_hover);
+}
+
+.h-font {
+    font-family: 'Merienda' cursive;
+}
+
+.availability-form {
+    margin-top: -50px;
+    z-index: 2;
+    position: relative;
+}
+
+@media screen and (max-width: 575px) {
+    .availability-form {
+        margin-top: 25px;
+        padding: 0 35px;
+    }
+
+}
+
+.banner-wrapper {
+    height: 40.6rem;
+}
+
+.banner-wrapper .swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.banner-wrapper .swiper-slide {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    position: relative;
+}
+
+.banner-wrapper .swiper .slide-caption {
+    height: 100%;
+    position: relative;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-wrapper .swiper .slide-caption p {
+    max-width: 37.5rem;
+    margin: 0 auto;
+    color: white;
+}
+
+.activities_wrapper .activitie-items {
+    position: relative;
+    overflow: hidden;
+}
+
+.activities_wrapper .activitie-items img {
+    width: 100%;
+    -webkit-transition: all 400ms ease-in 0s;
+    transition: all 400ms ease-in 0s;
+}
+
+.activities_wrapper .activitie-items:hover img {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+}
+
+.activities_wrapper .activitie-item-wrap {
+    position: absolute;
+    left: 1.875rem;
+    right: 1.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.activities_wrapper .activitie-items .activitie-content {
+    border: .125rem solid var(--bg-white);
+    padding: 5rem 1.875rem;
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+    transform: scale3d(1.2, 1.2, 1.2);
+    transition: all 500ms ease-in 0s;
+    opacity: 0;
+}
+
+.activities_wrapper .activitie-items:hover .activitie-content {
+    border: .125rem solid white;
+
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+
+    opacity: 1;
+}
+
+.activitie-items .activitie-content {
+    padding: 2rem 1.875rem;
+}
+
+.activitie-items .activitie-content h5 {
+    font-size: 1.2rem;
+}
+
+.activitie-items .activitie-content p {
+    font-size: 0.75rem;
+}
+ /* End landing  */
+ 
+.backg-login{
+    /* background-image:url("https://i.pinimg.com/564x/25/94/39/25943985d0964c533cb614ea01571dd0.jpg"); */
+    background-color: red;
+    color: black;
+}

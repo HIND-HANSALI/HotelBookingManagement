@@ -148,13 +148,16 @@
 		<script src="assets/plugins/raphael/raphael.min.js"></script>
 		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 		<script src="assets/js/script.js"></script>
-		<script>
+		
+		<!-- <script>
+			
+
 			$(function() {
 				$('#datetimepicker3').datetimepicker({
 					format: 'LT'
 				});
 			});
-		</script>
+		</script> -->
 </body>
 
 </html>

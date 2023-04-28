@@ -53,7 +53,7 @@
                 <div class="col-12 px-4">
                 <div class="fw-bold alert alert-success alert-dismissible d-flex align-items-center fade show mt-4">
                     <i class="bi-check-circle-fill"></i>
-                    <strong class="mx-2">Payment! Booking successfull.</strong> 
+                    <strong class="mx-2">Good! Booking successfull.</strong> 
                     
                     <a href="{{route('historique-Bookings')}}">Go to Bookings </a>
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>

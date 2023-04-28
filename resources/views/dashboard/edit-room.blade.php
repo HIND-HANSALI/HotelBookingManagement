@@ -144,7 +144,7 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/moment.min.js"></script>
 	<script src="assets/js/select2.min.js"></script>
-
+	
 	<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="assets/plugins/raphael/raphael.min.js"></script>
 

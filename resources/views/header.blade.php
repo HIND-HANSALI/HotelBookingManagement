@@ -39,7 +39,7 @@
 
 
                 <!-- cc -->
-                <div class="nav-item dropdown has-arrow me-3">
+                <div class="nav-item dropdown has-arrow me-4">
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                         <span class="user-img">
                             {{ Auth::user()->name }}
@@ -66,19 +66,14 @@
                     </div>
                 </div>
 
-                <!-- cc -->
-                <!-- <a href="{{route('dashboard')}}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a> -->
+                
                 @else
                 <a href="{{ route('login') }}" class="btn btn-outline-dark shadow-none me-lg-3 me-2">Login</a>
                 <a href="{{ route('register') }}" class="btn btn-outline-dark shadow-none">Register</a>
-                <!-- <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button> -->
-                <!-- <button type="button" class="btn btn-outline-dark shadow-none" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button> -->
+
             </div>
 
-            <!-- hii -->
-
-
-            <!-- hii -->
+         
 
 
             @endauth

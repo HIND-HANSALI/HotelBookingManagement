@@ -101,9 +101,7 @@
 
             <div class="col-lg-9 col-md-12 px-4">
 
-            <!-- <div id="matching-rooms"> -->
-                                <!-- Content  updated here -->
-                            <!-- </div>        -->
+          
                  <section id="matching-rooms">
 
                 @foreach ($rooms as $room)

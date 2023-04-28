@@ -31,12 +31,8 @@
 			<a class="mobile_btn" id="mobile_btn"> <i class="fas fa-bars"></i> </a>
 			<ul class="nav user-menu">
 				<li class="nav-item dropdown noti-dropdown">
-					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <i class="fe fe-bell"></i> <span class="badge badge-pill">3</span> </a>
-					<!-- <div class="dropdown-menu notifications">
-						<div class="topnav-dropdown-header"> <span class="notification-title">Notifications</span> <a href="javascript:void(0)" class="clear-noti"> Clear All </a> </div>
-						
-						<div class="topnav-dropdown-footer"> <a href="#">View all Notifications</a> </div>
-					</div> -->
+					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> </a>
+					
 				</li>
 				<li class="nav-item dropdown has-arrow me-3">
 					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img">{{Auth::user()->name}}</span> </a>
@@ -57,12 +53,12 @@
 					</div>
 				</li>
 			</ul>
-			<div class="top-nav-search">
+			<!-- <div class="top-nav-search">
 				<form>
 					<input type="text" class="form-control" placeholder="Search here">
 					<button class="btn" type="submit"><i class="fas fa-search"></i></button>
 				</form>
-			</div>
+			</div> -->
 		</div>
 		<!-- sidebar section -->
 		@include('dashboard.sidebar')
